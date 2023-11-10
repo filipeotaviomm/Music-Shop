@@ -9,7 +9,10 @@ function useUserContext() {
 function UserProvider(props: { children: React.ReactNode }) {
   const a: string = "a";
 
-  const values = { a };
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+  const [cart, setCart] = React.useState(0);
+
+  const values = { a, cart, setCart, isLoggedIn, setIsLoggedIn };
 
   return (
     <UserContext.Provider value={values}>{props.children}</UserContext.Provider>
