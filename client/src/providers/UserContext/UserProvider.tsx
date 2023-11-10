@@ -7,12 +7,38 @@ function useUserContext() {
 }
 
 function UserProvider(props: { children: React.ReactNode }) {
-  const a: string = "a";
-
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [cart, setCart] = React.useState(0);
+  const [isLogOpen, setIsLogOpen] = React.useState(false);
+  const [isSignUp, setIsSignUp] = React.useState(false);
 
-  const values = { a, cart, setCart, isLoggedIn, setIsLoggedIn };
+  interface Cart {
+    cart: number;
+    setCart: React.Dispatch<React.SetStateAction<number>>;
+    isLoggedIn: boolean;
+
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+
+    isLogOpen: boolean;
+    setIsLogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+
+    isSignUp: boolean;
+    setIsSignUp:React.Dispatch<React.SetStateAction<boolean>>;
+  }
+
+  const values: Cart = {
+    isSignUp,
+    setIsSignUp,
+
+    cart,
+    setCart,
+
+    isLoggedIn,
+    setIsLoggedIn,
+
+    isLogOpen,
+    setIsLogOpen,
+  };
 
   return (
     <UserContext.Provider value={values}>{props.children}</UserContext.Provider>
