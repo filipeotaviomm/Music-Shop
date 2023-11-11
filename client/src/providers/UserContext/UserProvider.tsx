@@ -1,4 +1,6 @@
 import React from "react";
+import { IContext, ISignUp } from "../../types/types";
+import { api } from "../../services/api.ts";
 
 const UserContext = React.createContext({});
 
@@ -7,26 +9,23 @@ function useUserContext() {
 }
 
 function UserProvider(props: { children: React.ReactNode }) {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [cart, setCart] = React.useState(0);
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isLogOpen, setIsLogOpen] = React.useState(false);
   const [isSignUp, setIsSignUp] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  interface Cart {
-    cart: number;
-    setCart: React.Dispatch<React.SetStateAction<number>>;
-    isLoggedIn: boolean;
+  const signUpRequest = async (formData:ISignUp) => {
+    try {
+      await api.post("/users", formData);
+    } catch (error) {
+      console.log("error")
+    }
+  };
 
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 
-    isLogOpen: boolean;
-    setIsLogOpen: React.Dispatch<React.SetStateAction<boolean>>;
-
-    isSignUp: boolean;
-    setIsSignUp:React.Dispatch<React.SetStateAction<boolean>>;
-  }
-
-  const values: Cart = {
+  const values: IContext = {
     isSignUp,
     setIsSignUp,
 
@@ -38,6 +37,11 @@ function UserProvider(props: { children: React.ReactNode }) {
 
     isLogOpen,
     setIsLogOpen,
+
+    signUpRequest,
+
+    isLoading,
+    setIsLoading,
   };
 
   return (
