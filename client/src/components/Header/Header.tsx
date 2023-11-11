@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { useUserContext } from "../../providers/UserContext";
 import Login from "../Login";
+import {IContext} from "../../types/types";
 
 const SearchBar = styled.input`
   border: 2px solid ${colors.black};
@@ -114,14 +115,9 @@ function Header() {
   const [searchValue, setSearchValue] = React.useState("");
 
 
-  interface Cart {
-    cart: string;
-    isLoggedIn: boolean;
-    isLogOpen: boolean,
-    setIsLogOpen: React.Dispatch<React.SetStateAction<boolean>>
-  }
 
-  const { cart, setIsLogOpen, isLogOpen } = useUserContext() as Cart;
+
+  const { cart, setIsLogOpen, isLogOpen } = useUserContext() as IContext;
 
   return (
     <HeaderWrapper>
