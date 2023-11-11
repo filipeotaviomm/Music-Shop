@@ -2,12 +2,12 @@ import {useUserContext} from "../../providers/UserContext";
 import * as Dialog from '@radix-ui/react-dialog';
 import {colors, fontSize} from "../../styled-components/root.ts";
 import {VisuallyHidden} from "@radix-ui/react-visually-hidden";
-import {Cart} from "../../types/types";
+import {IContext} from "../../types/types";
 import {Field, Form, SendBtn} from "../../styled-components/Modal.styles.tsx";
 
 function UserLogin() {
     const { isSignUp, setIsSignUp } =
-        useUserContext() as Cart;
+        useUserContext() as IContext;
     return (
       <>
         <Dialog.Title
@@ -48,14 +48,6 @@ function UserLogin() {
             </SendBtn>
           </Dialog.Close>
         </Form>
-
-        <div
-          style={{
-            display: "flex",
-            marginTop: 25,
-            justifyContent: "flex-end",
-          }}
-        ></div>
 
         <div
           style={{
