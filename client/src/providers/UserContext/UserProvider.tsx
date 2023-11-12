@@ -1,5 +1,5 @@
 import React from "react";
-import { IContext, ISignUp } from "../../types/types";
+import {IContext, ILogin, ISignUp} from "../../types/types";
 import { api } from "../../services/api.ts";
 
 const UserContext = React.createContext({});
@@ -23,6 +23,13 @@ function UserProvider(props: { children: React.ReactNode }) {
       console.log("error")
     }
   };
+  const loginRequest = async (formData:ILogin) => {
+    try {
+      await api.post("/session", formData);
+    } catch (error) {
+      console.log("error")
+    }
+  };
 
 
   const values: IContext = {
@@ -39,6 +46,7 @@ function UserProvider(props: { children: React.ReactNode }) {
     setIsLogOpen,
 
     signUpRequest,
+    loginRequest,
 
     isLoading,
     setIsLoading,
