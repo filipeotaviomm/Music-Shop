@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
+import {fontSize} from "./root.ts";
 
 export const Field = styled.fieldset`
   display: flex;
@@ -33,6 +34,17 @@ export const DContent = styled(Dialog.Content)`
   padding: 25px;
 `;
 
+export const DTitle = styled(Dialog.Title)`
+  text-align: center;
+  font-weight: 500;
+  font-size: ${
+          fontSize.h2
+  };
+  margin-block-end: 16px;
+  margin-block-start: 80px;
+
+`
+
 export const Form = styled.form``;
 
 export const SendBtn = styled.button`
@@ -41,3 +53,4 @@ export const SendBtn = styled.button`
   align-items: center;
   justify-content: center;
 `;
+
