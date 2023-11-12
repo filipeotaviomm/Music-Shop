@@ -25,5 +25,6 @@ export interface IContext {
     setIsSignUp: React.Dispatch<React.SetStateAction<boolean>>;
 
     signUpRequest:(formData: ISignUp) => Promise<void>
+    loginRequest:(formData: ILogin) => Promise<void>
 }
 
