@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
   html,
   body {
     height: 100%;
+    font-family: Inter;
   }
   /*
   /* the bigger container */
