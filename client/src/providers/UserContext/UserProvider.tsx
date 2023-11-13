@@ -1,5 +1,5 @@
 import React from "react";
-import {IContext, ILogin, ISignUp} from "../../types/types";
+import { IContext, ILogin, ISignUp } from "../../types/types";
 import { api } from "../../services/api.ts";
 
 const UserContext = React.createContext({});
@@ -16,21 +16,39 @@ function UserProvider(props: { children: React.ReactNode }) {
   const [isSignUp, setIsSignUp] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const signUpRequest = async (formData:ISignUp) => {
+  const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
+
+  const signUpRequest = async (formData: ISignUp) => {
+    const {
+      firstName: firstName,
+      lastName: lastName,
+      ...newFormData
+    } = formData;
+
+    const updatedFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+    const updatedLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
+
+    // Concatenating the variables
+    const fullName = `${updatedFirstName} ${updatedLastName}`;
+    const updatedFormData = { ...newFormData, fullName };
     try {
-      await api.post("/users", formData);
+      await api.post("/users", updatedFormData);
     } catch (error) {
-      console.log("error")
-    }
-  };
-  const loginRequest = async (formData:ILogin) => {
-    try {
-      await api.post("/session", formData);
-    } catch (error) {
-      console.log("error")
+      console.log("error");
     }
   };
 
+  function changePasswordVisibility() {
+    setIsPasswordVisible(!isPasswordVisible);
+  }
+
+  const loginRequest = async (formData: ILogin) => {
+    try {
+      await api.post("/session", formData);
+    } catch (error) {
+      console.log("error");
+    }
+  };
 
   const values: IContext = {
     isSignUp,
@@ -50,6 +68,10 @@ function UserProvider(props: { children: React.ReactNode }) {
 
     isLoading,
     setIsLoading,
+
+    changePasswordVisibility,
+    isPasswordVisible,
+    setIsPasswordVisible,
   };
 
   return (
