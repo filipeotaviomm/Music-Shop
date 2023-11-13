@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
-import {fontSize} from "./root.ts";
+import {colors, fontSize} from "./root.ts";
+import {StyledButton} from "../components/Button";
 
 export const Field = styled.fieldset`
   display: flex;
   flex-flow: column;
+  margin-block: 24px;
+  border-radius: 8px;
+  border: 1px solid ${colors.offWhite}
 `;
 export const DOverLay = styled(Dialog.Overlay)`
   background-color: rgba(0 0 0 / 0.5);
@@ -40,14 +44,14 @@ export const DTitle = styled(Dialog.Title)`
   font-size: ${
           fontSize.h2
   };
-  margin-block-end: 16px;
-  margin-block-start: 80px;
+  margin-block-end: 40px;
+  margin-block-start: 40px;
 
 `
 
 export const Form = styled.form``;
 
-export const SendBtn = styled.button`
+export const SendBtn = styled(StyledButton)`
   width: 100%;
   display: flex;
   align-items: center;
