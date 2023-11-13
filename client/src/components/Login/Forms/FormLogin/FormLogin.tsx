@@ -1,10 +1,6 @@
 import React from "react";
 
-import {
-  Field,
-  Form,
-  SendBtn,
-} from "../../../../styled-components/Modal.styles.tsx";
+import { Form, SendBtn } from "../../../../styled-components/Modal.styles.tsx";
 import { useUserContext } from "../../../../providers/UserContext";
 
 import { IContext, ILogin, ISignUp } from "../../../../types/types";
@@ -12,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import loginSchema from "../../../../schemas/loginSchema";
+import Input from "../Input";
 
 function FormLogin() {
   const { loginRequest } = useUserContext() as IContext;
@@ -33,22 +30,19 @@ function FormLogin() {
 
   return (
     <Form onSubmit={handleSubmit(submit)}>
-      <Field>
-        <label htmlFor={emailId}>E-mail</label>
-        <input {...register("email")} error={errors.email} id={emailId} />
-      </Field>
-      <Field>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <label htmlFor={passwordId}>Senha</label>
-          <button>Esqueceu sua senha?</button>
-        </div>
-        <input
-          type="password"
-          id={passwordId}
-          {...register("password")}
-          error={errors.password}
-        />
-      </Field>
+      <Input
+        label="email"
+        error={errors.email}
+        {...register("email")}
+        id={emailId}
+      />
+      <Input
+        label="senha"
+        type="password"
+        error={errors.password}
+        {...register("password")}
+        id={passwordId}
+      />
 
       <SendBtn>LOGIN</SendBtn>
     </Form>

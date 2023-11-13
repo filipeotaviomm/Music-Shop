@@ -1,14 +1,13 @@
 import * as Dialog from "@radix-ui/react-dialog";
 
 import { useUserContext } from "../../providers/UserContext";
-import { UserLogin } from "./UserLogin.tsx";
-import { UserSignUp } from "./UserSignUp.tsx";
 import { IContext } from "../../types/types";
 import {
   DContent,
   DOverLay,
 } from "../../styled-components/Modal.styles.tsx";
 import {X} from "react-feather";
+import LoginOrSignUp from "../LoginOrSignUp";
 
 function Login() {
   const { isLogOpen, setIsLogOpen, isSignUp } = useUserContext() as IContext;
@@ -17,7 +16,7 @@ function Login() {
       <Dialog.Portal>
         <DOverLay />
         <DContent>
-          {isSignUp ? UserSignUp():UserLogin()}
+          {LoginOrSignUp(isSignUp)}
             <Dialog.Close asChild>
                 <button
                     style={{

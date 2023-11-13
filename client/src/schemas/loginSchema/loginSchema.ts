@@ -11,7 +11,6 @@ const loginSchema = z.object({
     }),
   password: z
     .string()
-    .min(8, "")
     .trim()
     .refine((value) => value !== "", {
       message: "Favor colocar a senha :)",
