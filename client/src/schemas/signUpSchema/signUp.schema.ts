@@ -4,15 +4,16 @@ const signUpSchema = z
   .object({
     email: z
       .string()
-      .min(8)
-      .max(120)
+
+      .max(120, "O e-mail não pode ultrapassar 120 caracteres")
       .trim()
       .toLowerCase()
-      .email("Por favor insira um e-mail válido"),
+      .email("Por favor insira um e-mail válido")
+      .min(8),
     password: z
       .string()
-      .min(8, "")
       .trim()
+      .min(8, "O tamanho mínimo é de 8 caracteres :)")
       .regex(/[A-Z]/, "A senha deve conter pelo menos uma letra maiúscula")
       .regex(/[a-z]/, "A senha deve conter pelo menos uma letra minúscula")
       .regex(/\d/, "A senha deve conter pelo menos um número")

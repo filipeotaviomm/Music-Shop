@@ -1,15 +1,15 @@
 import React from "react";
-import {
-  Field,
-  Form,
-  SendBtn,
-} from "../../../../styled-components/Modal.styles.tsx";
-import * as Dialog from "@radix-ui/react-dialog";
-import { useForm } from "react-hook-form";
-import { IContext, ISignUp } from "../../../../types/types";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import { Form, SendBtn } from "../../../../styled-components/Modal.styles.tsx";
 import signUpSchema from "../../../../schemas/signUpSchema";
+
+import { IContext, ISignUp } from "../../../../types/types";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import { useUserContext } from "../../../../providers/UserContext";
+import Input from "../Input";
 
 function FormSignUp() {
   const { signUpRequest } = useUserContext() as IContext;
@@ -31,46 +31,31 @@ function FormSignUp() {
   }
 
   return (
-    <Form onSubmit={handleSubmit(submit)}>
-      <Field>
-        <label htmlFor={emailId}>E-mail</label>
-        <input id={emailId} data-error={errors.email} {...register("email")} />
-      </Field>
-
-      <Field>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <label htmlFor={passwordId}>Senha</label>
-        </div>
-        <input
+    <>
+      <Form onSubmit={handleSubmit(submit)}>
+        <Input
+          label="e-mail"
+          error={errors.email}
+          {...register("email")}
+          id={emailId}
+        />
+        <Input
+          label="senha"
           type="password"
-          data-error={errors.password}
+          error={errors.password}
           {...register("password")}
           id={passwordId}
         />
-      </Field>
-
-      <Field>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <label htmlFor={confirmPasswordId}>Confirmar senha</label>
-        </div>
-        <input
-          data-error={errors.confirmPassword}
-          {...register("confirmPassword")}
+        <Input
+          label="confirmação de senha"
           type="password"
+          error={errors.confirmPassword}
+          {...register("confirmPassword")}
           id={confirmPasswordId}
         />
-      </Field>
-
-      <Dialog.Close asChild>
-        <SendBtn
-          style={{
-            position: "absolute",
-          }}
-        >
-          CADASTRAR
-        </SendBtn>
-      </Dialog.Close>
-    </Form>
+        <SendBtn>CADASTRAR</SendBtn>
+      </Form>
+    </>
   );
 }
 
