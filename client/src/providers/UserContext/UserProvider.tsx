@@ -22,6 +22,7 @@ function UserProvider(props: { children: React.ReactNode }) {
     const {
       firstName: firstName,
       lastName: lastName,
+      confirmPassword,
       ...newFormData
     } = formData;
 
@@ -30,11 +31,11 @@ function UserProvider(props: { children: React.ReactNode }) {
 
     // Concatenating the variables
     const fullName = `${updatedFirstName} ${updatedLastName}`;
-    const updatedFormData = { ...newFormData, fullName };
+    const updatedFormData = { ...newFormData, name: fullName };
     try {
       await api.post("/users", updatedFormData);
     } catch (error) {
-      console.log("error");
+      console.log(error);
     }
   };
 
