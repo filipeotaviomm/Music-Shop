@@ -1,4 +1,3 @@
-import * as Styles from "./styles";
 import Logo from "../../assets/logo.svg";
 import Instagram from "../../assets/instagram.png";
 import Facebook from "../../assets/facebook.png";
@@ -7,95 +6,105 @@ import Pinterest from "../../assets/pinterest.png";
 import AppleStore from "../../assets/appleStore.png";
 import GooglePlay from "../../assets/googlePlay.png";
 import { corporationOptions, helpOptions } from "../../services/database.ts";
+import {
+  Foot,
+  DivContainer,
+  DivLeft,
+  DivLogos,
+  StoreLogo,
+  UlSocialMedia,
+  LiSocialMedia,
+  AnchorMedias,
+  ImgMediaLogos,
+  DivTerms,
+  SpanTerms,
+  DivRight,
+  DivColumns,
+  TitleColumns,
+  UlOptions,
+  Li,
+  UlDownload,
+  LiDownload,
+  AnchorStores,
+  ImgStores,
+} from "./styles.ts";
 
 function Footer() {
   return (
-    <Styles.Footer>
-      <Styles.DivContainer>
-        <Styles.DivLeft>
-          <Styles.DivLogos>
-            <Styles.StoreLogo src={Logo} alt="Store's logo" />
-            <Styles.UlSocialMedia>
-              <Styles.LiSocialMedia>
-                <Styles.AnchorMedias
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                >
-                  <Styles.ImgMediaLogos src={Instagram} alt="Instagram logo" />
-                </Styles.AnchorMedias>
-              </Styles.LiSocialMedia>
-              <Styles.LiSocialMedia>
-                <Styles.AnchorMedias
-                  href="https://www.facebook.com/"
-                  target="_blank"
-                >
-                  <Styles.ImgMediaLogos src={Facebook} alt="Facebook logo" />
-                </Styles.AnchorMedias>
-              </Styles.LiSocialMedia>
-              <Styles.LiSocialMedia>
-                <Styles.AnchorMedias
-                  href="https://www.tweeter.com/"
-                  target="_blank"
-                >
-                  <Styles.ImgMediaLogos src={Tweeter} alt="Tweeter logo" />
-                </Styles.AnchorMedias>
-              </Styles.LiSocialMedia>
-              <Styles.LiSocialMedia>
-                <Styles.AnchorMedias
-                  href="https://www.pinterest.com/"
-                  target="_blank"
-                >
-                  <Styles.ImgMediaLogos src={Pinterest} alt="Pinterest logo" />
-                </Styles.AnchorMedias>
-              </Styles.LiSocialMedia>
-            </Styles.UlSocialMedia>
-          </Styles.DivLogos>
-          <Styles.DivTerms>
-            <Styles.SpanTerms>TERMOS E CONDIÇÕES</Styles.SpanTerms>
-            <Styles.SpanTerms>POLÍTICA DE PRIVACIDADE</Styles.SpanTerms>
-          </Styles.DivTerms>
-        </Styles.DivLeft>
-        <Styles.DivRight>
-          <Styles.DivColumns>
-            <Styles.TitleColumns>Ajuda e informações</Styles.TitleColumns>
-            <Styles.UlOptions>
+    <Foot>
+      <DivContainer>
+        <DivLeft>
+          <DivLogos>
+            <StoreLogo src={Logo} alt="Store's logo" />
+            <UlSocialMedia>
+              <LiSocialMedia>
+                <AnchorMedias href="https://www.instagram.com/" target="_blank">
+                  <ImgMediaLogos src={Instagram} alt="Instagram logo" />
+                </AnchorMedias>
+              </LiSocialMedia>
+              <LiSocialMedia>
+                <AnchorMedias href="https://www.facebook.com/" target="_blank">
+                  <ImgMediaLogos src={Facebook} alt="Facebook logo" />
+                </AnchorMedias>
+              </LiSocialMedia>
+              <LiSocialMedia>
+                <AnchorMedias href="https://www.tweeter.com/" target="_blank">
+                  <ImgMediaLogos src={Tweeter} alt="Tweeter logo" />
+                </AnchorMedias>
+              </LiSocialMedia>
+              <LiSocialMedia>
+                <AnchorMedias href="https://www.pinterest.com/" target="_blank">
+                  <ImgMediaLogos src={Pinterest} alt="Pinterest logo" />
+                </AnchorMedias>
+              </LiSocialMedia>
+            </UlSocialMedia>
+          </DivLogos>
+          <DivTerms>
+            <SpanTerms>TERMOS E CONDIÇÕES</SpanTerms>
+            <SpanTerms>POLÍTICA DE PRIVACIDADE</SpanTerms>
+          </DivTerms>
+        </DivLeft>
+        <DivRight>
+          <DivColumns>
+            <TitleColumns>Ajuda e informações</TitleColumns>
+            <UlOptions>
               {helpOptions.map((options) => (
-                <Styles.Li>{options}</Styles.Li>
+                <Li>{options}</Li>
               ))}
-            </Styles.UlOptions>
-          </Styles.DivColumns>
-          <Styles.DivColumns>
-            <Styles.TitleColumns>Institucional</Styles.TitleColumns>
-            <Styles.UlOptions>
+            </UlOptions>
+          </DivColumns>
+          <DivColumns>
+            <TitleColumns>Institucional</TitleColumns>
+            <UlOptions>
               {corporationOptions.map((options) => (
-                <Styles.Li>{options}</Styles.Li>
+                <Li>{options}</Li>
               ))}
-            </Styles.UlOptions>
-          </Styles.DivColumns>
-          <Styles.DivColumns>
-            <Styles.TitleColumns>Download</Styles.TitleColumns>
-            <Styles.UlDownload>
-              <Styles.LiDownload>
-                <Styles.AnchorStores
+            </UlOptions>
+          </DivColumns>
+          <DivColumns>
+            <TitleColumns>Download</TitleColumns>
+            <UlDownload>
+              <LiDownload>
+                <AnchorStores
                   href="https://www.apple.com/br/app-store/"
                   target="_blank"
                 >
-                  <Styles.ImgStores src={AppleStore} alt="Apple store link" />
-                </Styles.AnchorStores>
-              </Styles.LiDownload>
-              <Styles.LiDownload>
-                <Styles.AnchorStores
+                  <ImgStores src={AppleStore} alt="Apple store link" />
+                </AnchorStores>
+              </LiDownload>
+              <LiDownload>
+                <AnchorStores
                   href="https://play.google.com/store/apps/"
                   target="_blank"
                 >
-                  <Styles.ImgStores src={GooglePlay} alt="Google Play link" />
-                </Styles.AnchorStores>
-              </Styles.LiDownload>
-            </Styles.UlDownload>
-          </Styles.DivColumns>
-        </Styles.DivRight>
-      </Styles.DivContainer>
-    </Styles.Footer>
+                  <ImgStores src={GooglePlay} alt="Google Play link" />
+                </AnchorStores>
+              </LiDownload>
+            </UlDownload>
+          </DivColumns>
+        </DivRight>
+      </DivContainer>
+    </Foot>
   );
 }
 

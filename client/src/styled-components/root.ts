@@ -12,6 +12,7 @@ export const fontSize = {
   sub: "1.125rem",
   link: "1.125rem",
   p: "1.125rem",
+  text: "1rem",
   smallLink: "0.875rem",
   icons: "0.625rem",
 };

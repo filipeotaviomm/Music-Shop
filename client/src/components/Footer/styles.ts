@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { colors, fontType } from "../../styled-components/root.ts";
+import { colors, fontSize } from "../../styled-components/root.ts";
 
-export const Footer = styled.footer`
+export const Foot = styled.footer`
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
@@ -53,12 +53,11 @@ export const DivTerms = styled.div`
   display: flex;
   flex-direction: row;
   gap: 30px;
-  font-family: ${fontType.primary};
 `;
 
 export const SpanTerms = styled.span`
   color: grey;
-  font-size: 14px;
+  font-size: ${fontSize.smallLink};
 `;
 
 export const DivRight = styled.div`
@@ -75,13 +74,12 @@ export const DivColumns = styled.div`
 `;
 
 export const TitleColumns = styled.h6`
-  font-size: 18px;
+  font-size: ${fontSize.sub};
   color: grey;
-  font-family: ${fontType.primary};
 `;
 
 export const UlOptions = styled.ul`
-  font-size: 16px;
+  font-size: ${fontSize.text};
   color: ${colors.black};
   display: flex;
   flex-direction: column;
@@ -89,9 +87,8 @@ export const UlOptions = styled.ul`
 `;
 
 export const Li = styled.li`
-  font-size: 14px;
+  font-size: ${fontSize.smallLink};
   color: ${colors.black};
-  font-family: ${fontType.primary};
   font-weight: 500;
 `;
 
