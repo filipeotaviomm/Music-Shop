@@ -4,6 +4,8 @@ export const colors = {
   lightPurple: "hsl(297, 43%, 51%)",
   offWhite: "hsl(43, 35%, 90%)",
   grey: "hsl(0, 0%, 92%)",
+  red: "hsl(345,70%,47%)",
+
 };
 export const fontSize = {
   h1: "3.5rem",

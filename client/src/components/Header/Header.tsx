@@ -11,6 +11,9 @@ import { categories } from "../../services/database.ts";
 import { Link } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { useUserContext } from "../../providers/UserContext";
+import Login from "../Login";
+import { IContext } from "../../types/types";
+import { DefaultLabel } from "../../styled-components/Modal.styles.tsx";
 
 const SearchBar = styled.input`
   border: 2px solid ${colors.black};
@@ -54,7 +57,9 @@ const IconsWrapper = styled.div`
 `;
 
 const HeaderWrapper = styled.header`
-  margin-block-start: 24px;
+  padding-block-start: 24px;
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
 const SearchWrapper = styled.div`
   display: flex;
@@ -67,7 +72,8 @@ const CategoriesWrapper = styled.ol`
   align-items: center;
   gap: 24px;
 `;
-const Label = styled.label`
+
+const Label = styled(DefaultLabel)`
   position: absolute;
   top: -24px;
 `;
@@ -111,12 +117,7 @@ const IconsArray = [
 function Header() {
   const [searchValue, setSearchValue] = React.useState("");
 
-  interface Cart {
-    cart: string;
-    isLoggedIn: boolean;
-  }
-
-  const { cart, isLoggedIn } = useUserContext() as Cart;
+  const { cart, setIsLogOpen, isLogOpen } = useUserContext() as IContext;
 
   return (
     <HeaderWrapper>
@@ -141,35 +142,32 @@ function Header() {
         </SearchWrapper>
         <CategoriesWrapper>
           {categories.map((item) => (
-            <Category>
-              <Link
-                key={nanoid()}
-                style={{ textDecoration: "underline" }}
-                to={`./${item}`}
-              >
+            <Category key={nanoid()}>
+              <Link style={{ textDecoration: "underline" }} to={`./${item}`}>
                 {item}
               </Link>
             </Category>
           ))}
         </CategoriesWrapper>
-        <IconsWrapper>
-          {/*{IconsArray.map((item) => (
+      </InfoWrapper>
+      <IconsWrapper>
+        {/*{IconsArray.map((item) => (
             <Link key={nanoid()} to={Object.values(item).destination}>
               {Object.values(item).icon}
             </Link>
           ))}*/}
-          {/*<Heart />*/}
-          <Link to={isLoggedIn ? "/profile" : "/login"}>
-            <ProfileIcon src={Profile} alt="User Button" />
-          </Link>
-          <Link to={"/cart"}>
-            <CartWrapper>
-              <ProfileIcon $bgColor src={Cart} alt="Cart Button" />
-              <CartQuantity>{cart}</CartQuantity>
-            </CartWrapper>
-          </Link>
-        </IconsWrapper>
-      </InfoWrapper>
+        {/*<Heart />*/}
+        <button onClick={() => setIsLogOpen(!isLogOpen)}>
+          <ProfileIcon src={Profile} alt="User Button" />
+        </button>
+        <Link to={"/cart"}>
+          <CartWrapper>
+            <ProfileIcon $bgColor src={Cart} alt="Cart Button" />
+            <CartQuantity>{cart}</CartQuantity>
+          </CartWrapper>
+        </Link>
+      </IconsWrapper>
+      {isLogOpen && <Login />}
     </HeaderWrapper>
   );
 }
