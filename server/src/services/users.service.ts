@@ -1,8 +1,13 @@
+import { hash } from "bcryptjs";
 import { prisma } from "../app";
 
 export const createUserService = async (data: any) => {
-    console.log(data)
-    const user = await prisma.user.create({ data });
 
-    return user;
+    const hashedPassword = await hash(data.password, 10);
+
+    const user = { ...data, password: hashedPassword };
+
+    const newUser = await prisma.user.create({ data: user });
+
+    return newUser;
 };
