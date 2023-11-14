@@ -48,7 +48,7 @@ function Footer() {
                 </AnchorMedias>
               </LiSocialMedia>
               <LiSocialMedia>
-                <AnchorMedias href="https://www.tweeter.com/" target="_blank">
+                <AnchorMedias href="https://www.twitter.com/" target="_blank">
                   <ImgMediaLogos src={Tweeter} alt="Tweeter logo" />
                 </AnchorMedias>
               </LiSocialMedia>
