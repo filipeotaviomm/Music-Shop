@@ -3,9 +3,9 @@ import {colors} from "../../styled-components/root.ts";
 
 export const StyledButton = styled.button`
   padding-block: 16px;
-  color: ${colors.purple};
+  color: ${colors.offWhite};
   background-color: ${
-    colors.grey
+    colors.purple
   };
   border-radius: 8px;
   margin-block: 32px;
@@ -14,10 +14,10 @@ export const StyledButton = styled.button`
     outline: 2px solid ${colors.purple};
   }
   &:focus {
-    outline: 2px solid ${colors.purple};
+    background-color: ${colors.lightPurple};
   }
   &:active {
-    outline: 2px solid ${colors.purple};
+    background-color: ${colors.purple};
   }
 `
 

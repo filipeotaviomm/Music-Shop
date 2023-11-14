@@ -12,7 +12,8 @@ import { Link } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { useUserContext } from "../../providers/UserContext";
 import Login from "../Login";
-import {IContext} from "../../types/types";
+import { IContext } from "../../types/types";
+import { DefaultLabel } from "../../styled-components/Modal.styles.tsx";
 
 const SearchBar = styled.input`
   border: 2px solid ${colors.black};
@@ -57,7 +58,8 @@ const IconsWrapper = styled.div`
 
 const HeaderWrapper = styled.header`
   padding-block-start: 24px;
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
 const SearchWrapper = styled.div`
   display: flex;
@@ -70,7 +72,8 @@ const CategoriesWrapper = styled.ol`
   align-items: center;
   gap: 24px;
 `;
-const Label = styled.label`
+
+const Label = styled(DefaultLabel)`
   position: absolute;
   top: -24px;
 `;
@@ -114,9 +117,6 @@ const IconsArray = [
 function Header() {
   const [searchValue, setSearchValue] = React.useState("");
 
-
-
-
   const { cart, setIsLogOpen, isLogOpen } = useUserContext() as IContext;
 
   return (
@@ -143,11 +143,7 @@ function Header() {
         <CategoriesWrapper>
           {categories.map((item) => (
             <Category key={nanoid()}>
-              <Link
-
-                style={{ textDecoration: "underline" }}
-                to={`./${item}`}
-              >
+              <Link style={{ textDecoration: "underline" }} to={`./${item}`}>
                 {item}
               </Link>
             </Category>

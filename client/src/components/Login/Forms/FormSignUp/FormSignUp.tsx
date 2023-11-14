@@ -12,8 +12,11 @@ import { useUserContext } from "../../../../providers/UserContext";
 import Input from "../Input";
 
 function FormSignUp() {
-  const { signUpRequest } = useUserContext() as IContext;
+  const { signUpRequest, isPasswordVisible, setIsPasswordVisible } =
+    useUserContext() as IContext;
   const id = React.useId();
+  const firstNameId = `${id}-firstName`;
+  const lastNameId = `${id}-lastName`;
   const emailId = `${id}-email`;
   const passwordId = `${id}-password`;
   const confirmPasswordId = `${id}-confirmPassword`;
@@ -28,31 +31,50 @@ function FormSignUp() {
 
   async function submit(formData: ISignUp) {
     await signUpRequest(formData);
+    setIsPasswordVisible(false);
   }
 
   return (
     <>
       <Form onSubmit={handleSubmit(submit)}>
         <Input
+          label="nome"
+          type="text"
+          error={errors.firstName}
+          {...register("firstName")}
+          id={firstNameId}
+        />
+        <Input
+          type="text"
+          label="sobrenome"
+          error={errors.lastName}
+          {...register("lastName")}
+          id={lastNameId}
+        />
+        <Input
+          type="text"
           label="e-mail"
           error={errors.email}
           {...register("email")}
           id={emailId}
         />
-        <Input
-          label="senha"
-          type="password"
-          error={errors.password}
-          {...register("password")}
-          id={passwordId}
-        />
+        <div style={{ position: "relative" }}>
+          <Input
+            label="senha"
+            type={isPasswordVisible ? "text" : "password"}
+            error={errors.password}
+            {...register("password")}
+            id={passwordId}
+          />
+        </div>
         <Input
           label="confirmação de senha"
-          type="password"
+          type={isPasswordVisible ? "text" : "password"}
           error={errors.confirmPassword}
           {...register("confirmPassword")}
           id={confirmPasswordId}
         />
+
         <SendBtn>CADASTRAR</SendBtn>
       </Form>
     </>

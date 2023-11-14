@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
-import { DTitle } from "../../styled-components/Modal.styles.tsx";
+import {DClose, DTitle} from "../../styled-components/Modal.styles.tsx";
 import FormSignUp from "../Login/Forms/FormSignUp";
 import AlternateForm from "../Login/AlternateForm";
 import FormLogin from "../Login/Forms/FormLogin";
@@ -33,7 +33,7 @@ function LoginOrSignUp(isSignUp:boolean) {
       {isSignUp
         ? AlternateForm(SignUpInfo.question, SignUpInfo.buttonTitle)
         : AlternateForm(LogInInfo.question, LogInInfo.buttonTitle)}
-      <Dialog.Close asChild></Dialog.Close>
+      <DClose asChild></DClose>
     </>
   );
 }

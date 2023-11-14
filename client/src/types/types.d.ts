@@ -7,11 +7,14 @@ export interface ILogin {
 }
 
 export interface ISignUp extends ILogin {
+  firstName: string;
+  lastName: string;
   confirmPassword: string;
 }
 
 export interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
   error: FieldError | undefined;
+  type?: string;
   label: string;
   id: string;
 }
@@ -34,5 +37,8 @@ export interface IContext {
 
   signUpRequest: (formData: ISignUp) => Promise<void>;
   loginRequest: (formData: ILogin) => Promise<void>;
-}
 
+  changePasswordVisibility: () => void;
+  isPasswordVisible: boolean;
+  setIsPasswordVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}

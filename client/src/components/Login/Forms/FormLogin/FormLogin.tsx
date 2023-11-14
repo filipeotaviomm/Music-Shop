@@ -31,7 +31,7 @@ function FormLogin() {
   return (
     <Form onSubmit={handleSubmit(submit)}>
       <Input
-        label="email"
+        label="e-mail"
         error={errors.email}
         {...register("email")}
         id={emailId}

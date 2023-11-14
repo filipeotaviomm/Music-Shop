@@ -24,6 +24,7 @@ function Login() {
                         top: "35px",
                         right: "35px",
                         backgroundColor: "inherit",
+                        width: "auto"
                     }}
                     aria-label="Close"
                 >
