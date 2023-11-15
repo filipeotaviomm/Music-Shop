@@ -2,6 +2,7 @@ import React from "react";
 import { IContext, ILogin, ISignUp } from "../../types/types";
 import { api } from "../../services/api.ts";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const UserContext = React.createContext({});
 
@@ -10,6 +11,8 @@ function useUserContext() {
 }
 
 function UserProvider(props: { children: React.ReactNode }) {
+  const navigate = useNavigate();
+
   const [cart, setCart] = React.useState(0);
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -21,7 +24,6 @@ function UserProvider(props: { children: React.ReactNode }) {
 
   const storedToken = localStorage.getItem("@TOKEN");
   const token: string | null | undefined = storedToken || null;
-
 
   const signUpRequest = async (formData: ISignUp) => {
     const {
@@ -56,6 +58,11 @@ function UserProvider(props: { children: React.ReactNode }) {
 
   function changePasswordVisibility() {
     setIsPasswordVisible(!isPasswordVisible);
+  }
+
+  function quitAccount(): void {
+    localStorage.removeItem("@TOKEN");
+    navigate("/");
   }
 
   const loginRequest = async (formData: ILogin) => {
@@ -99,13 +106,13 @@ function UserProvider(props: { children: React.ReactNode }) {
     setIsPasswordVisible,
 
     token,
+
+    quitAccount,
   };
 
   return (
     <UserContext.Provider value={values}>{props.children}</UserContext.Provider>
   );
 }
-
-//Wq!-2phaAA
 
 export { UserProvider, useUserContext };
