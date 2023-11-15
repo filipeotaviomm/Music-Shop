@@ -1,6 +1,6 @@
 
 function Anuncios() {
-  return <div></div>;
+  return <div>Anúncios</div>;
 }
 
 export default Anuncios;

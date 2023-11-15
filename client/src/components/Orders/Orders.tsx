@@ -1,6 +1,6 @@
 
 function Orders() {
-  return <div></div>;
+  return <div>Pedidos</div>;
 }
 
 export default Orders;
