@@ -19,15 +19,9 @@ function UserProvider(props: { children: React.ReactNode }) {
 
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
 
-let token: string | null | undefined;
-
-try {
   const storedToken = localStorage.getItem("@TOKEN");
-  token = storedToken ? JSON.parse(storedToken) : null;
-} catch (error) {
-  console.error("Error parsing JSON from localStorage:", error);
-  token = null;
-}
+  const token: string | null | undefined = storedToken || null;
+
 
   const signUpRequest = async (formData: ISignUp) => {
     const {
@@ -67,9 +61,10 @@ try {
   const loginRequest = async (formData: ILogin) => {
     try {
       const { data } = await api.post("/login", formData);
-      localStorage.setItem("@TOKEN", data.token);
+      localStorage.setItem("@TOKEN", JSON.stringify(data.token));
 
       toast.success("Tu estás logado :)");
+      setIsLogOpen(!isLogOpen);
     } catch (error: any) {
       if (error.response.status === 404) {
         toast.error("Por favor verifique sua conexão com a internet :)");
@@ -103,8 +98,7 @@ try {
     isPasswordVisible,
     setIsPasswordVisible,
 
-    token
-
+    token,
   };
 
   return (
