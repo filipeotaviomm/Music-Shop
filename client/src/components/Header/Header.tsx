@@ -23,8 +23,9 @@ import {
   LogoTop,
   ProfileIcon,
   SearchBar,
-  SearchWrapper, StyledLink,
+  SearchWrapper
 } from "../../styled-components/Header.styles.tsx";
+import {DefaultButton} from "../../styled-components/Button.styles.ts";
 
 /*
 const IconsArray = [
@@ -79,9 +80,9 @@ function Header() {
         <CategoriesWrapper>
           {categories.map((item) => (
             <Category key={nanoid()}>
-              <StyledLink to={`./${item}`}>
-                {item}
-              </StyledLink>
+              <DefaultButton onClick={() => navigate(`/${item.url}`)}>
+                {item.text}
+              </DefaultButton>
             </Category>
           ))}
         </CategoriesWrapper>
