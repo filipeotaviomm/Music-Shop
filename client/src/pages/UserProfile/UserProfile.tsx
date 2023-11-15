@@ -1,51 +1,63 @@
 import { buyingItems, personalItems } from "../../services/database.ts";
 import { nanoid } from "nanoid";
+import { Category } from "../../styled-components/Header.styles.tsx";
+import { ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  Category,
-  StyledLink,
-} from "../../styled-components/Header.styles.tsx";
-import styled from "styled-components";
-import {ReactNode} from "react";
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-block: 40px;
-`;
-
-const ItemsWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  gap: 24px;
-`;
-const MainInfo = styled.div`
-  width: 100%;
-`
+  DefaultButton,
+  QuitButton,
+} from "../../styled-components/Button.styles.ts";
+import {
+  H2,
+  InternalWrapper,
+  ItemsWrapper,
+  MainInfo,
+  Wrapper,
+} from "../../styled-components/UserProfile.styles.ts";
+import { useUserContext } from "../../providers/UserContext";
+import {IContext} from "../../types/types";
 
 function UserProfile({ children }: { children: ReactNode }) {
+  const { quitAccount } = useUserContext() as IContext;
+
+  const navigate = useNavigate();
+
   return (
     <>
       <Wrapper>
-        <ItemsWrapper>
-          <h2>Informações Pessoais</h2>
-          <ol>
-            {personalItems.map((item) => (
-              <Category key={nanoid()}>
-                <StyledLink to={`./${item.url}`}>{item.text}</StyledLink>
-              </Category>
-            ))}
-          </ol>
+        <InternalWrapper>
+          <div>
+            <H2>Informações Pessoais</H2>
+            <ItemsWrapper>
+              {personalItems.map((item) => (
+                <Category key={nanoid()}>
+                  <DefaultButton
+                    onClick={() => navigate(`/resumo/${item.url}`)}
+                  >
+                    {item.text}
+                  </DefaultButton>
+                </Category>
+              ))}
+            </ItemsWrapper>
+          </div>
           <hr />
-          <h2>Financeiro</h2>
-          <ol>
-            {buyingItems.map((item) => (
-              <Category key={nanoid()}>
-                <StyledLink to={`./${item.url}`}>{item.text}</StyledLink>
-              </Category>
-            ))}
-          </ol>
-        </ItemsWrapper>
+          <div>
+            <H2>Financeiro</H2>
+            <ItemsWrapper>
+              {buyingItems.map((item) => (
+                <Category key={nanoid()}>
+                  <DefaultButton
+                    onClick={() => navigate(`/resumo/${item.url}`)}
+                  >
+                    {item.text}
+                  </DefaultButton>
+                </Category>
+              ))}
+            </ItemsWrapper>
+          </div>
+        </InternalWrapper>
         <MainInfo>{children}</MainInfo>
+        <QuitButton onClick={quitAccount}>SAIR DA CONTA</QuitButton>
       </Wrapper>
     </>
   );
