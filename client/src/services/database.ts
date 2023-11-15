@@ -1,10 +1,28 @@
 export const categories = [
-  "ÁUDIO",
-  "CORDAS",
-  "PERCUSSÃO",
-  "SOPRO",
-  "TECLAS",
-  "MARCAS",
+  {
+    url: "audio",
+    text: "ÁUDIO",
+  },
+  {
+    url: "cordas",
+    text: "CORDAS",
+  },
+  {
+    url: "persussao",
+    text: "PERCUSSÃO",
+  },
+  {
+    url: "sopro",
+    text: "SOPRO",
+  },
+  {
+    url: "teclas",
+    text: "TECLAS",
+  },
+  {
+    url: "marcas",
+    text: "MARCAS",
+  },
 ];
 
 export const helpOptions = [
@@ -15,10 +33,6 @@ export const helpOptions = [
 ];
 
 export const personalItems = [
-  {
-    url: "dados-pessoais",
-    text: "DADOS PESSOAIS",
-  },
   {
     url: "addresses",
     text: "ENDEREÇOS",
