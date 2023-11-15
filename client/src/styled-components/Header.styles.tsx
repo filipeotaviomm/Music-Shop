@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import {colors, fontSize} from "./root.ts";
-import {DefaultLabel} from "./Modal.styles.tsx";
+import { colors, fontSize } from "./root.ts";
+import { DefaultLabel } from "./Modal.styles.tsx";
+import { Link } from "react-router-dom";
 
 export const SearchBar = styled.input`
   border: 2px solid ${colors.black};
@@ -18,6 +19,10 @@ export const ProfileIcon = styled.img<{ $bgColor?: boolean }>`
   background-color: ${(props) => props.$bgColor && colors.grey};
   padding: 16px;
   border-radius: 20px;
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: underline;
 `;
 
 export const Category = styled.li`
@@ -45,7 +50,8 @@ export const IconsWrapper = styled.div`
 
 export const HeaderWrapper = styled.header`
   padding-block-start: 24px;
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+  box-shadow:
+    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
 export const SearchWrapper = styled.div`

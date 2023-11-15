@@ -23,7 +23,7 @@ import {
   LogoTop,
   ProfileIcon,
   SearchBar,
-  SearchWrapper,
+  SearchWrapper, StyledLink,
 } from "../../styled-components/Header.styles.tsx";
 
 /*
@@ -79,9 +79,9 @@ function Header() {
         <CategoriesWrapper>
           {categories.map((item) => (
             <Category key={nanoid()}>
-              <Link style={{ textDecoration: "underline" }} to={`./${item}`}>
+              <StyledLink to={`./${item}`}>
                 {item}
-              </Link>
+              </StyledLink>
             </Category>
           ))}
         </CategoriesWrapper>
