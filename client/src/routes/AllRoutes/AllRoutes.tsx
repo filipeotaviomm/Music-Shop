@@ -7,6 +7,7 @@ import Orders from "../../components/Orders";
 import Payments from "../../components/Payments";
 import Addresses from "../../components/Addresses";
 import Resume from "../../components/Resume";
+import Wishlist from "../../components/Wishlist";
 
 function AllRoutes() {
   return (
@@ -52,6 +53,14 @@ function AllRoutes() {
           element={
             <UserProfile>
               <Anuncios />
+            </UserProfile>
+          }
+        />
+        <Route
+          path={"/resumo/wishlist"}
+          element={
+            <UserProfile>
+              <Wishlist />
             </UserProfile>
           }
         />
