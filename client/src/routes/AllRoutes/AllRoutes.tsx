@@ -9,7 +9,7 @@ function AllRoutes() {
       <Route path={"/"} element={<Home />}></Route>
 
       <Route element={<PrivateRoutes />}>
-        <Route path={"/resumo"} element={<UserProfile />}></Route>
+        <Route path={"/resumo"} element={<UserProfile />} />
       </Route>
     </Routes>
   );

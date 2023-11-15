@@ -6,7 +6,7 @@ import Cart from "../../assets/Cart.svg";
 
 import { Search } from "react-feather";
 import { categories } from "../../services/database.ts";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { useUserContext } from "../../providers/UserContext";
 import Login from "../Login";
@@ -50,11 +50,11 @@ const IconsArray = [
 */
 
 function Header() {
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = React.useState("");
 
   const { token, cart, setIsLogOpen, isLogOpen } = useUserContext() as IContext;
-
-
+  console.log(token);
   return (
     <HeaderWrapper>
       <Link to={"/"}>
@@ -95,7 +95,9 @@ function Header() {
         {/*<Heart />*/}
         <button
           onClick={() =>
-            !token ? setIsLogOpen(!isLogOpen) : <Navigate to="/resumo" />
+            token && token.length > 0
+              ? navigate("/resumo")
+              : setIsLogOpen(!isLogOpen)
           }
         >
           <ProfileIcon src={Profile} alt="User Button" />
