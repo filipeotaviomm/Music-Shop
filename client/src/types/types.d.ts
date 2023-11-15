@@ -44,6 +44,8 @@ export interface IContext {
   signUpRequest: (formData: ISignUp) => Promise<void>;
   loginRequest: (formData: ILogin) => Promise<void>;
 
+  quitAccount: () => void;
+
   changePasswordVisibility: () => void;
   isPasswordVisible: boolean;
   setIsPasswordVisible: React.Dispatch<React.SetStateAction<boolean>>;
