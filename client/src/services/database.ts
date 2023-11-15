@@ -14,4 +14,33 @@ export const helpOptions = [
   "CONTATO",
 ];
 
+export const personalItems = [
+  {
+    url: "dados-pessoais",
+    text: "DADOS PESSOAIS",
+  },
+  {
+    url: "addresses",
+    text: "ENDEREÇOS",
+  },
+  {
+    url: "payments",
+    text: "FORMAS DE PAGAMENTO",
+  },
+];
+export const buyingItems = [
+  {
+    url: "orders",
+    text: "PEDIDOS DE COMPRA",
+  },
+  {
+    url: "wishlist",
+    text: "WISHLIST",
+  },
+  {
+    url: "anuncios",
+    text: "ANÚNCIOS",
+  },
+];
+
 export const corporationOptions = ["ARQUIVOS", "MÍDIA", "SOBRE NÓS"];
