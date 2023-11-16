@@ -9,6 +9,11 @@ export const SearchBar = styled.input`
   font-size: ${fontSize.link};
   padding-block: 0.2rem;
   padding-inline-start: 40px;
+  margin-block-start: 8px;
+  &:focus{
+    border: 2px solid ${colors.purpleSurface};
+    outline: 2px solid ${colors.purple}
+  }
 `;
 
 export const LogoTop = styled.img`
@@ -19,6 +24,9 @@ export const ProfileIcon = styled.img<{ $bgColor?: boolean }>`
   background-color: ${(props) => props.$bgColor && colors.grey};
   padding: 16px;
   border-radius: 20px;
+  &:hover {
+    border: 2px solid ${colors.purpleHover}
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -30,7 +38,7 @@ export const Category = styled.li`
   font-weight: 500;
 
   &:hover > * {
-    color: ${colors.lightPurple};
+    color: ${colors.purpleHover};
   }
 
   z-index: 1;
@@ -46,19 +54,27 @@ export const IconsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 16px;
 `;
 
-export const HeaderWrapper = styled.header`
+export const Wrapper = styled.header`
+  display: flex;
+  justify-content: center;
+  width: 100%;
   padding-block-start: 24px;
-  box-shadow:
-    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+  hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
+export const HeaderWrapper = styled.div`
+  max-width: 1440px;
+width: 100%;
+`
 export const SearchWrapper = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: center;
   position: relative;
+  width: 100%;
 `;
 export const CategoriesWrapper = styled.ol`
   display: flex;
@@ -82,4 +98,6 @@ export const CartQuantity = styled.span`
 `;
 export const CartWrapper = styled.div`
   position: relative;
+  display: flex;
+  gap: 16px;
 `;
