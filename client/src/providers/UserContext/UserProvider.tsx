@@ -15,12 +15,16 @@ function UserProvider(props: { children: React.ReactNode }) {
 
   const [cart, setCart] = React.useState(0);
 
+  const [signUpInfo, setSignUpInfo] = React.useState({});
+
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isLogOpen, setIsLogOpen] = React.useState(false);
   const [isSignUp, setIsSignUp] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
+
+  const [step, setStep] = React.useState(0);
 
   const storedToken = localStorage.getItem("@TOKEN");
   const token: string | null | undefined = storedToken || null;
@@ -107,6 +111,12 @@ function UserProvider(props: { children: React.ReactNode }) {
 
     token,
 
+    signUpInfo,
+    setSignUpInfo,
+
+    step,
+    setStep,
+
     quitAccount,
   };
 
@@ -115,4 +125,4 @@ function UserProvider(props: { children: React.ReactNode }) {
   );
 }
 
-export { UserProvider, useUserContext };
+export {UserProvider, useUserContext};
