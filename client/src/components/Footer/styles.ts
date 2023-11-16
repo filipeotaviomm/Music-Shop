@@ -2,9 +2,12 @@ import styled from "styled-components";
 import { colors, fontSize } from "../../styled-components/root.ts";
 
 export const Foot = styled.footer`
+  width: 100%;
   margin: 0 auto;
   padding: 0 clamp(0px, 8vw, 200px);
   box-shadow: 0 -9px 16px 1.5px #dddddd;
+  display: flex;
+  justify-content: center;
 `;
 
 export const DivContainer = styled.div`
