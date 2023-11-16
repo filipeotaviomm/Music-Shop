@@ -4,3 +4,4 @@ import { CreateCardSchema, CardSchema, UpdateCardSchema } from "../schemas/cards
 export type Card = z.infer<typeof CardSchema>;
 export type CardCreate = z.infer<typeof CreateCardSchema>;
 export type CardUpdate = z.infer<typeof UpdateCardSchema>;
+export type ReadCards = Array<Card>;
