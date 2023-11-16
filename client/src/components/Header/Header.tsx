@@ -23,9 +23,10 @@ import {
   LogoTop,
   ProfileIcon,
   SearchBar,
-  SearchWrapper
+  SearchWrapper,
+  Wrapper,
 } from "../../styled-components/Header.styles.tsx";
-import {DefaultButton} from "../../styled-components/Button.styles.ts";
+import { DefaultButton } from "../../styled-components/Button.styles.ts";
 
 /*
 const IconsArray = [
@@ -53,65 +54,71 @@ const IconsArray = [
 function Header() {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = React.useState("");
+  const id = React.useId();
 
   const { token, cart, setIsLogOpen, isLogOpen } = useUserContext() as IContext;
-  console.log(token);
+
   return (
-    <HeaderWrapper>
-      <Link to={"/"}>
-        <LogoTop src={Logo} alt="Be.art logo" />
-      </Link>
-      <InfoWrapper>
-        <SearchWrapper>
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-            }}
-          >
-            <Label htmlFor={"productSearch"}>BUSCAR:</Label>
-            <Search style={{ position: "absolute", left: "8px", top: "20%" }} />
-            <SearchBar
-              value={searchValue}
-              onChange={(event) => setSearchValue(event.target.value)}
-              name={"productSearch"}
-            />
-          </form>
-        </SearchWrapper>
-        <CategoriesWrapper>
-          {categories.map((item) => (
-            <Category key={nanoid()}>
-              <DefaultButton onClick={() => navigate(`/${item.url}`)}>
-                {item.text}
-              </DefaultButton>
-            </Category>
-          ))}
-        </CategoriesWrapper>
-      </InfoWrapper>
-      <IconsWrapper>
-        {/*{IconsArray.map((item) => (
+    <Wrapper>
+      <HeaderWrapper>
+        <Link to={"/"}>
+          <LogoTop src={Logo} alt="Be.art logo" />
+        </Link>
+        <InfoWrapper>
+          <SearchWrapper>
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+              }}
+            >
+              <Label htmlFor={`${id}-search`}>BUSCAR:</Label>
+              <Search
+                style={{ position: "absolute", left: "8px", top: "30%" }}
+              />
+              <SearchBar
+                id={`${id}-search`}
+                value={searchValue}
+                onChange={(event) => setSearchValue(event.target.value)}
+                name={`${id}-search`}
+              />
+            </form>
+          </SearchWrapper>
+          <CategoriesWrapper>
+            {categories.map((item) => (
+              <Category key={nanoid()}>
+                <DefaultButton onClick={() => navigate(`/${item.url}`)}>
+                  {item.text}
+                </DefaultButton>
+              </Category>
+            ))}
+          </CategoriesWrapper>
+        </InfoWrapper>
+        <IconsWrapper>
+          {/*{IconsArray.map((item) => (
             <Link key={nanoid()} to={Object.values(item).destination}>
               {Object.values(item).icon}
             </Link>
           ))}*/}
-        {/*<Heart />*/}
-        <button
-          onClick={() =>
-            token && token.length > 0
-              ? navigate("/resumo")
-              : setIsLogOpen(!isLogOpen)
-          }
-        >
-          <ProfileIcon src={Profile} alt="User Button" />
-        </button>
-        <Link to={"/cart"}>
-          <CartWrapper>
-            <ProfileIcon $bgColor src={Cart} alt="Cart Button" />
-            <CartQuantity>{cart}</CartQuantity>
-          </CartWrapper>
-        </Link>
-      </IconsWrapper>
-      {isLogOpen && <Login />}
-    </HeaderWrapper>
+          {/*<Heart />*/}
+          <button
+            onClick={() =>
+              token && token.length > 0
+                ? navigate("/resumo")
+                : setIsLogOpen(!isLogOpen)
+            }
+          >
+            <ProfileIcon src={Profile} alt="User Button" />
+          </button>
+          <button onClick={() => navigate("/cart")}>
+            <CartWrapper>
+              <ProfileIcon $bgColor src={Cart} alt="Cart Button" />
+              <CartQuantity>{cart}</CartQuantity>
+            </CartWrapper>
+          </button>
+        </IconsWrapper>
+        {isLogOpen && <Login />}
+      </HeaderWrapper>
+    </Wrapper>
   );
 }
 
