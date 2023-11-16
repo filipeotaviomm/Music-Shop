@@ -7,3 +7,4 @@ export const CardSchema = z.object({
 });
 
 export const CreateCardSchema = CardSchema.omit({ userId: true });
+export const UpdateCardSchema = CreateCardSchema.partial();
