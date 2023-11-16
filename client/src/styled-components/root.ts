@@ -1,10 +1,14 @@
 export const colors = {
-  black: "hsl(219, 100%, 7%)",
-  purple: "hsl(297, 43%, 21%)",
-  lightPurple: "hsl(297, 43%, 51%)",
+  black: "hsla(0, 0%, 11%, 1)",
+  purple: "hsl(242, 100%, 67%)",
+  purpleHover: "hsla(242, 62%, 56%, 1)",
+  purpleActive: "hsla(242, 48%, 45%, 1)",
+  purpleSurface : "hsla(242, 100%, 94%, 1)",
+  purpleBorder: "hsla(242, 100%, 73%, 1)",
   offWhite: "hsl(43, 35%, 90%)",
   grey: "hsl(0, 0%, 92%)",
-  red: "hsl(345,70%,47%)",
+  grey70: "hsla(0, 0%, 37%, 1)",
+  red: "hsla(4, 86%, 47%, 1)",
   white000: "hsl(0, 0%, 100%)",
 };
 export const fontSize = {
