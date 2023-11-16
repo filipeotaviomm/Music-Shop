@@ -4,8 +4,9 @@ import { bodyValidator, verifyPermissions, verifyToken } from "../middlewares/gl
 import { createAddressSchema } from "../schemas/addresses.schema";
 import { createAddressController, getAllAddressesController } from "../controllers/addresses.controller";
 import { verifyUserId } from "../middlewares/users.middleware";
-import { CreateCardSchema } from "../schemas/cards.schema";
-import { createUserCardController } from "../controllers/payments.controller";
+import { CreateCardSchema, UpdateCardSchema } from "../schemas/cards.schema";
+import { createUserCardController, updateUserCardController } from "../controllers/payments.controller";
+import { verifyCardExists } from "../middlewares/cards.middleware";
 
 export const userRouter: Router = Router();
 
@@ -15,3 +16,4 @@ userRouter.post("/:userId/addresses", verifyUserId, bodyValidator(createAddressS
 userRouter.get("/:userId/addresses", verifyUserId, getAllAddressesController);
 
 userRouter.post("/:userId/payments", verifyUserId, verifyToken, verifyPermissions, bodyValidator(CreateCardSchema), createUserCardController);
+userRouter.patch("/:userId/payments/:cardId", verifyUserId, verifyCardExists, verifyToken, verifyPermissions, bodyValidator(UpdateCardSchema), updateUserCardController);
