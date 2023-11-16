@@ -15,3 +15,7 @@ export const updateUserCardService = async (cardInfo: CardUpdate, cardId: number
 
   return updatedCard;
 }
+
+export const deleteUserCardService = async (cardId: number): Promise<void> => {
+  await prisma.card.delete({ where : { id: cardId } });
+}
