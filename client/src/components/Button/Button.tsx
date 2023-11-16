@@ -11,10 +11,10 @@ export const StyledButton = styled.button`
   margin-block: 32px;
   font-weight: 500;
   &:hover {
-    outline: 2px solid ${colors.purple};
+    outline: 2px solid ${colors.purpleBorder};
   }
   &:focus {
-    background-color: ${colors.lightPurple};
+    background-color: ${colors.purpleActive};
   }
   &:active {
     background-color: ${colors.purple};
