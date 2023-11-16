@@ -38,6 +38,7 @@ model User {
 
 model Address {
   id Int @id @default(autoincrement())
+  name String @db.VarChar(64)
   street String @db.VarChar(120)
   neihborhood String @db.VarChar(64)
   number Int?
