@@ -4,7 +4,7 @@ baseurl: http://localhost:3000
 
 # Rotas
 
-## /users
+# USERS
 
 ### POST /users
 Rota responsavel por cadastrar um novo usuário.
@@ -49,6 +49,9 @@ Corpo de requisição:
 
 <hr />
 
+
+
+# ADDRESSES
 ### POST /users/:userId/addresses
 Rota responsavel por cadastrar um novo endereço.
 
@@ -121,8 +124,5 @@ Corpo de requisição:
 
 
 </details>
-
-## /addresses
-Em progresso...
 
 
