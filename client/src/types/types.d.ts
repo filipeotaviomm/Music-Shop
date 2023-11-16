@@ -6,6 +6,12 @@ export interface ILogin {
   password: string;
 }
 
+export interface CustomError {
+  response?: {
+    status?: number;
+  };
+}
+
 export interface ISignUp extends ILogin {
   firstName: string;
   lastName: string;
@@ -38,7 +44,11 @@ export interface IContext {
   signUpRequest: (formData: ISignUp) => Promise<void>;
   loginRequest: (formData: ILogin) => Promise<void>;
 
+  quitAccount: () => void;
+
   changePasswordVisibility: () => void;
   isPasswordVisible: boolean;
   setIsPasswordVisible: React.Dispatch<React.SetStateAction<boolean>>;
+
+  token: string | null | undefined;
 }

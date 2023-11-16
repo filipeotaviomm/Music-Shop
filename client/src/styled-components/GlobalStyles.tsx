@@ -7,12 +7,14 @@ const GlobalStyles = createGlobalStyle`
   *::after {
     box-sizing: border-box;
   }
+
   /*
       2. Remove default margin
     */
   * {
     margin: 0;
   }
+
   /*
       3. Allow percentage-based heights in the application
     */
@@ -21,6 +23,7 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
     font-family: Inter, sans-serif;
   }
+
   /*
   /* the bigger container */
   .wrapper {
@@ -28,11 +31,17 @@ const GlobalStyles = createGlobalStyle`
     border: solid;
   }
 
+  ol {
+    margin: 0;
+    padding: 0
+  }
+
   body {
     line-height: 150%;
     -webkit-font-smoothing: antialiased;
     width: 100%;
   }
+
   /*
       6. Improve media defaults
     */
@@ -44,6 +53,7 @@ const GlobalStyles = createGlobalStyle`
     display: block;
     max-width: 100%;
   }
+
   /*
       7. Remove built-in form typography styles
     */
@@ -53,6 +63,7 @@ const GlobalStyles = createGlobalStyle`
   select {
     font: inherit;
   }
+
   /*
       8. Avoid text overflows
     */
@@ -67,6 +78,7 @@ const GlobalStyles = createGlobalStyle`
     font-weight: inherit;
     font-size: inherit;
   }
+
   /*
       9. Create a root stacking context
     */
@@ -74,10 +86,12 @@ const GlobalStyles = createGlobalStyle`
   #__next {
     isolation: isolate;
   }
+
   /* --------------- Resets from Josh Cameau end here */
   figcaption {
     display: none;
   }
+
   button,
   input[type="submit"],
   select {
@@ -85,34 +99,46 @@ const GlobalStyles = createGlobalStyle`
     font-family: inherit;
     outline: revert;
     color: inherit;
+    background-color: inherit;
+    padding: 0;
+    margin: 0;
+    
   }
+
   button,
   input[type="submit"],
   a {
     cursor: pointer;
   }
+
   a {
     text-decoration: none;
     color: inherit;
     font-style: inherit;
     font-weight: inherit;
   }
+
   h1 {
     font-size: inherit;
     font-weight: inherit;
   }
+
   ul {
     padding-left: 0;
   }
+
   li {
     list-style: none;
   }
+
   strong {
     font-weight: unset;
   }
+
   address {
     font-style: normal;
   }
+
   .sr-only {
     position: absolute;
     left: -10000px;
@@ -121,6 +147,7 @@ const GlobalStyles = createGlobalStyle`
     height: 1px;
     overflow: hidden;
   }
+
   .not-sr-only {
     position: static;
     width: auto;
@@ -131,6 +158,7 @@ const GlobalStyles = createGlobalStyle`
     clip: auto;
     white-space: normal;
   }
+
   .visually-hidden {
     position: absolute;
     overflow: hidden;
@@ -141,16 +169,20 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     border: 0;
   }
+
   em {
     text-decoration: none;
     font-style: normal;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   * {
     max-inline-size: 50ch;
   }
+
   html,
   body,
   div,
@@ -166,28 +198,34 @@ const GlobalStyles = createGlobalStyle`
   hr {
     max-inline-size: none;
   }
+
   a {
     // pointer-events: none;
     cursor: pointer;
     text-decoration: none;
     color: black;
   }
+
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
+
   /* Firefox */
   input[type=number] {
     -moz-appearance: textfield;
   }
+
   input, textarea, select, button, hr {
     border: var(--border-thickness) transparent;
   }
+
   textarea {
     resize: vertical;
   }
+
   optgroup {
     text-decoration: inherit;
     font-style: normal;

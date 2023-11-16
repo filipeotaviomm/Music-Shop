@@ -28,6 +28,7 @@ import {
   AnchorStores,
   ImgStores,
 } from "./styles.ts";
+import { nanoid } from "nanoid";
 
 function Footer() {
   return (
@@ -69,7 +70,7 @@ function Footer() {
             <TitleColumns>Ajuda e informações</TitleColumns>
             <UlOptions>
               {helpOptions.map((options) => (
-                <Li>{options}</Li>
+                <Li key={nanoid()}>{options}</Li>
               ))}
             </UlOptions>
           </DivColumns>
@@ -77,7 +78,7 @@ function Footer() {
             <TitleColumns>Institucional</TitleColumns>
             <UlOptions>
               {corporationOptions.map((options) => (
-                <Li>{options}</Li>
+                <Li key={nanoid()}>{options}</Li>
               ))}
             </UlOptions>
           </DivColumns>
