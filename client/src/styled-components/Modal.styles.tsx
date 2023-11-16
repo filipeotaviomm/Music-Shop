@@ -13,7 +13,9 @@ export const Field = styled.fieldset`
   padding-block: 16px;
   display: flex;
   flex-flow: column;
-  gap: 16px;
+  gap: 8px;
+  padding-inline: 20px;
+  padding-block: 16px;
 
   &:focus-within{
     border: 2px solid ${colors.purple};
@@ -22,6 +24,7 @@ export const Field = styled.fieldset`
 
 export const DefaultLabel = styled.label`
   width: 100%;
+  font-weight: 500;
 `
 
 export const DOverLay = styled(Dialog.Overlay)`
@@ -35,6 +38,10 @@ export const DOverLay = styled(Dialog.Overlay)`
   place-items: center;
   overflow-y: auto;
 `;
+
+export const DDescription = styled(Dialog.Description)`
+  color: ${colors.grey70}
+`
 
 export const DContent = styled(Dialog.Content)`
   display: grid;
@@ -55,7 +62,6 @@ export const DContent = styled(Dialog.Content)`
   width: 90vw;
   max-width: 600px;
   height: auto;
-  max-height: 90dvh;
 
   padding-block: 64px;
   padding-inline: 40px;
@@ -67,6 +73,7 @@ export const DContent = styled(Dialog.Content)`
 
 export const DTitle = styled(Dialog.Title)`
   text-align: center;
+  line-height: 130%;
   font-weight: 500;
   font-size: ${
           fontSize.h2
