@@ -15,6 +15,10 @@ const MainWrapper = styled.main`
   display: grid;
   place-items: center;
   margin-block: 64px;
+  @media (min-width: 768px) {
+  margin-block: 64px;
+    
+  }
 `;
 
 function Template(props: { children: React.ReactNode }) {
