@@ -17,3 +17,5 @@ export const createAddressSchema = addressSchema.omit({
     id: true,
     userId: true
 });
+
+export const updateAddressSchema = createAddressSchema.partial();
