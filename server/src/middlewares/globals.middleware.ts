@@ -25,12 +25,14 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction): vo
     return next();
 };
 
-export const verifyPermissions = (req: Request, res: Response, next: NextFunction): void => {
-    const { decoded } = res.locals;
+export const verifyPermissions = (table: string) => (req: Request, res: Response, next: NextFunction): void => {
+    const { decoded, address, product } = res.locals;
 
-    const user = res.locals.user;
-
-    if (user.id == decoded.sub) return next();
+    if (table == "address") {
+        if (address.userId == decoded.sub) return next();
+    }else if (table == "product") {
+        if (product.ownerId == decoded.sub) return next();
+    }
     
     throw new AppError("Apenas o proprietario pode realizar esse tipo de ação.", 403);
 };
