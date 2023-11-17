@@ -11,13 +11,18 @@ const AppWrapper = styled.div`
   display: grid;
   grid-template-rows: auto 1fr auto;
 `;
+const MainWrapper = styled.main`
+  display: grid;
+  place-items: center;
+  margin-block: 64px;
+`;
 
 function Template(props: { children: React.ReactNode }) {
   return (
     <>
       <AppWrapper>
         <Header />
-        <main>{props.children}</main>
+        <MainWrapper>{props.children}</MainWrapper>
         <Footer />
       </AppWrapper>
     </>
