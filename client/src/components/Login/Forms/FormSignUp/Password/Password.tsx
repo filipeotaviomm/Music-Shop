@@ -23,8 +23,13 @@ const Ol = styled.ol`
 `;
 
 function Password() {
-  const { isPasswordVisible, setStep, signUpInfo, setSignUpInfo } =
-    useUserContext() as IContext;
+  const {
+    setIsPasswordVisible,
+    isPasswordVisible,
+    setStep,
+    signUpInfo,
+    setSignUpInfo,
+  } = useUserContext() as IContext;
 
   const id = React.useId();
   const passwordId = `${id}-password`;
@@ -41,6 +46,7 @@ function Password() {
   function submit(formData: IPassword) {
     setSignUpInfo({ ...signUpInfo, ...formData });
     setStep(3);
+    setIsPasswordVisible(!isPasswordVisible);
   }
 
   return (
