@@ -47,7 +47,9 @@ export const DContent = styled(Dialog.Content)`
   display: grid;
   place-items: center;
   gap: 32px;
-
+  @media (max-width: 768px) {
+    gap: 20px
+  }
 
   background-color: white;
   border-radius: 8px;
