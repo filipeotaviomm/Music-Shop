@@ -63,6 +63,10 @@ const GlobalStyles = createGlobalStyle`
   select {
     font: inherit;
   }
+  input:disabled{
+    opacity: 1;
+    color: inherit;
+  }
 
   /*
       8. Avoid text overflows

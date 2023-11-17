@@ -62,7 +62,7 @@ function Password() {
           id={confirmPasswordId}
         />
 
-        <SendBtn>CADASTRAR</SendBtn>
+        <SendBtn>AVANÇAR</SendBtn>
       </Form>
       <h3> Sua senha deve cumprir os seguintes critérios:</h3>
       <Ol>
