@@ -24,6 +24,8 @@ const MainWrapper = styled.main`
 const Wrapper = styled.div`
   width: 100%;
   max-width: ${genericValues.pageWidth};
+  display: grid;
+  place-items: center;
 `;
 
 function Template(props: { children: React.ReactNode }) {
