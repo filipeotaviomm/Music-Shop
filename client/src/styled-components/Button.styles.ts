@@ -17,6 +17,10 @@ export const MenuButton = styled(DefaultButton)`
   font-weight: 400;
 
 `
+export const InlineButton = styled(DefaultButton)`
+  width: auto;
+  color: ${colors.purple};
+`
 
 export const QuitButton = styled(DefaultButton)`
   color: ${colors.red60};
