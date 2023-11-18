@@ -6,6 +6,7 @@ import {DefaultButton} from "../../../styled-components/Button.styles.ts";
 
 const Wrapper = styled.div`
   padding-inline: clamp(10%, 20px, 12%);
+  width: 100%;
   @media(min-width: 1000px){
     padding-inline: 0;
   }
