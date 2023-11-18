@@ -19,6 +19,10 @@ export const MenuButton = styled(DefaultButton)`
 `
 
 export const QuitButton = styled(DefaultButton)`
-  color: ${colors.grey};
-  font-weight: 400;
+  color: ${colors.red60};
+  font-weight: 500;
+  &:hover{
+  color: ${colors.red80};
+    
+  }
 `;
