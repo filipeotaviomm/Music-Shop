@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { colors, fontSize } from "../../styled-components/root.ts";
+import {colors, fontSize, genericValues} from "../../styled-components/root.ts";
+import {Link} from "react-router-dom";
 
 export const Foot = styled.footer`
   width: 100%;
@@ -12,10 +13,11 @@ export const Foot = styled.footer`
 
 export const DivContainer = styled.div`
   width: 100%;
-  max-width: 1440px;
+  max-width: ${genericValues.pageWidth};
   display: flex;
   flex-direction: row;
   margin-block: 100px;
+  padding-inline: clamp(2%, 24px, 25%)
 `;
 
 export const DivLeft = styled.div`
@@ -46,7 +48,7 @@ export const LiSocialMedia = styled.li`
   gap: 20px;
 `;
 
-export const AnchorMedias = styled.a``;
+export const AnchorMedias = styled(Link)``;
 
 export const ImgMediaLogos = styled.img`
   width: 30px;
@@ -104,7 +106,7 @@ export const UlDownload = styled.ul`
 
 export const LiDownload = styled.li``;
 
-export const AnchorStores = styled.a``;
+export const AnchorStores = styled(Link)``;
 
 export const ImgStores = styled.img`
   width: 200px;
