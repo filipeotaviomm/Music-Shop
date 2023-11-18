@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { colors, fontSize } from "./root.ts";
+import { colors, fontSize, genericValues } from "./root.ts";
 import { DefaultLabel } from "./Modal.styles.tsx";
 import { Link } from "react-router-dom";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-
 
 export const SearchBar = styled.input`
   border: 2px solid ${colors.black};
@@ -17,7 +16,7 @@ export const SearchBar = styled.input`
 
   &:focus {
     border: 2px solid ${colors.purpleSurface};
-    outline: 2px solid ${colors.purple}
+    outline: 2px solid ${colors.purple};
   }
 `;
 
@@ -26,11 +25,12 @@ export const LogoTop = styled.img`
   margin-block-end: 32px;
 `;
 export const ProfileIcon = styled.img<{ $bgColor?: boolean }>`
-  background-color: ${(props) => props.$bgColor && colors.grey};
+  background-color: ${(props) => props.$bgColor && colors.grey5};
   padding: 16px;
   border-radius: 20px;
+
   &:hover {
-    outline: 2px solid ${colors.purpleHover}
+    outline: 2px solid ${colors.purpleHover};
   }
 `;
 
@@ -53,11 +53,11 @@ export const InfoWrapper = styled.div`
   display: grid;
   gap: 20px;
   place-items: center;
-  padding-inline: clamp(2%, 24px, 25%);
-  max-width: 1440px;
+  
+  max-width: ${genericValues.pageWidth};
   @media (min-width: 768px) {
     grid-template-columns: 1fr auto;
-    margin-inline: 32px;
+    margin-inline: 0px;
   }
 `;
 
@@ -73,14 +73,16 @@ export const Wrapper = styled.header`
   justify-content: center;
   width: 100dvw;
   padding-block-start: 24px;
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-  hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  box-shadow:
+    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
 export const HeaderWrapper = styled.div`
-  max-width: 1440px;
-width: 100%;
+  max-width: ${genericValues.pageWidth};
+  width: 100%;
   margin-block-end: 24px;
-`
+  padding-inline: ${genericValues.pagePadding};
+`;
 export const SearchWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -117,17 +119,20 @@ export const DContent = styled(DropdownMenu.Content)`
   border-radius: 6px;
   padding: 8px;
   padding-block: 16px;
-  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+  box-shadow:
+    0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
-`
+`;
 export const DSubTrigger = styled(DropdownMenu.SubTrigger)`
   cursor: pointer;
-        &:hover {
+
+  &:hover {
     outline: 2px solid ${colors.purpleHover};
   }
-`
+`;
 export const DItem = styled(DropdownMenu.Item)`
   padding-block: 4px;
   font-weight: 500;
@@ -135,16 +140,16 @@ export const DItem = styled(DropdownMenu.Item)`
   padding-block-end: 8px;
   padding-inline: 8px;
 
-      &:hover {
+  &:hover {
     outline: 2px solid ${colors.purpleHover};
   }
 
   z-index: 1;
-`
+`;
 export const DSeparator = styled(DropdownMenu.Separator)`
   height: 2px;
   color: ${colors.purpleSurface};
-`
+`;
 export const DSubContent = styled(DropdownMenu.SubContent)`
   font-width: 400;
   width: auto;
@@ -153,8 +158,10 @@ export const DSubContent = styled(DropdownMenu.SubContent)`
   border-radius: 6px;
   padding-inline: 8px;
   padding-block: 16px;
-  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+  box-shadow:
+    0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
-`
+`;
