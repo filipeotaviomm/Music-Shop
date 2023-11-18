@@ -18,7 +18,7 @@ const StyledInput = styled.input`
 }
 `;
 const Span = styled.span`
-  color: ${colors.red};
+  color: ${colors.red70};
 `;
 const LabelWrapper = styled.div`
   display: flex;
