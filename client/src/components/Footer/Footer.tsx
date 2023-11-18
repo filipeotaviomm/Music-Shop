@@ -39,22 +39,22 @@ function Footer() {
             <StoreLogo src={Logo} alt="Store's logo" />
             <UlSocialMedia>
               <LiSocialMedia>
-                <AnchorMedias href="https://www.instagram.com/" target="_blank">
+                <AnchorMedias to="https://www.instagram.com/" target="_blank">
                   <ImgMediaLogos src={Instagram} alt="Instagram logo" />
                 </AnchorMedias>
               </LiSocialMedia>
               <LiSocialMedia>
-                <AnchorMedias href="https://www.facebook.com/" target="_blank">
+                <AnchorMedias to="https://www.facebook.com/" target="_blank">
                   <ImgMediaLogos src={Facebook} alt="Facebook logo" />
                 </AnchorMedias>
               </LiSocialMedia>
               <LiSocialMedia>
-                <AnchorMedias href="https://www.twitter.com/" target="_blank">
+                <AnchorMedias to="https://www.twitter.com/" target="_blank">
                   <ImgMediaLogos src={Tweeter} alt="Tweeter logo" />
                 </AnchorMedias>
               </LiSocialMedia>
               <LiSocialMedia>
-                <AnchorMedias href="https://www.pinterest.com/" target="_blank">
+                <AnchorMedias to="https://www.pinterest.com/" target="_blank">
                   <ImgMediaLogos src={Pinterest} alt="Pinterest logo" />
                 </AnchorMedias>
               </LiSocialMedia>
@@ -87,7 +87,7 @@ function Footer() {
             <UlDownload>
               <LiDownload>
                 <AnchorStores
-                  href="https://www.apple.com/br/app-store/"
+                  to="https://www.apple.com/br/app-store/"
                   target="_blank"
                 >
                   <ImgStores src={AppleStore} alt="Apple store link" />
@@ -95,10 +95,12 @@ function Footer() {
               </LiDownload>
               <LiDownload>
                 <AnchorStores
-                  href="https://play.google.com/store/apps/"
+                  to="https://play.google.com/store/apps/"
                   target="_blank"
                 >
-                  <ImgStores src={GooglePlay} alt="Google Play link" />
+
+                  <ImgStores src={GooglePlay} alt="Google play store link" />
+
                 </AnchorStores>
               </LiDownload>
             </UlDownload>
