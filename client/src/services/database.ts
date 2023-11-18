@@ -6,6 +6,11 @@ import Shure from "../assets/Shure_Logo.svg";
 import Epiphone from "../assets/Epiphone-Logo-1024x640.svg";
 import {nanoid} from "nanoid";
 
+import Quality from "../assets/Best-Quality-Guarantee.svg"
+import Delivery from "../assets/Fast-Delivery.svg"
+import Return from "../assets/Free-Return.svg"
+import EasyPay from "../assets/Easy-Payment.svg"
+
 export const categories = [
   {
     url: "audio",
@@ -85,6 +90,33 @@ const IconsArray = [
   },
 ];
 */
+
+export const HomeIllustrations = [
+  {
+    image:Quality,
+    title:"Garantia dos melhores produtos",
+    description:"Os produtos aqui passam por um controle de qualidade profissional",
+    id: nanoid()
+  },
+  {
+    image:EasyPay,
+    title:"Pagamento facilitado",
+    description:"Várias opções de pagamento que facilitam sua vida",
+    id: nanoid()
+  },
+  {
+    image:Delivery,
+    title:"Entrega no mesmo dia",
+    description:"Toda compra feita até as 15:00 de um dia útil são entregues até 23:59",
+    id: nanoid()
+  },
+  {
+    image:Return,
+    title:"Direito de arrependimento",
+    description:"Se você se arrepender em até 15 dias garantimos o dinheiro de volta",
+    id: nanoid()
+  },
+]
 
 export const helpOptions = [
   "DEVOLUÇÃO E RECLAMAÇÃO",
