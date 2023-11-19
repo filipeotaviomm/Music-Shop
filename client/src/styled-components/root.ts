@@ -3,11 +3,13 @@ export const colors = {
   purple: "hsl(242, 100%, 67%)",
   purpleHover: "hsla(242, 62%, 56%, 1)",
   purpleActive: "hsla(242, 48%, 45%, 1)",
-  purpleSurface : "hsla(242, 100%, 94%, 1)",
+  purpleSurface: "hsla(242, 100%, 94%, 1)",
   purpleBorder: "hsla(242, 100%, 73%, 1)",
   offWhite: "hsl(43, 35%, 90%)",
   grey90: "hsla(0, 0%, 20%, 1)",
   grey70: "hsla(0, 0%, 37%, 1)",
+  grey60: "hsla(0, 0%, 46%, 1)",
+  grey50: "hsla(0, 0%, 55%, 1)",
   grey40: "hsla(0, 0%, 64%, 1)",
   grey30: "hsla(0, 0%, 73%, 1)",
   grey20: "hsla(0, 0%, 82%, 1)",
@@ -40,5 +42,5 @@ export const fontType = {
 
 export const genericValues = {
   pageWidth: "1440px",
-  pagePadding: "clamp(2%, 24px, 25%)"
-}
+  pagePadding: "clamp(2%, 24px, 25%)",
+};
