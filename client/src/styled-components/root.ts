@@ -25,6 +25,7 @@ export const colors = {
 export const fontSize = {
   h1: "3.5rem",
   h2: "2.25rem",
+  h2h3: "1.875rem",
   h3: "1.5rem",
   sub: "1.125rem",
   link: "1.125rem",
