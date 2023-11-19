@@ -94,7 +94,7 @@ const IconsArray = [
 export const HomeIllustrations = [
   {
     image:Quality,
-    title:"Garantia dos melhores produtos",
+    title:"Garantia de qualidade",
     description:"Os produtos aqui passam por um controle de qualidade profissional",
     id: nanoid()
   },
