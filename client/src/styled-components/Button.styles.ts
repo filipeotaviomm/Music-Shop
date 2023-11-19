@@ -42,3 +42,23 @@ export const QuitButton = styled(DefaultButton)`
     color: ${colors.red80};
   }
 `;
+
+export const StyledButton = styled.button`
+  padding-block: 16px;
+  color: ${colors.offWhite};
+  background-color: ${
+    colors.purple
+  };
+  border-radius: 8px;
+  margin-block: 32px;
+  font-weight: 500;
+  &:hover {
+    outline: 2px solid ${colors.purpleBorder};
+  }
+  &:focus {
+    background-color: ${colors.purpleActive};
+  }
+  &:active {
+    background-color: ${colors.purple};
+  }
+`
