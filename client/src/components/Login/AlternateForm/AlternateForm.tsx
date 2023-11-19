@@ -1,7 +1,8 @@
 import { colors } from "../../../styled-components/root.ts";
 import { useUserContext } from "../../../providers/UserContext";
-import { IContext } from "../../../types/types";
+
 import styled from "styled-components";
+import {IUserContext} from "../../../types/user";
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const Wrapper = styled.div`
       
 `
 function AlternateForm(question: string, buttonText: string) {
-  const { isSignUp, setIsSignUp } = useUserContext() as IContext;
+  const { isSignUp, setIsSignUp } = useUserContext() as IUserContext;
 
   return (
     <Wrapper>
