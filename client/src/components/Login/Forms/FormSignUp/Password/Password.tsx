@@ -1,5 +1,5 @@
 import { useUserContext } from "../../../../../providers/UserContext";
-import { IContext, IPassword } from "../../../../../types/types";
+// import { IUserContext, IPassword } from "../../../../../types/types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -11,6 +11,8 @@ import React from "react";
 import styled from "styled-components";
 import { colors, fontSize } from "../../../../../styled-components/root.ts";
 import passwordSchema from "../../../../../schemas/passwordSchema";
+import { IUserContext } from "../../../../../types/user";
+import { IPassword } from "../../../../../types/signUp";
 
 const Ol = styled.ol`
   font-size: ${fontSize.smallLink};
@@ -29,7 +31,7 @@ function Password() {
     setStep,
     signUpInfo,
     setSignUpInfo,
-  } = useUserContext() as IContext;
+  } = useUserContext() as IUserContext;
 
   const id = React.useId();
   const passwordId = `${id}-password`;

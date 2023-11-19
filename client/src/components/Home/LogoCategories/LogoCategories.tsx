@@ -3,6 +3,7 @@ import { brandsLogo } from "../../../services/database.ts";
 import styled from "styled-components";
 import {colors, genericValues} from "../../../styled-components/root.ts";
 import {DefaultButton} from "../../../styled-components/Button.styles.ts";
+import {nanoid} from "nanoid";
 
 const Wrapper = styled.div`
   padding-inline: clamp(10%, 20px, 12%);
@@ -43,6 +44,11 @@ const Brand =  styled.li`
 const CategoryButton = styled(DefaultButton)`
   display: flex;
   place-content: center;
+  height: 100%;
+  &:hover {
+    outline: 2px solid ${colors.purple};
+    outline-offset: 10px;
+  }
 `
 
 function LogoCategories() {
@@ -53,7 +59,7 @@ function LogoCategories() {
       <Wrapper>
         <BrandsOl>
           {brandsLogo.map((brand) => (
-            <Brand>
+            <Brand key={nanoid()}>
               <CategoryButton
                 key={brand.id}
                 aria-label={brand.name}

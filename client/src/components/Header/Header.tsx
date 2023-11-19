@@ -12,11 +12,11 @@ import {
 import DropdownMenuHeader from "./DropdownMenu";
 import SearchFormHeader from "./SearchFormHeader";
 import { useUserContext } from "../../providers/UserContext";
-import { IContext } from "../../types/types";
 import IconsHeader from "./IconsHeader";
+import {IUserContext} from "../../types/user";
 
 function Header() {
-  const { isLogOpen } = useUserContext() as IContext;
+  const { isLogOpen } = useUserContext() as IUserContext;
 
   return (
     <Wrapper>

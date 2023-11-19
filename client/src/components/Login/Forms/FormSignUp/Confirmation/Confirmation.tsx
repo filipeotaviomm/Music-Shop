@@ -1,9 +1,9 @@
 import { useUserContext } from "../../../../../providers/UserContext";
-import { IContext } from "../../../../../types/types";
 
 import { SendBtn } from "../../../../../styled-components/Modal.styles.tsx";
 import { Eye, EyeOff } from "react-feather";
 import styled from "styled-components";
+import {IUserContext} from "../../../../../types/user";
 
 const Title = styled.span`
   font-weight: 500;
@@ -18,7 +18,7 @@ function Confirmation() {
     signUpInfo,
     setSignUpInfo,
     setStep,
-  } = useUserContext() as IContext;
+  } = useUserContext() as IUserContext;
 
   async function submit() {
     console.log(signUpInfo);

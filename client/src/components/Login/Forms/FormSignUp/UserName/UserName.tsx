@@ -3,16 +3,18 @@ import {
   SendBtn,
 } from "../../../../../styled-components/Modal.styles.tsx";
 import Input from "../../Input";
-import { IContext, IName } from "../../../../../types/types";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useUserContext } from "../../../../../providers/UserContext";
 import nameSchema from "../../../../../schemas/nameSchema";
+import {IUserContext} from "../../../../../types/user";
+import {IName} from "../../../../../types/signUp";
 
 function UserName() {
   const { setStep, signUpInfo, setSignUpInfo } =
-    useUserContext() as IContext;
+    useUserContext() as IUserContext;
 
   const id = React.useId();
   const firstNameId = `${id}-firstName`;
@@ -27,7 +29,6 @@ function UserName() {
   });
 
   function submit(formData: IName) {
-    console.log("FOI")
     setSignUpInfo({ ...signUpInfo, ...formData });
     setStep(1);
   }

@@ -1,42 +1,57 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { useParams } from "react-router-dom";
-import { IProductContext } from "../../types/types";
+import { IFullProductContext, IProductContext } from "../../types/product";
+
 // import { toast } from "react-toastify";
 
-interface IFullProductContext {
-  singleProduct: IProductContext | null;
-  // isLoading: boolean;
-}
+export const ProductContext = createContext({});
 
-export const ProductContext = createContext<IFullProductContext | null>(null);
+const useProductContext = () => React.useContext(ProductContext);
 
 const ProductProvider = (props: { children: ReactNode }) => {
   const [singleProduct, setSingleProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [allProducts, setAllProducts] = useState<IProductContext[]>([]);
+  const [cart, setCart] = useState(0)
 
   const { id } = useParams();
+
+  const getAllProducts = async () => {
+    const { data } = await api.get("products");
+    setAllProducts(data);
+    console.log(data);
+  };
 
   useEffect(() => {
     const getProductById = async (id: number) => {
       try {
-        setIsLoading(true);
+        setIsLoading(!isLoading);
         const { data } = await api.get(`/products/${id}`);
         setSingleProduct(data);
       } catch (error) {
         console.log(error);
       } finally {
-        setIsLoading(false);
+        setIsLoading(!isLoading);
       }
     };
     getProductById(Number(id));
   }, []);
 
+  const values: IFullProductContext = {
+    allProducts,
+    getAllProducts,
+    setAllProducts,
+    singleProduct,
+    cart,
+    setCart,
+  };
+
   return (
-    <ProductContext.Provider value={{ singleProduct }}>
+    <ProductContext.Provider value={values}>
       {props.children}
     </ProductContext.Provider>
   );
 };
 
-export { ProductProvider };
+export { ProductProvider, useProductContext };
