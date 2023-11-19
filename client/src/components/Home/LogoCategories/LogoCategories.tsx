@@ -43,6 +43,11 @@ const Brand =  styled.li`
 const CategoryButton = styled(DefaultButton)`
   display: flex;
   place-content: center;
+  height: 100%;
+  &:hover {
+    outline: 2px solid ${colors.purple};
+    outline-offset: 10px;
+  }
 `
 
 function LogoCategories() {

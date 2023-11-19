@@ -25,13 +25,7 @@ export const LogoTop = styled.img`
   margin-block-end: 32px;
 `;
 export const ProfileIcon = styled.img<{ $bgColor?: boolean }>`
-  background-color: ${(props) => props.$bgColor && colors.grey5};
-  padding: 16px;
-  border-radius: 20px;
-
-  &:hover {
-    outline: 2px solid ${colors.purpleHover};
-  }
+  
 `;
 
 export const StyledLink = styled(Link)`
@@ -91,6 +85,10 @@ export const CategoriesWrapper = styled.ol`
   display: flex;
   align-items: center;
   gap: 24px;
+
+  @media(max-width: 360px){
+    display: none;
+  }
 `;
 
 export const Label = styled(DefaultLabel)`
@@ -99,12 +97,14 @@ export const Label = styled(DefaultLabel)`
 `;
 export const CartQuantity = styled.span`
   position: absolute;
-  top: -16px;
-  right: -10px;
+  top: -10px;
+  right: 0;
   background-color: ${colors.purple};
   color: ${colors.offWhite};
-  border-radius: 100%;
-  padding: 8px;
+  
+  padding-inline: 10px;
+  padding-block: 0px;
+  border-radius: 20px;
   font-size: ${fontSize.icons};
 `;
 export const CartWrapper = styled.div`
