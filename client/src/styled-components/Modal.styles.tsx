@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
 import {colors, fontSize} from "./root.ts";
-import {StyledButton} from "../components/Button";
+import {StyledButton} from "./Button.styles.ts";
+
 
 export const Field = styled.fieldset`
   display: flex;
