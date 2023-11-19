@@ -9,6 +9,7 @@ import Payments from "../../components/Payments";
 import Addresses from "../../components/Addresses";
 import Resume from "../../components/Resume";
 import Wishlist from "../../components/Wishlist";
+import NotFound from "../../pages/NotFound";
 
 function AllRoutes() {
   return (
@@ -68,6 +69,8 @@ function AllRoutes() {
           }
         />
       </Route>
+
+        <Route path="*" element={<NotFound/>}></Route>
     </Routes>
   );
 }

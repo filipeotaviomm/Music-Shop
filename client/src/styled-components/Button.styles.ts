@@ -6,9 +6,27 @@ export const DefaultButton = styled.button`
   font-weight: 500;
   width: 100%;
   text-decoration: underline;
+   &:hover {
+    color: ${colors.purpleHover};
+  }
 `;
 
-export const QuitButton = styled(DefaultButton)`
-  color: ${colors.grey};
+export const MenuButton = styled(DefaultButton)`
+  text-decoration: underline;
+  background-color: inherit;
   font-weight: 400;
+
+`
+export const InlineButton = styled(DefaultButton)`
+  width: auto;
+  color: ${colors.purple};
+`
+
+export const QuitButton = styled(DefaultButton)`
+  color: ${colors.red60};
+  font-weight: 500;
+  &:hover{
+  color: ${colors.red80};
+    
+  }
 `;

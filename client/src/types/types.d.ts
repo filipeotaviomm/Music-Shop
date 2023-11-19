@@ -6,6 +6,11 @@ export interface CustomError {
     status?: number;
   };
 }
+interface IllustrationCardProps {
+  image: string;
+  title: string;
+  description: string;
+}
 
 export interface ILogin {
   email: string;

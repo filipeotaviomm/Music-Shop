@@ -11,7 +11,7 @@ import loginSchema from "../../../../schemas/loginSchema";
 import Input from "../Input";
 
 function FormLogin() {
-  const { loginRequest } = useUserContext() as IContext;
+  const { loginRequest, isPasswordVisible } = useUserContext() as IContext;
   const id = React.useId();
   const emailId = `${id}-email`;
   const passwordId = `${id}-password`;
@@ -38,7 +38,7 @@ function FormLogin() {
       />
       <Input
         label="senha"
-        type="password"
+        type={isPasswordVisible ? "text" : "password"}
         error={errors.password}
         {...register("password")}
         id={passwordId}

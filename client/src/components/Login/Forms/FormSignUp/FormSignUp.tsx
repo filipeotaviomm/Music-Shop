@@ -5,13 +5,10 @@ import UserName from "./UserName";
 import Email from "./Email";
 import Password from "./Password";
 import Confirmation from "./Confirmation";
-import React from "react";
 
 function FormSignUp() {
-  const { step,signUpInfo } = useUserContext() as IContext;
-  React.useEffect(() => {
-    console.log(signUpInfo);
-  }, [signUpInfo]);
+  const { step } = useUserContext() as IContext;
+
   return (
     <>
       {step === 0 && <UserName />}
