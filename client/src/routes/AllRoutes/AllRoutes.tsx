@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../../pages/Home";
+import ProductPage from "../../pages/ProductPage";
 import UserProfile from "../../pages/UserProfile";
 import PrivateRoutes from "../PrivateRoutes";
 import Anuncios from "../../components/Anuncios";
@@ -14,6 +15,8 @@ function AllRoutes() {
   return (
     <Routes>
       <Route path={"/"} element={<Home />}></Route>
+
+      <Route path="/productPage" element={<ProductPage />} />
 
       <Route element={<PrivateRoutes />}>
         {/*REFATORAR SEMANA QUE VEM*/}
