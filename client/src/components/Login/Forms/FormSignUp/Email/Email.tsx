@@ -1,6 +1,6 @@
 import React from "react";
 import { useUserContext } from "../../../../../providers/UserContext";
-import { IContext, IEmail } from "../../../../../types/types";
+// import { IUserContext, IEmail } from "../../../../../types/types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import emailSchema from "../../../../../schemas/emailSchema";
@@ -9,9 +9,11 @@ import {
   SendBtn,
 } from "../../../../../styled-components/Modal.styles.tsx";
 import Input from "../../Input";
+import {IUserContext} from "../../../../../types/user";
+import {IEmail} from "../../../../../types/signUp";
 
 function Email() {
-  const { setStep, signUpInfo, setSignUpInfo } = useUserContext() as IContext;
+  const { setStep, signUpInfo, setSignUpInfo } = useUserContext() as IUserContext;
   const id = React.useId();
   const emailId = `${id}-firstName`;
 

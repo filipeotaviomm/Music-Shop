@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useUserContext } from "../../providers/UserContext";
-import { IContext } from "../../types/types";
+import { IUserContext } from "../../types/types";
 
 function PrivateRoutes() {
-  const { token } = useUserContext() as IContext;
+  const { token } = useUserContext() as IUserContext;
 
   return token ? <Outlet /> : <Navigate to="/" />;
 }

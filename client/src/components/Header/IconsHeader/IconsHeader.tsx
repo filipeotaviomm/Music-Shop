@@ -8,22 +8,19 @@ import Profile from "../../../assets/profile.svg";
 import Cart from "../../../assets/Cart.svg";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../../providers/UserContext";
-import {IProductsContext, IUserContext} from "../../../types/types";
+
 import { fontSize } from "../../../styled-components/root.ts";
 import { IconButton } from "../../../styled-components/Button.styles.ts";
-import {api} from "../../../services/api.ts";
+import {IFullProductContext} from "../../../types/types";
+import {IUserContext} from "../../../types/user";
 
 function IconsHeader() {
   const navigate = useNavigate();
 
   const { token, setIsLogOpen, isLogOpen } = useUserContext() as IUserContext;
-  const { cart } = useUserContext() as IProductsContext;
+  const { cart } = useUserContext() as IFullProductContext;
 
-  const getAllProducts = async () => {
-    const { data } = await api.get("posts?_embed=likes");
-    setPosts(data);
-    setIsLoading(false);
-  };
+
 
   return (
     <IconsWrapper>
@@ -43,13 +40,13 @@ function IconsHeader() {
         <ProfileIcon src={Profile} alt="User Button" />
         <span style={{ fontSize: fontSize.icons }}>CONTA</span>
       </IconButton>
-        <CartWrapper>
-      <IconButton $bgColor onClick={() => navigate("/cart")}>
+      <CartWrapper>
+        <IconButton $bgColor onClick={() => navigate("/cart")}>
           <ProfileIcon src={Cart} alt="Cart Button" />
-        <span style={{ fontSize: fontSize.icons }}>CARRINHO</span>
+          <span style={{ fontSize: fontSize.icons }}>CARRINHO</span>
           <CartQuantity>{cart}</CartQuantity>
-      </IconButton>
-        </CartWrapper>
+        </IconButton>
+      </CartWrapper>
     </IconsWrapper>
   );
 }

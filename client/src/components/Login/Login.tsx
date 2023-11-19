@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 
 import { useUserContext } from "../../providers/UserContext";
-import { IContext } from "../../types/types";
+import { IUserContext } from "../../types/types";
 import {
   DContent,
   DOverLay,
@@ -10,7 +10,7 @@ import {X} from "react-feather";
 import LoginOrSignUp from "../LoginOrSignUp";
 
 function Login() {
-  const { isLogOpen, setIsLogOpen, isSignUp } = useUserContext() as IContext;
+  const { isLogOpen, setIsLogOpen, isSignUp } = useUserContext() as IUserContext;
   return (
     <Dialog.Root modal={true} open={isLogOpen} onOpenChange={setIsLogOpen}>
       <Dialog.Portal>
