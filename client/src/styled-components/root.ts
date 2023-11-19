@@ -3,7 +3,7 @@ export const colors = {
   purple: "hsl(242, 100%, 67%)",
   purpleHover: "hsla(242, 62%, 56%, 1)",
   purpleActive: "hsla(242, 48%, 45%, 1)",
-  purpleSurface : "hsla(242, 100%, 94%, 1)",
+  purpleSurface: "hsla(242, 100%, 94%, 1)",
   purpleBorder: "hsla(242, 100%, 73%, 1)",
   offWhite: "hsl(43, 35%, 90%)",
   grey: "hsl(0, 0%, 92%)",
@@ -14,6 +14,7 @@ export const colors = {
 export const fontSize = {
   h1: "3.5rem",
   h2: "2.25rem",
+  h2h3: "1.875rem",
   h3: "1.5rem",
   sub: "1.125rem",
   link: "1.125rem",

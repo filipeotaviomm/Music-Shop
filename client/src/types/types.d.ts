@@ -1,7 +1,6 @@
 import React from "react";
 import { FieldError } from "react-hook-form";
 
-
 export interface CustomError {
   response?: {
     status?: number;
@@ -72,7 +71,18 @@ export interface IContext {
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-
+export interface IProductContext {
+  id: number;
+  name: string;
+  description?: string;
+  price: number;
+  image: string;
+  stock: number;
+  color?: string;
+  condition: string;
+  deletedAt?: string;
+  ownerId: number;
+}
 
 export interface IEmail {
   email: string;
