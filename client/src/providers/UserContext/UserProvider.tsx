@@ -1,8 +1,11 @@
 import React from "react";
-import { IContext, ILogin, ISignUp } from "../../types/types";
+// import { IUserContext, ILogin, ISignUp } from "../../types/types";
 import { api } from "../../services/api.ts";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import {IUserContext} from "../../types/user";
+import {ISignUp} from "../../types/signUp";
+import {ILogin} from "../../types/login";
 
 const UserContext = React.createContext({});
 
@@ -12,8 +15,6 @@ function useUserContext() {
 
 function UserProvider(props: { children: React.ReactNode }) {
   const navigate = useNavigate();
-
-  const [cart, setCart] = React.useState(0);
 
   const [signUpInfo, setSignUpInfo] = React.useState({});
 
@@ -86,12 +87,9 @@ function UserProvider(props: { children: React.ReactNode }) {
     }
   };
 
-  const values: IContext = {
+  const values: IUserContext = {
     isSignUp,
     setIsSignUp,
-
-    cart,
-    setCart,
 
     isLoggedIn,
     setIsLoggedIn,
