@@ -7,12 +7,24 @@ import {
   TextWrapper,
   Wrapper,
 } from "../../../styled-components/NotFound.styles.ts";
+import {colors} from "../../../styled-components/root.ts";
 
 const Card = styled.li`
-  display: grid;
-  place-items: center;
-  gap: 32px;
-`;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  flex: 0 0 50%;
+
+  gap: 24px;
+`
+const CardGrid = styled.div`
+    align-items: normal;
+    display: grid;
+    grid-template-rows: auto  100px auto;
+    justify-items: center;
+    gap: 24px
+
+`
 
 const CardImage = styled(ImageNotFound)`
   max-width: 240px;
@@ -30,6 +42,8 @@ function IllustrationCard({
   return (
     <>
       <Card>
+        <CardGrid>
+
         <Figure>
           <CardImage src={image} alt={title} />
           <figcaption>Url not found</figcaption>
@@ -37,9 +51,10 @@ function IllustrationCard({
         <Wrapper>
           <CardWrapper>
             <H3>{title}</H3>
-            <p>{description}</p>
+            <p style={{color: colors.grey60}}>{description}</p>
           </CardWrapper>
         </Wrapper>
+        </CardGrid>
       </Card>
     </>
   );
