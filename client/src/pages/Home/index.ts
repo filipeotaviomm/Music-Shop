@@ -1,2 +1,2 @@
-export * from './Home.tsx';
-export { default } from './Home.tsx';
+export * from './HomePage.tsx';
+export { default } from './HomePage.tsx';
