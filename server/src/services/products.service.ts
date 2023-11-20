@@ -12,7 +12,7 @@ export const createProductService = async (data: ProductCreate, userId: number):
     return product;
 };
 
-export const getAllProductsService = async (userId: number): Promise<Product[]> => {
+export const getAllProductsIdService = async (userId: number): Promise<Product[]> => {
     const allProducts = await prisma.product.findMany({where: {ownerId: userId}});
 
     return allProducts;
