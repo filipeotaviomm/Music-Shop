@@ -2,6 +2,7 @@ import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { useParams } from "react-router-dom";
 import { IFullProductContext, IProductContext } from "../../types/product";
+import { mockProducts } from "../../services/database.ts";
 
 // import { toast } from "react-toastify";
 
@@ -12,8 +13,9 @@ const useProductContext = () => React.useContext(ProductContext);
 const ProductProvider = (props: { children: ReactNode }) => {
   const [singleProduct, setSingleProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [allProducts, setAllProducts] = useState<IProductContext[]>([]);
-  const [cart, setCart] = useState(0)
+  const [allProducts, setAllProducts] =
+    useState<IProductContext[]>(mockProducts);
+  const [cart, setCart] = useState(0);
 
   const { id } = useParams();
 

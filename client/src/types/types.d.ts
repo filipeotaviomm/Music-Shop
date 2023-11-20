@@ -7,7 +7,12 @@ interface IllustrationCardProps {
   title: string;
   description: string;
 }
-
+interface ProductCardProps {
+  image: string;
+  name: string;
+  brand: string;
+  price: number;
+}
 
 export interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: FieldError | undefined;
