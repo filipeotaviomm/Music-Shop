@@ -5,6 +5,7 @@ import {
   getProductByIdController,
   updateProductController,
   getAllProductsIdController,
+  getAllProductsController,
 } from "../controllers/products.controller";
 import {
   bodyValidator,
@@ -18,6 +19,8 @@ import {
 import { verifyProductId } from "../middlewares/products.middleware";
 
 export const productRouter: Router = Router();
+
+productRouter.get("/all", getAllProductsController);
 
 productRouter.use(verifyToken);
 
