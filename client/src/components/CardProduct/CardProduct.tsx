@@ -1,7 +1,12 @@
+import Cart from "../../assets/Cart.svg";
+
 import { CardProd, ProductGrid } from "../../styled-components/Cards.styles.ts";
 import styled from "styled-components";
-import { colors } from "../../styled-components/root.ts";
+import { colors, fontSize } from "../../styled-components/root.ts";
 import { ProductCardProps } from "../../types/types";
+
+import { ProfileIcon } from "../../styled-components/Header.styles.tsx";
+import { AddCartButton } from "../../styled-components/Button.styles.ts";
 
 const ImageContainer = styled.div`
   height: 300px;
@@ -30,29 +35,36 @@ const Price = styled.h3`
 `;
 const ProductButton = styled.button`
   border-radius: 8px;
+
   &:hover {
-  box-shadow: 0 -9px 16px 3px #dddddd;
+    box-shadow: 0 -9px 16px 3px #dddddd;
+    outline-offset: 4px;
+    outline: 2px solid ${colors.purpleHover};
+  }
+  &:hover img {
     scale: 1.05;
-  outline: 2px solid ${colors.purpleHover};
-}
+  }
+
   &:focus {
     scale: 1.05;
     outline-offset: 4px;
-  outline: 2px solid ${colors.purple};
+    outline: 2px solid ${colors.purple};
     z-index: 1;
   }
-`
+`;
 
 function CardProduct({ image, brand, name, price }: ProductCardProps) {
   return (
     <CardProd>
-      <ProductButton>
+      <ProductButton
+        tabIndex={0}
+      >
         <ProductGrid>
           <ImageContainer>
             <img src={image} alt={`${name} image`} />
           </ImageContainer>
-            <Brand>{brand}</Brand>
-          <div style={{display: "grid", gridTemplateRows:"90px auto"}}>
+          <Brand>{brand}</Brand>
+          <div style={{ display: "grid", gridTemplateRows: "90px auto" }}>
             <Name>{name}</Name>
             <Price>
               {new Intl.NumberFormat("pt-BR", {
@@ -64,6 +76,13 @@ function CardProduct({ image, brand, name, price }: ProductCardProps) {
           </div>
         </ProductGrid>
       </ProductButton>
+
+        <AddCartButton onClick={()=>console.log("oi")}>
+          <ProfileIcon src={Cart} alt="Carrinho" />
+          <span style={{ fontSize: fontSize.icons }}>
+            CARRINHO+
+          </span>
+        </AddCartButton>
     </CardProd>
   );
 }
