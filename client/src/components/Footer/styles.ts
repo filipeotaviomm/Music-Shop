@@ -17,7 +17,7 @@ export const DivContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-block: 100px;
-  padding-inline: clamp(2%, 24px, 25%)
+  padding-inline: ${genericValues.pagePadding}
 `;
 
 export const DivLeft = styled.div`

@@ -3,6 +3,7 @@ import { HomeIllustrations } from "../../services/database.ts";
 import { H2 } from "../../styled-components/Typography.styles.ts";
 import styled from "styled-components";
 import {Cards} from "../../styled-components/Cards.styles.ts";
+import {genericValues} from "../../styled-components/root.ts";
 
 const Wrapper = styled.section`
   margin-block: 40px;
@@ -10,6 +11,7 @@ const Wrapper = styled.section`
   justify-items: center;
   align-items: center;
   gap: 64px;
+  padding-inline: ${genericValues.pagePadding};
 `;
 
 function HomeCards() {

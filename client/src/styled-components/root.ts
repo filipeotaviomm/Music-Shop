@@ -43,5 +43,5 @@ export const fontType = {
 
 export const genericValues = {
   pageWidth: "1440px",
-  pagePadding: "clamp(2%, 24px, 25%)",
+  pagePadding: "clamp(2%, 24px, 12%)",
 };

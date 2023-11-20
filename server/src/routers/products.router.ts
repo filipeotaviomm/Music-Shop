@@ -3,8 +3,8 @@ import {
   createProductController,
   deleteProductController,
   getProductByIdController,
-  getAllProductsController,
   updateProductController,
+  getAllProductsIdController,
 } from "../controllers/products.controller";
 import {
   bodyValidator,
@@ -19,10 +19,10 @@ import { verifyProductId } from "../middlewares/products.middleware";
 
 export const productRouter: Router = Router();
 
-productRouter.get("/", getAllProductsController);
-productRouter.get("/:id", getProductByIdController);
-
 productRouter.use(verifyToken);
+
+productRouter.get("/", getAllProductsIdController);
+productRouter.get("/:id", getProductByIdController);
 
 productRouter.post(
   "/",

@@ -28,6 +28,26 @@ export const IconButton = styled.button<{ $bgColor?: boolean }>`
     outline: 2px solid ${colors.purpleHover};
   }
 `;
+export const AddCartButton = styled(IconButton)`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding-bottom: 0;
+  z-index: 2;
+
+  outline: 1px solid ${colors.purple};
+
+  &:hover {
+    background-color: ${colors.purpleSurface};
+
+  }
+
+  &:active {
+    border {
+      outline: 4px solid ${colors.purple}
+    }
+  }
+`
 
 export const InlineButton = styled(DefaultButton)`
   width: auto;

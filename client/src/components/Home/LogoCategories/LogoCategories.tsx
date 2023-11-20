@@ -6,7 +6,7 @@ import {DefaultButton} from "../../../styled-components/Button.styles.ts";
 import {nanoid} from "nanoid";
 
 const Wrapper = styled.div`
-  padding-inline: clamp(10%, 20px, 12%);
+  padding-inline: ${genericValues.pagePadding};
   width: 100%;
   @media(min-width: 1000px){
     padding-inline: 0;
@@ -17,7 +17,6 @@ const BrandsOl = styled.ol`
   align-items: center;
   display: flex;
   gap: 15px;
-  align-items: center;
 
   max-width: ${genericValues.pageWidth};
   padding-inline: ${genericValues.pagePadding};
