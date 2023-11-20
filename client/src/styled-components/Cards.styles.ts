@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { colors, genericValues } from "./root.ts";
 
 export const Cards = styled.ul`
+  width: 100%;
   display: flex;
   gap: 16px;
-  
+
   margin-inline: 16px;
 
   max-width: ${genericValues.pageWidth};
-  
+
   padding-inline: ${genericValues.pagePadding};
   padding-block: 24px;
 
@@ -60,11 +61,17 @@ export const Card = styled.li`
   flex: 0 0 50%;
 
   gap: 24px;
+  
+  @media (max-width: 680px){
+  flex: 0 0 100%;
+    
+  }
 `;
 export const CardProd = styled(Card)`
   flex: 0 0 100%;
   border-radius: 8px;
   outline: 2px solid ${colors.purpleSurface};
+  position: relative;
   
   
   
@@ -77,7 +84,7 @@ export const CardGrid = styled.div`
     justify-items: center;
     gap: 24px;
   padding-inline: 16px;
-  padding-block: 16px;
+  margin-block: 10px;
 `
 
 export const ProductGrid = styled(CardGrid)`
