@@ -7,18 +7,19 @@ import {
 import Profile from "../../../assets/profile.svg";
 import Cart from "../../../assets/Cart.svg";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../../../providers/UserContext";
+import {useProductContext, useUserContext} from "../../../providers/UserContext";
 
 import { fontSize } from "../../../styled-components/root.ts";
 import { IconButton } from "../../../styled-components/Button.styles.ts";
-import {IFullProductContext} from "../../../types/types";
+
 import {IUserContext} from "../../../types/user";
+import {IFullProductContext} from "../../../types/product";
 
 function IconsHeader() {
   const navigate = useNavigate();
 
   const { token, setIsLogOpen, isLogOpen } = useUserContext() as IUserContext;
-  const { cart } = useUserContext() as IFullProductContext;
+  const { cart } = useProductContext() as IFullProductContext;
 
 
 
@@ -42,7 +43,7 @@ function IconsHeader() {
       </IconButton>
       <CartWrapper>
         <IconButton $bgColor onClick={() => navigate("/cart")}>
-          <ProfileIcon src={Cart} alt="Cart Button" />
+          <ProfileIcon src={Cart} alt="Carrinho" />
           <span style={{ fontSize: fontSize.icons }}>CARRINHO</span>
           <CartQuantity>{cart}</CartQuantity>
         </IconButton>
