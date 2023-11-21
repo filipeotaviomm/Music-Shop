@@ -32,7 +32,8 @@ export const AddCartButton = styled(IconButton)`
   position: absolute;
   bottom: 10px;
   right: 10px;
-  padding-bottom: 0;
+  padding-block-end: 0px;
+  padding-block-start: 8px;
   z-index: 2;
 
   outline: 1px solid ${colors.purple};
