@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import {colors} from "./root.ts";
+import {colors, fontSize} from "./root.ts";
 
 export const ImageContainer = styled.div`
-  height: 300px;
-  overflow: hidden;
-  object-fit: contain;
-  //border: 1px solid red;
+  height: 200px;
+  
+  //overflow: hidden;
+  //object-fit: contain;
+  ////border: 1px solid red;
+  
   display: grid;
   place-content: center;
 
@@ -16,9 +18,16 @@ export const ImageContainer = styled.div`
     margin: auto;
   }
 `;
+export const ImgModalContainer = styled(ImageContainer)`
+  height: 160px;
+  width: 120px;
+  border-radius: 4px;
+  display: grid;
+`
 
 export const Brand = styled.h4`
   color: ${colors.grey70};
+  font-size: ${fontSize.smallLink};
 `;
 export const Name = styled.h3`
   font-weight: 500;
@@ -26,6 +35,10 @@ export const Name = styled.h3`
 export const Price = styled.h3`
   font-weight: 600;
 `;
+export const PriceModal = styled(Price)`
+  text-align: end;
+`
+
 export const ProductButton = styled.button`
   border-radius: 8px;
 
