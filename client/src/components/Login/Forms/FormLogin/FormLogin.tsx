@@ -3,15 +3,17 @@ import React from "react";
 import { Form, SendBtn } from "../../../../styled-components/Modal.styles.tsx";
 import { useUserContext } from "../../../../providers/UserContext";
 
-import { IContext, ILogin, ISignUp } from "../../../../types/types";
+// import { IUserContext, ILogin, ISignUp } from "../../../../types/types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import loginSchema from "../../../../schemas/loginSchema";
 import Input from "../Input";
+import {IUserContext} from "../../../../types/user";
+import {ILogin} from "../../../../types/login";
 
 function FormLogin() {
-  const { loginRequest } = useUserContext() as IContext;
+  const { loginRequest, isPasswordVisible } = useUserContext() as IUserContext;
   const id = React.useId();
   const emailId = `${id}-email`;
   const passwordId = `${id}-password`;
@@ -20,7 +22,7 @@ function FormLogin() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISignUp>({
+  } = useForm<ILogin>({
     resolver: zodResolver(loginSchema),
   });
 
@@ -38,7 +40,7 @@ function FormLogin() {
       />
       <Input
         label="senha"
-        type="password"
+        type={isPasswordVisible ? "text" : "password"}
         error={errors.password}
         {...register("password")}
         id={passwordId}

@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import {
-  createProductService,
-  deleteProductService,
-  getAllProductsIdService,
-  getAllProductsService,
-    updateProductService
+    createProductService,
+    deleteProductService,
+    getAllProductsIdService,
+    getAllProductsService,
+    updateProductService,
 } from "../services/products.service";
 import { Product } from "@prisma/client";
 

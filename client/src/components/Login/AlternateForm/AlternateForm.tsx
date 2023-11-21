@@ -1,20 +1,33 @@
 import { colors } from "../../../styled-components/root.ts";
 import { useUserContext } from "../../../providers/UserContext";
-import { IContext } from "../../../types/types";
 
+import styled from "styled-components";
+import {IUserContext} from "../../../types/user";
+
+const Wrapper = styled.div`
+  display: flex;
+    flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+    @media (min-width: 600px) {
+      flex-flow: row;
+  }
+        
+    `
+
+  const Question = styled.h3`
+    @media (min-width: 600px) {
+      text-align: center;
+  }
+      
+`
 function AlternateForm(question: string, buttonText: string) {
-  const { isSignUp, setIsSignUp } = useUserContext() as IContext;
+  const { isSignUp, setIsSignUp } = useUserContext() as IUserContext;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "1rem",
-      }}
-    >
-      <h3>{question}</h3>
+    <Wrapper>
+      <Question>{question}</Question>
       <button
         onClick={() => setIsSignUp(!isSignUp)}
         style={{
@@ -22,12 +35,11 @@ function AlternateForm(question: string, buttonText: string) {
           backgroundColor: "inherit",
           color: colors.purple,
           fontWeight: 500,
-            zIndex:1
         }}
       >
         {buttonText}
       </button>
-    </div>
+    </Wrapper>
   );
 }
 

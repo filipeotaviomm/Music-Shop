@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
 import {colors, fontSize} from "./root.ts";
-import {StyledButton} from "../components/Button";
+import {StyledButton} from "./Button.styles.ts";
+
 
 export const Field = styled.fieldset`
   display: flex;
@@ -13,7 +14,9 @@ export const Field = styled.fieldset`
   padding-block: 16px;
   display: flex;
   flex-flow: column;
-  gap: 16px;
+  gap: 8px;
+  padding-inline: 20px;
+  padding-block: 16px;
 
   &:focus-within{
     border: 2px solid ${colors.purple};
@@ -22,6 +25,7 @@ export const Field = styled.fieldset`
 
 export const DefaultLabel = styled.label`
   width: 100%;
+  font-weight: 500;
 `
 
 export const DOverLay = styled(Dialog.Overlay)`
@@ -36,11 +40,17 @@ export const DOverLay = styled(Dialog.Overlay)`
   overflow-y: auto;
 `;
 
+export const DDescription = styled(Dialog.Description)`
+  color: ${colors.grey70}
+`
+
 export const DContent = styled(Dialog.Content)`
   display: grid;
   place-items: center;
   gap: 32px;
-
+  @media (max-width: 768px) {
+    gap: 20px
+  }
 
   background-color: white;
   border-radius: 8px;
@@ -55,7 +65,6 @@ export const DContent = styled(Dialog.Content)`
   width: 90vw;
   max-width: 600px;
   height: auto;
-  max-height: 90dvh;
 
   padding-block: 64px;
   padding-inline: 40px;
@@ -67,6 +76,7 @@ export const DContent = styled(Dialog.Content)`
 
 export const DTitle = styled(Dialog.Title)`
   text-align: center;
+  line-height: 130%;
   font-weight: 500;
   font-size: ${
           fontSize.h2

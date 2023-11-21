@@ -17,7 +17,10 @@ export const productSchema = z.object({
 
 export const createProductSchema = productSchema.omit({
     id: true,
-    deletedAt: true, ownerId: true
+    deletedAt: true,
+    ownerId: true
 });
+
+export const readAllProductsSchema = productSchema.array();
 
 export const updateProductSchema = createProductSchema.partial();
