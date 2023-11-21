@@ -2,7 +2,7 @@ import {
   Label,
   SearchBar,
   SearchWrapper,
-} from "../../../styled-components/Header.styles.tsx";
+} from "../../../../styled-components/Header.styles.tsx";
 import { Search } from "react-feather";
 import React from "react";
 

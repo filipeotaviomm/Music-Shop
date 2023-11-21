@@ -1,9 +1,13 @@
 // import React from "react";
-import {useProductContext} from "../../providers/UserContext";
-import {IFullProductContext} from "../../types/product";
+import { useProductContext } from "../../providers/UserContext";
+import { IFullProductContext, IProductContext } from "../../types/product";
 import styled from "styled-components";
- import {colors, fontSize, genericValues} from "../../styled-components/root.ts";
-import {ProductCards} from "../../styled-components/Cards.styles.ts";
+import {
+  colors,
+  fontSize,
+  genericValues,
+} from "../../styled-components/root.ts";
+import { ProductCards } from "../../styled-components/Cards.styles.ts";
 import CardProduct from "../CardProduct";
 import React from "react";
 
@@ -23,30 +27,31 @@ const Wrapper = styled.section`
 `;
 
 function AllProducts() {
-    const {getAllProducts, allProducts} = useProductContext() as IFullProductContext;
+  const { getAllProducts, allProducts } =
+    useProductContext() as IFullProductContext;
 
-    React.useEffect( ():void => {
-        getAllProducts()
+  React.useEffect((): void => {
+    getAllProducts();
+  }, []);
 
-    }, []);
-
-    return (
-        <Wrapper>
-            <Heading>Produtos em alta 🔥🔥🔥</Heading>
-            <ProductCards>
-                {allProducts &&
-                    allProducts.map(({id, name, price, image, brand}) => (
-                        <CardProduct
-                            key={id}
-                            name={name}
-                            price={price}
-                            image={image}
-                            brand={brand}
-                        />
-                    ))}
-            </ProductCards>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <Heading>Produtos em alta 🔥🔥🔥</Heading>
+      <ProductCards>
+        {allProducts &&
+          allProducts.map((item: IProductContext) => (
+            <CardProduct
+              key={item.id}
+              item={item}
+              name={item.name}
+              brand={item.brand}
+              image={item.image}
+              price={item.price}
+            />
+          ))}
+      </ProductCards>
+    </Wrapper>
+  );
 }
 
 export default AllProducts;

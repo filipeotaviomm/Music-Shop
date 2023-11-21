@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colors, fontSize, genericValues} from "../../styled-components/root.ts";
+import {colors, fontSize, genericValues} from "../../../styled-components/root.ts";
 import {Link} from "react-router-dom";
 
 export const Foot = styled.footer`
