@@ -10,19 +10,9 @@ import {
 } from "../../../styled-components/Header.styles.tsx";
 import DropdownMenuHeader from "./DropdownMenu";
 import SearchFormHeader from "./SearchFormHeader";
-import { useCartContext, useUserContext } from "../../../providers/UserContext";
 import IconsHeader from "./IconsHeader";
-import { IUserContext } from "../../../types/user";
-import { ICartContext } from "../../../types/cart";
-import CartModal from "../../CartModal";
-import LoginOrSignUp from "../../LoginOrSignUp";
-import Modal from "../../Modal";
 
 function Header() {
-  const { isLogOpen, setIsLogOpen, isSignUp } =
-    useUserContext() as IUserContext;
-
-  const { isCartModalOpen, setIsCartModalOpen } = useCartContext() as ICartContext;
 
   return (
     <Wrapper>
@@ -45,18 +35,7 @@ function Header() {
             <IconsHeader />
           </div>
         </InfoWrapper>
-        {isLogOpen && (
-          <Modal
-            open={isLogOpen}
-            onOpenChange={setIsLogOpen}
-            element={LoginOrSignUp(isSignUp)}
-          />
-        )}
-        {isCartModalOpen && <Modal
-            open={isCartModalOpen}
-            onOpenChange={setIsCartModalOpen}
-            element={CartModal()}
-          />}
+
       </HeaderWrapper>
     </Wrapper>
   );

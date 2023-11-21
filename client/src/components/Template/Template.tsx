@@ -7,6 +7,12 @@ import {
 } from "../../styled-components/root.ts";
 import styled from "styled-components";
 import Footer from "./Footer";
+import Modal from "../Modal";
+import LoginOrSignUp from "../LoginOrSignUp";
+import CartModal from "../CartModal";
+import { useCartContext, useUserContext } from "../../providers/UserContext";
+import { IUserContext } from "../../types/user";
+import { ICartContext } from "../../types/cart";
 
 const AppWrapper = styled.div`
   font-family: ${fontType.primary};
@@ -29,8 +35,28 @@ const Wrapper = styled.div`
 `;
 
 function Template(props: { children: React.ReactNode }) {
+  const { isLogOpen, setIsLogOpen, isSignUp } =
+    useUserContext() as IUserContext;
+
+  const { isCartModalOpen, setIsCartModalOpen } =
+    useCartContext() as ICartContext;
+
   return (
     <>
+      {isLogOpen && (
+        <Modal
+          open={isLogOpen}
+          onOpenChange={setIsLogOpen}
+          element={LoginOrSignUp(isSignUp)}
+        />
+      )}
+      {isCartModalOpen && (
+        <Modal
+          open={isCartModalOpen}
+          onOpenChange={setIsCartModalOpen}
+          element={CartModal()}
+        />
+      )}
       <AppWrapper>
         <Header />
         <MainWrapper>

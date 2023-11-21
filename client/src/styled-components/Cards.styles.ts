@@ -80,7 +80,7 @@ export const CardProd = styled(Card)`
 export const CardGrid = styled.div`
     align-items: normal;
     display: grid;
-    grid-template-rows: auto  100px auto;
+    grid-template-rows: auto  150px;
     justify-items: center;
     gap: 24px;
   padding-inline: 16px;
@@ -88,8 +88,9 @@ export const CardGrid = styled.div`
 `
 
 export const ProductGrid = styled(CardGrid)`
-  grid-template-rows: auto auto;
+  gap: 20px;
   text-align: left;
+  margin-bottom: 24px;
   & * {
     width: 100%;
   }

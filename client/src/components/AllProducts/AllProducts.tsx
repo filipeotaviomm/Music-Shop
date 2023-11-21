@@ -43,11 +43,7 @@ function AllProducts() {
             <CardProduct
               key={item.id}
               item={item}
-              name={item.name}
-              brand={item.brand}
-              image={item.image}
-              price={item.price}
-            />
+             />
           ))}
       </ProductCards>
     </Wrapper>

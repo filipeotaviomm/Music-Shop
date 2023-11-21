@@ -145,10 +145,6 @@ export const buyingItems = [
     text: "PEDIDOS DE COMPRA",
   },
   {
-    url: "wishlist",
-    text: "WISHLIST",
-  },
-  {
     url: "anuncios",
     text: "ANÚNCIOS",
   },

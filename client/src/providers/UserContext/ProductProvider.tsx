@@ -15,7 +15,6 @@ const ProductProvider = (props: { children: ReactNode }) => {
 
   const [allProducts, setAllProducts] = useState<IProductContext[]>([]);
 
-
   const { id } = useParams();
 
   const getAllProducts = async () => {
@@ -23,23 +22,22 @@ const ProductProvider = (props: { children: ReactNode }) => {
     setAllProducts(data);
   };
   /*
-    
-                  React.useEffect(() => {
-                    const getProductById = async (id: number) => {
-                      try {
-                        setIsLoading(!isLoading);
-                        const { data } = await api.get(`/products/${id}`);
-                        setSingleProduct(data);
-                      } catch (error) {
-                        console.log(error);
-                      } finally {
-                        setIsLoading(!isLoading);
-                      }
-                    };
-                    getProductById(Number(id));
-                  }, []);
-                */
 
+                    React.useEffect(() => {
+                      const getProductById = async (id: number) => {
+                        try {
+                          setIsLoading(!isLoading);
+                          const { data } = await api.get(`/products/${id}`);
+                          setSingleProduct(data);
+                        } catch (error) {
+                          console.log(error);
+                        } finally {
+                          setIsLoading(!isLoading);
+                        }
+                      };
+                      getProductById(Number(id));
+                    }, []);
+                  */
 
   const values: IFullProductContext = {
     allProducts,
@@ -48,7 +46,6 @@ const ProductProvider = (props: { children: ReactNode }) => {
     getAllProducts,
 
     singleProduct,
-
 
   };
 
@@ -59,4 +56,4 @@ const ProductProvider = (props: { children: ReactNode }) => {
   );
 };
 
-export { ProductProvider, useProductContext };
+export {ProductProvider, useProductContext};
