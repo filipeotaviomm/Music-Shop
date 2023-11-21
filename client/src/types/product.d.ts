@@ -14,16 +14,23 @@ export interface IProductContext {
   ownerId: number;
 }
 
-interface IFullProductContext {
+export interface CardProductProps {
+  item: IProductContext;
+  name: string;
+  image: string;
+  brand: string
+
+  price: number;
+}
+
+export interface IFullProductContext {
   allProducts: IProductContext[] | null;
-  setAllProducts:React.Dispatch<React.SetStateAction<IProductContext[]>>
+  setAllProducts: React.Dispatch<React.SetStateAction<IProductContext[]>>;
+
 
   singleProduct: IProductContext | null;
 
   getAllProducts: () => Promise<void>;
 
-  cart: number;
-  setCart: React.Dispatch<React.SetStateAction<number>>;
 
-  // isLoading: boolean;
 }
