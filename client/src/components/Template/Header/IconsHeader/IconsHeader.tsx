@@ -3,25 +3,26 @@ import {
   CartWrapper,
   IconsWrapper,
   ProfileIcon,
-} from "../../../styled-components/Header.styles.tsx";
-import Profile from "../../../assets/profile.svg";
-import Cart from "../../../assets/Cart.svg";
+} from "../../../../styled-components/Header.styles.tsx";
+import Profile from "../../../../assets/profile.svg";
+import Cart from "../../../../assets/Cart.svg";
 import { useNavigate } from "react-router-dom";
-import {useProductContext, useUserContext} from "../../../providers/UserContext";
+import {
+  useProductContext,
+  useUserContext,
+} from "../../../../providers/UserContext";
 
-import { fontSize } from "../../../styled-components/root.ts";
-import { IconButton } from "../../../styled-components/Button.styles.ts";
+import { fontSize } from "../../../../styled-components/root.ts";
+import { IconButton } from "../../../../styled-components/Button.styles.ts";
 
-import {IUserContext} from "../../../types/user";
-import {IFullProductContext} from "../../../types/product";
+import { IUserContext } from "../../../../types/user";
+import { ICartContext } from "../../../../types/cart";
 
 function IconsHeader() {
   const navigate = useNavigate();
 
   const { token, setIsLogOpen, isLogOpen } = useUserContext() as IUserContext;
-  const { cart } = useProductContext() as IFullProductContext;
-
-
+  const { cart } = useProductContext() as ICartContext;
 
   return (
     <IconsWrapper>
@@ -45,7 +46,7 @@ function IconsHeader() {
         <IconButton $bgColor onClick={() => navigate("/cart")}>
           <ProfileIcon src={Cart} alt="Carrinho" />
           <span style={{ fontSize: fontSize.icons }}>CARRINHO</span>
-          <CartQuantity>{cart}</CartQuantity>
+          <CartQuantity>{cart?.length}</CartQuantity>
         </IconButton>
       </CartWrapper>
     </IconsWrapper>

@@ -1,12 +1,12 @@
-import Header from "../Header";
+import Header from "./Header";
 import React from "react";
-import Footer from "../Footer";
 import {
   colors,
   fontType,
   genericValues,
 } from "../../styled-components/root.ts";
 import styled from "styled-components";
+import Footer from "./Footer";
 
 const AppWrapper = styled.div`
   font-family: ${fontType.primary};
