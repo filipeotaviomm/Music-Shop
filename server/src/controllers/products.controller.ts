@@ -5,7 +5,7 @@ import {
     getAllProductsIdService,
     getAllProductsService,
     updateProductService,
-    // updateProductService
+    updateProductService
 } from "../services/products.service";
 import { Product } from "@prisma/client";
 
@@ -27,6 +27,13 @@ export const getAllProductsIdController = async (req: Request, res: Response): P
     const userId = Number(res.locals.decoded.sub);
 
     const allProducts: Product[] = await getAllProductsIdService(userId);
+
+    return res.status(200).json(allProducts);
+};
+
+export const getAllProductsController = async (req: Request, res: Response): Promise<Response> => {
+
+    const allProducts: Product[] = await getAllProductsService();
 
     return res.status(200).json(allProducts);
 };
