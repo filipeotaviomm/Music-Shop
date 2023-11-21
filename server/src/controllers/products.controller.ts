@@ -2,17 +2,24 @@ import { Request, Response } from "express";
 import {
     createProductService,
     deleteProductService,
-    getAllProductsIdService, getAllProductsService,
-    updateProductService
+    getAllProductsIdService,
+    getAllProductsService,
+    updateProductService,
 } from "../services/products.service";
 import { Product } from "@prisma/client";
 
 export const createProductController = async (req: Request, res: Response): Promise<Response> => {
     const userId = Number(res.locals.decoded.sub);
 
-    const address: Product = await createProductService(req.body, userId);
+    const product: Product = await createProductService(req.body, userId);
 
-    return res.status(201).json({message: "Produto cadastrado com sucesso!", address});
+    return res.status(201).json({message: "Produto cadastrado com sucesso!", product});
+};
+
+export const getAllProductsController = async (req: Request, res: Response): Promise<Response> => {
+    const allProducts: Product[] = await getAllProductsService();
+
+    return res.status(200).json(allProducts);
 };
 
 export const getAllProductsIdController = async (req: Request, res: Response): Promise<Response> => {
@@ -31,17 +38,17 @@ export const getAllProductsController = async (req: Request, res: Response): Pro
 };
 
 export const getProductByIdController = async (req: Request, res: Response): Promise<Response> => {
-    const address: Product = res.locals.address;
+    const product: Product = res.locals.product;
 
-    return res.status(200).json(address);
+    return res.status(200).json(product);
 };
 
 export const updateProductController = async (req: Request, res: Response): Promise<Response> => {
     const id = Number(req.params.id);
 
-    const address: Product = await updateProductService(id, req.body);
+    const product: Product = await updateProductService(id, req.body);
 
-    return res.status(200).json({message: "Produto atualizado com sucesso!", address});
+    return res.status(200).json({message: "Produto atualizado com sucesso!", product});
 };
 
 export const deleteProductController = async (req: Request, res: Response): Promise<Response> => {
