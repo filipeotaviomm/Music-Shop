@@ -11,10 +11,12 @@ const useCartContext = () => React.useContext(CartContext);
 
 const CartProvider = (props: { children: ReactNode }) => {
 
+
   const storedCartString = localStorage.getItem("@cartList");
   const cartLocalS: IProductContext[] =
     storedCartString && JSON.parse(storedCartString);
 
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false)
   const [cart, setCart] = useState<IProductContext[]>(() =>
     cartLocalS ? cartLocalS : [],
   );
@@ -48,6 +50,9 @@ const CartProvider = (props: { children: ReactNode }) => {
     toast.success(`${removedProduct[0].name} excluído com sucesso.`);
   };
 
+
+
+
   const values: ICartContext = {
 
     cart,
@@ -55,6 +60,9 @@ const CartProvider = (props: { children: ReactNode }) => {
 
     addProductInCart,
     removeProductInCart,
+
+    isCartModalOpen,
+    setIsCartModalOpen
   };
 
   return (
