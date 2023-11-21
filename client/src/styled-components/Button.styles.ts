@@ -83,3 +83,11 @@ export const StyledButton = styled.button`
     background-color: ${colors.purple};
   }
 `
+
+export const ModalButton = styled.button`
+  position: absolute;
+  top: 80px;
+  right: 35px;
+  width: auto;
+  max-width: fit-content;
+`
