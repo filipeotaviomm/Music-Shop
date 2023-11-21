@@ -18,6 +18,12 @@ export const getAllProductsIdService = async (userId: number): Promise<Product[]
     return allProducts;
 };
 
+export const getAllProductsService = async (): Promise<Product[]> => {
+    const allProducts = await prisma.product.findMany();
+
+    return allProducts;
+};
+
 export const updateProductService = async (id: number, data: ProductUpdate): Promise<Product> => {
     const newProduct = await prisma.product.update({where: {id}, data});
 
