@@ -16,21 +16,15 @@ export interface IProductContext {
 
 export interface CardProductProps {
   item: IProductContext;
-  name: string;
-  image: string;
-  brand: string
-
-  price: number;
 }
 
 export interface IFullProductContext {
   allProducts: IProductContext[] | null;
   setAllProducts: React.Dispatch<React.SetStateAction<IProductContext[]>>;
 
+  ProductPrice: (price: number) => string;
 
   singleProduct: IProductContext | null;
 
   getAllProducts: () => Promise<void>;
-
-
 }
