@@ -1,17 +1,17 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { brands, categories } from "../../../services/database.ts";
+import { brands, categories } from "../../../../services/database.ts";
 import {
   DContent,
   DItem,
   DSeparator,
   DSubContent,
   DSubTrigger,
-} from "../../../styled-components/Header.styles.tsx";
+} from "../../../../styled-components/Header.styles.tsx";
 import { nanoid } from "nanoid";
 import {
   DefaultButton,
   MenuButton,
-} from "../../../styled-components/Button.styles.ts";
+} from "../../../../styled-components/Button.styles.ts";
 import { useNavigate } from "react-router-dom";
 import { ChevronRight } from "react-feather";
 

@@ -1,11 +1,11 @@
-import Logo from "../../assets/logo.svg";
-import Instagram from "../../assets/instagram.png";
-import Facebook from "../../assets/facebook.png";
-import Tweeter from "../../assets/twitter.png";
-import Pinterest from "../../assets/pinterest.png";
-import AppleStore from "../../assets/appleStore.png";
-import GooglePlay from "../../assets/googlePlay.png";
-import { corporationOptions, helpOptions } from "../../services/database.ts";
+import Logo from "../../../assets/logo.svg";
+import Instagram from "../../../assets/instagram.png";
+import Facebook from "../../../assets/facebook.png";
+import Tweeter from "../../../assets/twitter.png";
+import Pinterest from "../../../assets/pinterest.png";
+import AppleStore from "../../../assets/appleStore.png";
+import GooglePlay from "../../../assets/googlePlay.png";
+import { corporationOptions, helpOptions } from "../../../services/database.ts";
 import {
   Foot,
   DivContainer,
