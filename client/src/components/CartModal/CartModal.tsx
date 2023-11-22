@@ -1,7 +1,7 @@
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { useCartContext } from "../../providers/UserContext";
 import { DDescription, DTitle } from "../../styled-components/Modal.styles.tsx";
-import EmptyCart from "../EmptyCart";
+import CartEmpty from "../CartEmpty";
 import { ICartContext } from "../../types/cart";
 import RenderCartItems from "../RenderCartItems";
 import { fontSize } from "../../styled-components/root.ts";
@@ -31,7 +31,7 @@ function CartModal() {
       {sortedProducts && sortedProducts.length > 0 ? (
         <RenderCartItems />
       ) : (
-        <EmptyCart />
+        <CartEmpty />
       )}
       <></>
     </div>

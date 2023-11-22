@@ -6,7 +6,10 @@ import styled from "styled-components";
 
 const Amount = styled.div`
   display: flex;
-`
+  margin-block-end: 16px;
+  gap: 16px;
+`;
+
 function ProductAmount({ amount, product }: ICart) {
   const { updateProductAmount } = useCartContext() as ICartContext;
 
@@ -27,6 +30,7 @@ function ProductAmount({ amount, product }: ICart) {
       >
         <Plus />
       </DefaultButton>
+
     </Amount>
   );
 }

@@ -5,7 +5,7 @@ import {
   PriceModal,
 } from "../../styled-components/CardProduct.styles.ts";
 import styled from "styled-components";
-import { colors } from "../../styled-components/root.ts";
+import { colors, fontSize } from "../../styled-components/root.ts";
 import { ICart } from "../../types/cart";
 
 import ProductAmount from "../RenderCartItems/ProductAmount";
@@ -18,18 +18,36 @@ const ProductInfo = styled.div`
 `;
 const Wrapper = styled.div`
   display: grid;
-  height: 160px;
+  height: 100%;
+  max-height: 200px;
   grid-template-columns: 120px auto;
   gap: 32px;
-  padding-block: 2px;
+  padding-block: 20px;
 
   border-bottom: 2px solid ${colors.purple};
   opacity: 0.99;
+  position: relative;
+
+  @media (max-width: 550px) {
+    display: flex;
+    flex-flow: column;
+    max-height: 100%;
+  }
+`;
+const Warning = styled.p`
+  position: absolute;
+  font-size: ${fontSize.smallLink};
+  left: 0;
+  color: ${colors.red60};
+  bottom: 8px;
+  @media (min-width: 600px) {
+    left: 30%;
+  }
 `;
 
 function CartItem(props: ICart) {
   const { product, amount } = props;
-  const { id, name, brandName, image, price } = product;
+  const { name, brandName, image, price } = product;
 
   const FinalPrice = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -40,6 +58,12 @@ function CartItem(props: ICart) {
   return (
     <>
       <Wrapper>
+        {amount === product.stock && (
+          <Warning>
+            {" "}
+            {product.stock} é o estoque total ;){" "}
+          </Warning>
+        )}
         <ImgModalContainer>
           <img src={image} alt={`${name} image`} />
         </ImgModalContainer>
@@ -48,9 +72,10 @@ function CartItem(props: ICart) {
             <Brand>{brandName}</Brand>
             <Name>{name}</Name>
           </div>
-          <ProductAmount product={product} amount={amount} />
-
-          <PriceModal>{FinalPrice}</PriceModal>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <ProductAmount product={product} amount={amount} />
+            <PriceModal>{FinalPrice}</PriceModal>
+          </div>
         </ProductInfo>
       </Wrapper>
     </>

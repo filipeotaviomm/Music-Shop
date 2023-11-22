@@ -3,6 +3,13 @@ import { useCartContext } from "../../providers/UserContext";
 import { ICartContext } from "../../types/cart";
 import { nanoid } from "nanoid";
 import { InlineButton } from "../../styled-components/Button.styles.ts";
+import styled from "styled-components";
+import { H3 } from "../../styled-components/Typography.styles.ts";
+import {fontSize} from "../../styled-components/root.ts";
+
+const CartOl = styled.ol`
+  margin-block: 16px;
+`;
 
 function RenderCartItems() {
   const { cart, cleanCart } = useCartContext() as ICartContext;
@@ -20,10 +27,14 @@ function RenderCartItems() {
     minimumFractionDigits: 2,
   }).format(subTotal);
 
+  const FinalPrice = styled(H3)`
+    font-size: ${fontSize.link};
+    font-weight: 600;
+  `
   return (
     <>
       {/*<ol style={{overflow: "auto"}}>*/}
-      <ol>
+      <CartOl>
         {cart &&
           cart.map((item) => (
             <CartItem
@@ -32,10 +43,12 @@ function RenderCartItems() {
               product={item.product}
             />
           ))}
-      </ol>
-      <InlineButton onClick={cleanCart}>limpar</InlineButton>
+      </CartOl>
+      <div style={{ display: "flex", justifyContent:"space-between" }}>
+        <InlineButton onClick={cleanCart}>limpar</InlineButton>
 
-      {finalPrice}
+        <FinalPrice>{finalPrice}</FinalPrice>
+      </div>
     </>
   );
 }
