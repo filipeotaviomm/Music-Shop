@@ -2,7 +2,9 @@ import React from "react";
 
 export interface IProductContext {
   id: number;
-  brand: string;
+  brandName: string;
+  categories: string[];
+  createdAt: string;
   name: string;
   description?: string;
   price: number;
@@ -14,6 +16,7 @@ export interface IProductContext {
   ownerId: number;
 }
 
+
 export interface CardProductProps {
   item: IProductContext;
 }
@@ -23,6 +26,8 @@ export interface IFullProductContext {
   setAllProducts: React.Dispatch<React.SetStateAction<IProductContext[]>>;
 
   singleProduct: IProductContext | null;
+
+  getProductById: (id: string | undefined) => Promise<void>;
 
   getAllProducts: () => Promise<void>;
 }

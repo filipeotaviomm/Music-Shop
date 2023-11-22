@@ -25,32 +25,45 @@ import {
   ImgShipping,
   SpanShipping,
 } from "./styles";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProductContext } from "../../providers/UserContext";
+import { useParams } from "react-router-dom";
+import { IFullProductContext } from "../../types/product";
 
 const ProductSection = () => {
-  const { singleProduct } = useContext(ProductContext) || {};
+  const { singleProduct, getProductById } = useContext(
+    ProductContext
+  ) as IFullProductContext;
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    try {
+      getProductById(id);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <SectionBuy>
       <DivImg>
-        <ImgProduct
-          src="https://files2.soniccdn.com/files/2023/10/04/70s_FlyingV_Explorer-Homepage-Masthead-787x600.jpg"
-          alt="Instagram logo"
-        />
+        <ImgProduct src={singleProduct?.image} alt="Product Image" />
       </DivImg>
       <DivInfoContainer>
         <SpanCategory>Guitarra</SpanCategory>
         <DivNameLike>
-          <H3NameProduct>Gibson Flying V classic</H3NameProduct>
+          <H3NameProduct>{singleProduct?.name}</H3NameProduct>
           <ButtonLike>
             <AiOutlineHeart size={25} />
           </ButtonLike>
         </DivNameLike>
-        <SpanPrice>$2000,00</SpanPrice>
-        <SpanCor>Cor: Marrom</SpanCor>
-        <SpanCondition>Condição: Nova</SpanCondition>
-        <SpanStock>5 unidades disponíveis</SpanStock>
+        <SpanPrice>{singleProduct?.price}</SpanPrice>
+        <SpanCor>Cor: {singleProduct?.color}</SpanCor>
+        <SpanCondition>
+          Condição: {singleProduct?.condition == "new" ? "Novo" : "Usado"}
+        </SpanCondition>
+        <SpanStock>{singleProduct?.stock} unidades disponíveis</SpanStock>
         <DivAddToCart>
           <ButtonAddToCart>Adicionar ao Carrinho</ButtonAddToCart>
         </DivAddToCart>

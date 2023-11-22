@@ -8,14 +8,20 @@ export const createProductService = async (
 ): Promise<Product> => {
   const { categories } = data;
 
-  const product: Product = await prisma.product.create({
-    data: {
-      name: data.name,
-      description: data.description,
-      brand: {
-        connectOrCreate: {
-          where: { name: data.brandName },
-          create: { name: data.brandName },
+    const product: Product = await prisma.product.create({
+        data: {
+            name: data.name,
+            description: data.description,
+            brand: { connectOrCreate: { where: { name: data.brandName }, create: { name: data.brandName } } },
+            price: data.price,
+            image: data.image,
+            stock: data.stock,
+            color: data.color,
+            condition: data.condition,
+            owner: { connect: { id: userId } },
+            categories: {
+                create: categories?.map((categoryName) => ({category: {connectOrCreate: {where: {name: categoryName}, create: {name: categoryName}}}}))
+            }
         },
       },
       price: data.price,
@@ -41,7 +47,7 @@ export const createProductService = async (
     },
   });
 
-  return product;
+    return product;
 };
 
 export const getAllProductsService = async (): Promise<Product[]> => {
@@ -72,14 +78,14 @@ export const getAllProductsIdService = async (
 export const updateProductService = async (id: number, data: ProductUpdate): Promise<Product> => {
   const { categories } = data;
 
-  if (categories) {
-    await prisma.product.update({
-      where: { id },
-      data: {
-        categories: { deleteMany: {} },
-      },
-    });
-  }
+    if (categories) {
+        await prisma.product.update({
+            where: {id},
+            data: {
+                categories: {deleteMany: {}}
+            }
+        });
+    }
 
   const newProduct: Product = await prisma.product.update({
     where: { id },
@@ -115,7 +121,7 @@ export const formatProductReturn = (product: any) => {
     categories: product.categories.map((category: any) => category.category.name)
   };
 
-  return formatedProduct;
+    return formatedProduct;
 };
 
 export const formatProductsReturn = (products: any) => {
@@ -127,4 +133,5 @@ export const formatProductsReturn = (products: any) => {
   );
 
   return formatedProducts;
+
 };
