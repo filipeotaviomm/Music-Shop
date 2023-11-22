@@ -24,5 +24,7 @@ export interface IFullProductContext {
 
   singleProduct: IProductContext | null;
 
+  getProductById: (id: string | undefined) => Promise<void>;
+
   getAllProducts: () => Promise<void>;
 }

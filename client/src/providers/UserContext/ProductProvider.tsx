@@ -1,6 +1,5 @@
 import React, { createContext, ReactNode, useState } from "react";
 import { api } from "../../services/api";
-import { useParams } from "react-router-dom";
 import { IFullProductContext, IProductContext } from "../../types/product";
 
 // import { toast } from "react-toastify";
@@ -15,29 +14,22 @@ const ProductProvider = (props: { children: ReactNode }) => {
 
   const [allProducts, setAllProducts] = useState<IProductContext[]>([]);
 
-  const { id } = useParams();
-
   const getAllProducts = async () => {
     const { data } = await api.get("products/all");
     setAllProducts(data);
   };
-  /*
 
-                    React.useEffect(() => {
-                      const getProductById = async (id: number) => {
-                        try {
-                          setIsLoading(!isLoading);
-                          const { data } = await api.get(`/products/${id}`);
-                          setSingleProduct(data);
-                        } catch (error) {
-                          console.log(error);
-                        } finally {
-                          setIsLoading(!isLoading);
-                        }
-                      };
-                      getProductById(Number(id));
-                    }, []);
-                  */
+  const getProductById = async (id: string | undefined) => {
+    try {
+      setIsLoading(!isLoading);
+      const { data } = await api.get(`/products/${id}`);
+      setSingleProduct(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(!isLoading);
+    }
+  };
 
   const values: IFullProductContext = {
     allProducts,
@@ -47,6 +39,7 @@ const ProductProvider = (props: { children: ReactNode }) => {
 
     singleProduct,
 
+    getProductById,
   };
 
   return (
@@ -56,4 +49,4 @@ const ProductProvider = (props: { children: ReactNode }) => {
   );
 };
 
-export {ProductProvider, useProductContext};
+export { ProductProvider, useProductContext };
