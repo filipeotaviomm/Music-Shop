@@ -5,7 +5,7 @@ import { SendBtn } from "../../styled-components/Modal.styles.tsx";
 import { useCartContext } from "../../providers/UserContext";
 import { ICartContext } from "../../types/cart";
 
-function EmptyCart() {
+function CartEmpty() {
   const { isCartModalOpen, setIsCartModalOpen } =
     useCartContext() as ICartContext;
   return (
@@ -22,4 +22,4 @@ function EmptyCart() {
   );
 }
 
-export default EmptyCart;
+export default CartEmpty;
