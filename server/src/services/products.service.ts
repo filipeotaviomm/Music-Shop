@@ -1,6 +1,8 @@
 import { Product } from "@prisma/client";
 import { ProductCreate, ProductUpdate } from "../interfaces/products.interface";
 import { prisma } from "../app";
+import { BrandList } from "../interfaces/brands.interface";
+import { CategoryList } from "../interfaces/categories.interface";
 
 export const createProductService = async (
   data: ProductCreate,
@@ -122,3 +124,11 @@ export const updateProductService = async (
 export const deleteProductService = async (id: number): Promise<void> => {
   await prisma.product.delete({ where: { id } });
 };
+
+export const getAllBrandsService = async (): Promise<BrandList> => {
+  return prisma.brand.findMany();
+}
+
+export const getAllCategoriesService = async (): Promise<CategoryList> => {
+  return prisma.category.findMany();
+}

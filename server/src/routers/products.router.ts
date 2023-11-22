@@ -6,6 +6,8 @@ import {
   getAllProductsIdController,
   getAllProductsController,
   updateProductController,
+  getAllCategoriesController,
+  getAllBrandsController,
 } from "../controllers/products.controller";
 import {
   bodyValidator,
@@ -33,3 +35,6 @@ productRouter.use("/:id", verifyProductId, verifyPermissions("product"));
 
 productRouter.patch("/:id", bodyValidator(updateProductSchema), updateProductController);
 productRouter.delete("/:id", deleteProductController);
+
+productRouter.get("/categories", getAllCategoriesController);
+productRouter.get("/brands", getAllBrandsController)
