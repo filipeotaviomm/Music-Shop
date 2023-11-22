@@ -7,21 +7,14 @@ export const createProductService = async (
   userId: number
 ): Promise<Product> => {
   const { categories } = data;
-
-    const product: Product = await prisma.product.create({
-        data: {
-            name: data.name,
-            description: data.description,
-            brand: { connectOrCreate: { where: { name: data.brandName }, create: { name: data.brandName } } },
-            price: data.price,
-            image: data.image,
-            stock: data.stock,
-            color: data.color,
-            condition: data.condition,
-            owner: { connect: { id: userId } },
-            categories: {
-                create: categories?.map((categoryName) => ({category: {connectOrCreate: {where: {name: categoryName}, create: {name: categoryName}}}}))
-            }
+  const product: Product = await prisma.product.create({
+    data: {
+      name: data.name,
+      description: data.description,
+      brand: {
+        connectOrCreate: {
+          where: { name: data.brandName },
+          create: { name: data.brandName },
         },
       },
       price: data.price,
@@ -46,8 +39,7 @@ export const createProductService = async (
       owner: { select: { name: true } },
     },
   });
-
-    return product;
+  return product;
 };
 
 export const getAllProductsService = async (): Promise<Product[]> => {
