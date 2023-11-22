@@ -1,10 +1,10 @@
-import { Product } from "@prisma/client";
-import { ProductCreate, ProductUpdate } from "../interfaces/products.interface";
+import { ProductCreate, ProductUpdate, ProductBrute, ProductReturn } from "../interfaces/products.interface";
 import { prisma } from "../app";
+import { Product } from "@prisma/client";
 
 export const createProductService = async (
   data: ProductCreate,
-  userId: number,
+  userId: number
 ): Promise<Product> => {
   const { categories } = data;
 
@@ -35,51 +35,41 @@ export const createProductService = async (
         })),
       },
     },
-    include: { categories: { select: { category: true } } },
+    include: {
+      categories: { select: { category: true } },
+      owner: { select: { name: true } },
+    },
   });
 
   return product;
 };
 
-export const getAllProductsService = async () => {
-  const allProducts = await prisma.product.findMany({
-    include: { categories: { select: { category: true } } },
+export const getAllProductsService = async (): Promise<Product[]> => {
+  const allProducts: Product[] = await prisma.product.findMany({
+    include: {
+      categories: { select: { category: true } },
+      owner: { select: { name: true } },
+    },
   });
 
-  const productsWithCategories = allProducts.map((product) => ({
-    ...product,
-    categories: product.categories.map((category) => category.category.name),
-  }));
-
-  return productsWithCategories;
+  return allProducts;
 };
 
 export const getAllProductsIdService = async (
-  userId: number,
+  userId: number
 ): Promise<Product[]> => {
-  const allProducts = await prisma.product.findMany({
+  const allProducts: Product[] = await prisma.product.findMany({
     where: { ownerId: userId },
-    include: { categories: { select: { category: true } } },
+    include: {
+      categories: { select: { category: true } },
+      owner: { select: { name: true } },
+    },
   });
 
-  const productsWithCategories = allProducts.map((product) => ({
-    ...product,
-    categories: product.categories.map((category) => category.category.name),
-  }));
-
-  return productsWithCategories;
+  return allProducts;
 };
-//
-// export const getAllProductsService = async (): Promise<Product[]> => {
-//   const allProducts = await prisma.product.findMany();
-//
-//   return allProducts;
-// };
 
-export const updateProductService = async (
-  id: number,
-  data: ProductUpdate,
-): Promise<Product> => {
+export const updateProductService = async (id: number, data: ProductUpdate): Promise<Product> => {
   const { categories } = data;
 
   if (categories) {
@@ -91,7 +81,7 @@ export const updateProductService = async (
     });
   }
 
-  const newProduct = await prisma.product.update({
+  const newProduct: Product = await prisma.product.update({
     where: { id },
     data: {
       ...data,
@@ -108,17 +98,33 @@ export const updateProductService = async (
     },
     include: {
       categories: { select: { category: { select: { name: true } } } },
+      owner: { select: { name: true } },
     },
   });
 
-  const formatedProduct = {
-    ...newProduct,
-    categories: newProduct.categories.map((category) => category.category.name),
+  return newProduct;
+};
+
+export const deleteProductService = async (id: number): Promise<void> => {
+  await prisma.product.delete({ where: { id } });
+};
+
+export const formatProductReturn = (product: any) => {
+  const formatedProduct: ProductReturn = {
+    ...product,
+    categories: product.categories.map((category: any) => category.category.name)
   };
 
   return formatedProduct;
 };
 
-export const deleteProductService = async (id: number): Promise<void> => {
-  await prisma.product.delete({ where: { id } });
+export const formatProductsReturn = (products: any) => {
+  const formatedProducts: ProductReturn[] = products.map(
+    (product: ProductBrute) => ({
+      ...product,
+      categories: product.categories.map((category: any) => category.category.name)
+    })
+  );
+
+  return formatedProducts;
 };

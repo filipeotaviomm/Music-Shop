@@ -2,10 +2,13 @@ import { Request, Response } from "express";
 import {
     createProductService,
     deleteProductService,
+    formatProductReturn,
+    formatProductsReturn,
     getAllProductsIdService,
     getAllProductsService,
     updateProductService,
 } from "../services/products.service";
+import { ProductReturn } from "../interfaces/products.interface";
 import { Product } from "@prisma/client";
 
 export const createProductController = async (
@@ -16,9 +19,11 @@ export const createProductController = async (
 
   const product: Product = await createProductService(req.body, userId);
 
+  const formattedProduct: ProductReturn = formatProductReturn(product);
+
   return res
     .status(201)
-    .json({ message: "Produto cadastrado com sucesso!", product });
+    .json({ message: "Produto cadastrado com sucesso!", formattedProduct });
 };
 
 export const getAllProductsController = async (
@@ -27,7 +32,9 @@ export const getAllProductsController = async (
 ): Promise<Response> => {
   const allProducts: Product[] = await getAllProductsService();
 
-  return res.status(200).json(allProducts);
+  const formattedProducts: ProductReturn[] = formatProductsReturn(allProducts);
+
+  return res.status(200).json(formattedProducts);
 };
 
 export const getAllProductsIdController = async (
@@ -38,7 +45,9 @@ export const getAllProductsIdController = async (
 
   const allProducts: Product[] = await getAllProductsIdService(userId);
 
-  return res.status(200).json(allProducts);
+  const formattedProducts: ProductReturn[] = formatProductsReturn(allProducts);
+
+  return res.status(200).json(formattedProducts);
 };
 
 export const getProductByIdController = async (
@@ -47,7 +56,9 @@ export const getProductByIdController = async (
 ): Promise<Response> => {
   const product: Product = res.locals.product;
 
-  return res.status(200).json(product);
+  const formattedProduct: ProductReturn = formatProductReturn(product);
+
+  return res.status(200).json(formattedProduct);
 };
 
 export const updateProductController = async (
@@ -58,9 +69,11 @@ export const updateProductController = async (
 
   const product: Product = await updateProductService(id, req.body);
 
+  const formattedProduct: ProductReturn = formatProductReturn(product);
+
   return res
     .status(200)
-    .json({ message: "Produto atualizado com sucesso!", product });
+    .json({ message: "Produto atualizado com sucesso!", formattedProduct });
 };
 
 export const deleteProductController = async (

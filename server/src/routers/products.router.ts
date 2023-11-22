@@ -21,13 +21,14 @@ import { verifyProductId } from "../middlewares/products.middleware";
 export const productRouter: Router = Router();
 
 productRouter.get("/all", getAllProductsController)
+productRouter.get("/:id", getProductByIdController);
+
 
 productRouter.use(verifyToken);
 
 productRouter.get("/", getAllProductsIdController);
-productRouter.get("/:id", getProductByIdController);
-
 productRouter.post("/", bodyValidator(createProductSchema), createProductController);
+
 
 productRouter.use("/:id", verifyProductId, verifyPermissions("product"));
 
