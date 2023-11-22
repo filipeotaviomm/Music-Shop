@@ -1,14 +1,14 @@
-import { IProductContext } from "../../types/product";
 import {
   Brand,
-  ImgModalContainer, Name, Price, PriceModal,
+  ImgModalContainer,
+  Name,
+  PriceModal,
 } from "../../styled-components/CardProduct.styles.ts";
 import styled from "styled-components";
-import {colors} from "../../styled-components/root.ts";
+import { colors } from "../../styled-components/root.ts";
+import { ICart } from "../../types/cart";
 
-type CartProps = {
-  item: IProductContext;
-};
+import ProductAmount from "../RenderCartItems/ProductAmount";
 
 const ProductInfo = styled.div`
   display: grid;
@@ -22,14 +22,14 @@ const Wrapper = styled.div`
   grid-template-columns: 120px auto;
   gap: 32px;
   padding-block: 2px;
-  
+
   border-bottom: 2px solid ${colors.purple};
-  opacity: .99;
+  opacity: 0.99;
 `;
 
-function CartItem(props: CartProps) {
-  const { item } = props;
-  const { name, brand, image, price } = item;
+function CartItem(props: ICart) {
+  const { product, amount } = props;
+  const { id, name, brandName, image, price } = product;
 
   const FinalPrice = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -37,7 +37,6 @@ function CartItem(props: CartProps) {
     minimumFractionDigits: 2,
   }).format(price);
 
-  console.log(item);
   return (
     <>
       <Wrapper>
@@ -46,9 +45,11 @@ function CartItem(props: CartProps) {
         </ImgModalContainer>
         <ProductInfo>
           <div>
-            <Brand>{name.split(" ")[0]}</Brand>
+            <Brand>{brandName}</Brand>
             <Name>{name}</Name>
           </div>
+          <ProductAmount product={product} amount={amount} />
+
           <PriceModal>{FinalPrice}</PriceModal>
         </ProductInfo>
       </Wrapper>
