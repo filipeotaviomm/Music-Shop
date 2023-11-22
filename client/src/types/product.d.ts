@@ -2,7 +2,9 @@ import React from "react";
 
 export interface IProductContext {
   id: number;
-  brand: string;
+  brandName: string;
+  categories: string[];
+  createdAt: string;
   name: string;
   description?: string;
   price: number;
@@ -13,6 +15,7 @@ export interface IProductContext {
   deletedAt?: string;
   ownerId: number;
 }
+
 
 export interface CardProductProps {
   item: IProductContext;

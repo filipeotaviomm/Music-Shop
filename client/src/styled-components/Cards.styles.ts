@@ -68,12 +68,15 @@ export const Card = styled.li`
   }
 `;
 export const CardProd = styled(Card)`
-  flex: 0 0 100%;
   border-radius: 8px;
   outline: 2px solid ${colors.purpleSurface};
   position: relative;
   
-  
+  flex: 0 0 100%;
+  @media (min-width: 600px){
+    flex: 0 0 50%;
+    
+  }
   
 `;
 
