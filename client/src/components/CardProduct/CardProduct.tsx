@@ -9,7 +9,6 @@ import { AddCartButton } from "../../styled-components/Button.styles.ts";
 import { useCartContext } from "../../providers/UserContext";
 import {
   CardProductProps,
-  IFullProductContext,
 } from "../../types/product";
 import {
   Brand,
@@ -24,7 +23,7 @@ function CardProduct(props: CardProductProps) {
   const { addProductInCart } = useCartContext() as ICartContext;
 
   const { item } = props;
-  const { image, brand, name, price } = item;
+  const { image, brandName, name, price } = item;
 
   const PriceString = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -41,7 +40,7 @@ function CardProduct(props: CardProductProps) {
             <img src={image} alt={`${name} image`} />
           </ImageContainer>
           <div>
-            <Brand>{name.split(" ")[0]}</Brand>
+            <Brand>{brandName}</Brand>
             <div style={{ display: "grid", gridTemplateRows: "90px auto" }}>
               <Name>{name}</Name>
             </div>
