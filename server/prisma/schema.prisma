@@ -7,6 +7,112 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(120)
+  email     String    @unique @db.VarChar(120)
+  password  String    @db.VarChar(255)
+  createdAt DateTime  @default(now())
+  addresses Address[]
+  cards     Card[]
+  orders    Order[]
+  products  Product[]
+
+  @@map("users")
+}
+
+model Address {
+  id          Int     @id @default(autoincrement())
+  street      String  @db.VarChar(120)
+  neihborhood String  @db.VarChar(64)
+  number      Int?
+  zip         String  @db.VarChar(10)
+  state       String  @db.VarChar(2)
+  city        String  @db.VarChar(64)
+  complement  String?
+  userId      Int
+  name        String  @db.VarChar(64)
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("addresses")
+}
+
+model Card {
+  id     Int    @id @default(autoincrement())
+  number String @db.VarChar(16)
+  type   Types
+  userId Int
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("cards")
+}
+
+model Product {
+  id          Int               @id @default(autoincrement())
+  name        String            @db.VarChar(60)
+  description String?
+  price       Decimal           @db.Money
+  image       String
+  stock       Int               @default(0)
+  color       String?
+  condition   Condition
+  createdAt DateTime @default(now())
+  deletedAt   DateTime?
+  ownerId     Int
+  owner       User              @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  orders      OrderProduct[]
+  categories  ProductCategory[]
+  brandName String
+  brand       Brand              @relation(fields: [brandName], references: [name], onDelete: Cascade)
+
+  @@map("products")
+}
+
+model Order {
+  id          Int            @id @default(autoincrement())
+  orderStatus Status
+  image       String
+  createdAt   DateTime       @default(now())
+  userId      Int
+  product     OrderProduct[]
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("orders")
+}
+
+model OrderProduct {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id       Int               @id @default(autoincrement())
+  name     String @unique @db.VarChar(60)
+  products ProductCategory[]
+
+  @@map("categories")
+}
+
+model ProductCategory {
+  id         Int      @id @default(autoincrement())
+  categoryId Int
+  productId  Int
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Brand {
+  id         Int      @id @default(autoincrement())
+  name String @db.VarChar(60) @unique
+  product Product[]
+
+  @@map("brands")
+}
+
 enum Types {
   debit
   credit
@@ -20,99 +126,4 @@ enum Status {
 enum Condition {
   new
   used
-}
-
-model User {
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(120)
-  email String @unique @db.VarChar(120)
-  password String @db.VarChar(255)
-  createdAt DateTime @default(now())
-  addresses Address[]
-  cards Card[]
-  products Product[]
-  orders Order[]
-
-  @@map("users")
-}
-
-model Address {
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(64)
-  street String @db.VarChar(120)
-  neihborhood String @db.VarChar(64)
-  number Int?
-  zip String @db.VarChar(10)
-  state String @db.VarChar(2)
-  city String @db.VarChar(64)
-  complement String?
-  userId Int
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("addresses")
-}
-
-model Card {
-  id Int @id @default(autoincrement())
-  number String @db.VarChar(16)
-  type Types
-  userId Int
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("cards")
-}
-
-model Product {
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(60)
-  description String?
-  price Decimal @db.Money
-  image String
-  stock Int @default(0)
-  color String?
-  condition Condition
-  deletedAt DateTime?
-  ownerId Int
-  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  orders OrderProduct[]
-  categories ProductCategory[]
-
-  @@map("products")
-}
-
-model Order {
-  id Int @id @default(autoincrement())
-  orderStatus Status
-  image String
-  createdAt DateTime @default(now())
-  userId Int
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product OrderProduct[]
-
-  @@map("orders")
-}
-
-model OrderProduct {
-  id Int @id @default(autoincrement())
-  orderId Int
-  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  productId Int
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-  quantity Int
-}
-
-model Category {
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(60)
-  products ProductCategory[]
-
-  @@map("categories")
-}
-
-model ProductCategory {
-  id Int @id @default(autoincrement())
-  categoryId Int
-  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  productId Int
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
