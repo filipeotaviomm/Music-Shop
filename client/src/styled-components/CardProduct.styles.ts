@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {colors, fontSize} from "./root.ts";
+import {Link} from "react-router-dom";
 
 export const ImageContainer = styled.div`
   height: 200px;
@@ -39,7 +40,7 @@ export const PriceModal = styled(Price)`
   text-align: end;
 `
 
-export const ProductButton = styled.button`
+export const ProductButton = styled(Link)`
   border-radius: 8px;
 
   &:hover {
