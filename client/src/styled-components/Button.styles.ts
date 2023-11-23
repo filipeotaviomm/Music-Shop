@@ -6,9 +6,17 @@ export const DefaultButton = styled.button`
   font-weight: 500;
   width: 100%;
   text-decoration: underline;
+  border-radius: 4px;
 
   &:hover {
     color: ${colors.purpleHover};
+    outline:2px solid ${colors.purpleHover}
+  }
+  &:active {
+    outline:2px solid ${colors.purpleActive}
+  }
+  &:focus {
+    outline:2px solid ${colors.purpleActive}
   }
 `;
 
