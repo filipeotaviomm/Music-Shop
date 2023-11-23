@@ -68,6 +68,7 @@ export const WarningInlineButton = styled(InlineButton)`
     
   }
 
+
   &:hover {
     color: ${colors.red80};
   }
@@ -123,12 +124,12 @@ export const ModalBottonButton = styled(SendBtn)`
 
 export const ModalButton = styled.button`
   position: absolute;
+  top: 30px;
+  right: 40px;
+
   width: auto;
   border-radius: 4px;
   padding: 8px;
   max-width: fit-content;
-
-  top: 0px;
-  right: 0;
 
 `;
