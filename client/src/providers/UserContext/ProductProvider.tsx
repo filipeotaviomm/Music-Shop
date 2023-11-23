@@ -28,7 +28,7 @@ const ProductProvider = (props: { children: ReactNode }) => {
     try {
       setIsLoading(!isLoading);
       console.log(id, typeof id);
-      const { data } = await api.get(`/products/all/${id}`);
+      const { data } = await api.get(`/products/${id}`);
       console.log(data);
       setSingleProduct(data);
     } catch (error) {
