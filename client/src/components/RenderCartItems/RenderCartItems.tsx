@@ -5,6 +5,7 @@ import { nanoid } from "nanoid";
 import {
   ModalBottonButton,
   SendBtn,
+
 } from "../../styled-components/Button.styles.ts";
 import styled from "styled-components";
 import { H3 } from "../../styled-components/Typography.styles.ts";
@@ -43,7 +44,6 @@ const Wrapper = styled.div`
   height: 85svh;
   @media (min-width: 550px) {
     height: 100%;
-
   }
 `;
 
@@ -63,7 +63,6 @@ function RenderCartItems() {
     setIsCartModalOpen(!isCartModalOpen);
     setIsLogOpen(!isLogOpen);
   }
-
   const { token } = useUserContext() as IUserContext;
 
   const navigate = useNavigate();
@@ -120,6 +119,7 @@ function RenderCartItems() {
           </SendBtn>
         </Buttons>
       </BottonInfo>
+
     </Wrapper>
   );
 }

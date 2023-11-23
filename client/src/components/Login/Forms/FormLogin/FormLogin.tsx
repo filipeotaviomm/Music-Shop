@@ -1,5 +1,6 @@
 import React from "react";
-import { Form, } from "../../../../styled-components/Modal.styles.tsx";
+
+import { Form } from "../../../../styled-components/Modal.styles.tsx";
 import { useUserContext } from "../../../../providers/UserContext";
 
 // import { IUserContext, ILogin, ISignUp } from "../../../../types/types";

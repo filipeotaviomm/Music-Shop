@@ -62,7 +62,9 @@ function CartItem(props: ICart) {
       <Wrapper>
         {amount === product.stock && (
           <Warning>
+
             {product.stock} é o estoque total ;)
+
           </Warning>
         )}
         <ImgModalContainer>

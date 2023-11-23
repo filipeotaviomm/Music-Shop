@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {colors, fontSize} from "./root.ts";
+import {Link} from "react-router-dom";
 
 export const ImageContainer = styled.div`
   height: 200px;
@@ -19,10 +20,13 @@ export const ImageContainer = styled.div`
   }
 `;
 export const ImgModalContainer = styled(ImageContainer)`
-  height: 160px;
-  width: 120px;
   border-radius: 4px;
   display: grid;
+  width: 100%;
+  @media (min-width: 550px) {
+    height: 160px;
+    width: 120px;
+  }
 `
 
 export const Brand = styled.h4`
@@ -39,7 +43,7 @@ export const PriceModal = styled(Price)`
   text-align: end;
 `
 
-export const ProductButton = styled.button`
+export const ProductButton = styled(Link)`
   border-radius: 8px;
 
   &:hover {

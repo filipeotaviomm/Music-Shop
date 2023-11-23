@@ -1,7 +1,6 @@
 import { ImageNotFound } from "../../styled-components/NotFound.styles.ts";
 import NoOrder from "../../assets/wishlist.svg";
 import { CardSubTitle, H1 } from "../../styled-components/Typography.styles.ts";
-
 import { useCartContext } from "../../providers/UserContext";
 import { ICartContext } from "../../types/cart";
 import {SendBtn} from "../../styled-components/Button.styles.ts";
