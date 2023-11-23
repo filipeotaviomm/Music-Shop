@@ -1,9 +1,9 @@
 import { useUserContext } from "../../../../../providers/UserContext";
 
-import { SendBtn } from "../../../../../styled-components/Modal.styles.tsx";
 import { Eye, EyeOff } from "react-feather";
 import styled from "styled-components";
 import {IUserContext} from "../../../../../types/user";
+import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
 
 const Title = styled.span`
   font-weight: 500;

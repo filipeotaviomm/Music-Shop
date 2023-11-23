@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Form, SendBtn } from "../../../../styled-components/Modal.styles.tsx";
+import { Form } from "../../../../styled-components/Modal.styles.tsx";
 import { useUserContext } from "../../../../providers/UserContext";
 
 // import { IUserContext, ILogin, ISignUp } from "../../../../types/types";
@@ -11,6 +11,7 @@ import loginSchema from "../../../../schemas/loginSchema";
 import Input from "../Input";
 import {IUserContext} from "../../../../types/user";
 import {ILogin} from "../../../../types/login";
+import {SendBtn} from "../../../../styled-components/Button.styles.ts";
 
 function FormLogin() {
   const { loginRequest, isPasswordVisible } = useUserContext() as IUserContext;

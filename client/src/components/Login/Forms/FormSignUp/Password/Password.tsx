@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
-  SendBtn,
 } from "../../../../../styled-components/Modal.styles.tsx";
 import Input from "../../Input";
 import React from "react";
@@ -13,6 +12,7 @@ import { colors, fontSize } from "../../../../../styled-components/root.ts";
 import passwordSchema from "../../../../../schemas/passwordSchema";
 import { IUserContext } from "../../../../../types/user";
 import { IPassword } from "../../../../../types/signUp";
+import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
 
 const Ol = styled.ol`
   font-size: ${fontSize.smallLink};

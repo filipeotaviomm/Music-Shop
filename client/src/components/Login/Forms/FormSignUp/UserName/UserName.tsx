@@ -1,6 +1,5 @@
 import {
   Form,
-  SendBtn,
 } from "../../../../../styled-components/Modal.styles.tsx";
 import Input from "../../Input";
 
@@ -11,6 +10,7 @@ import { useUserContext } from "../../../../../providers/UserContext";
 import nameSchema from "../../../../../schemas/nameSchema";
 import {IUserContext} from "../../../../../types/user";
 import {IName} from "../../../../../types/signUp";
+import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
 
 function UserName() {
   const { setStep, signUpInfo, setSignUpInfo } =
