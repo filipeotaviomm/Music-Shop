@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
-import {colors, fontSize} from "./root.ts";
+
+import { colors, fontSize } from "./root.ts";
+
 
 export const Field = styled.fieldset`
   display: flex;
@@ -14,15 +16,15 @@ export const Field = styled.fieldset`
   padding-inline: 20px;
   padding-block: 16px;
 
-  &:focus-within{
+  &:focus-within {
     border: 2px solid ${colors.purple};
   }
 `;
 
 export const DefaultLabel = styled.label`
-  width: 100%;
+  width: fit-content;
   font-weight: 500;
-`
+`;
 
 export const DOverLay = styled(Dialog.Overlay)`
   background-color: rgba(0 0 0 / 0.5);
@@ -37,16 +39,14 @@ export const DOverLay = styled(Dialog.Overlay)`
 `;
 
 export const DDescription = styled(Dialog.Description)`
-  color: ${colors.grey70}
-`
+  color: ${colors.grey70};
+`;
 
 export const DContent = styled(Dialog.Content)`
   display: grid;
   place-items: center;
-  gap: 32px;
-  @media (max-width: 768px) {
-    gap: 20px
-  }
+  gap: clamp(1svh, 2svh, 32px);
+
 
   background-color: white;
   border-radius: 8px;
@@ -63,8 +63,8 @@ export const DContent = styled(Dialog.Content)`
   height: auto;
   max-height: 95dvh;
 
-  padding-block: 64px;
-  padding-inline: 40px;
+  padding-block: clamp(2%, 5%, 64px);
+  padding-inline: clamp(2%, 5%, 40px);
 
   & > * {
     width: 100%;

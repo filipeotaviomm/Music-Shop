@@ -81,6 +81,7 @@ function UserProvider(props: { children: React.ReactNode }) {
         toast.error("Por favor verifique sua conexão com a internet :)");
       } else if (error.response.status === 401) {
         toast.error("Senha ou e-mail incorreto :)");
+        setIsLogOpen(!isLogOpen);
       }
       console.log(error);
     }
@@ -122,4 +123,4 @@ function UserProvider(props: { children: React.ReactNode }) {
   );
 }
 
-export {UserProvider, useUserContext};
+export { UserProvider, useUserContext };

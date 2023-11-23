@@ -25,7 +25,7 @@ const MainWrapper = styled.main`
   display: grid;
   place-items: center;
   margin-block: 64px;
-  width: 100svw;
+  width: 100%;
 `;
 const Wrapper = styled.div`
   width: 100%;

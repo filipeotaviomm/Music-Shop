@@ -72,6 +72,8 @@ function Password() {
 
         <SendBtn>AVANÇAR</SendBtn>
       </Form>
+      <div>
+
       <h3> Sua senha deve cumprir os seguintes critérios:</h3>
       <Ol>
         <li>8 caracteres ou mais</li>
@@ -79,6 +81,7 @@ function Password() {
         <li>Um caracterer especial (ex: #,$,!,*)</li>
         <li>Um número</li>
       </Ol>
+      </div>
     </>
   );
 }

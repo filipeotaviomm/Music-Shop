@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "./root.ts";
+import {colors, fontSize} from "./root.ts";
 
 export const DefaultButton = styled.button`
   text-align: start;
@@ -56,9 +56,18 @@ export const InlineButton = styled(DefaultButton)`
 
 export const WarningInlineButton = styled(InlineButton)`
   color: ${colors.red50};
+  font-size: ${fontSize.text};
   position: absolute;
-  top: 70px;
-  right: 40px;
+  top: 3ex;
+  left: 00px;
+
+  @media (min-width: 550px) {
+    top: 0px;
+    left: unset;
+    right: 0px;
+    
+  }
+
 
   &:hover {
     color: ${colors.red80};
@@ -79,7 +88,7 @@ export const StyledButton = styled.button`
   color: ${colors.offWhite};
   background-color: ${colors.purple};
   border-radius: 8px;
-  margin-block: 32px;
+  margin-block: clamp(12px, 10%, 32px);
   font-weight: 500;
 
   &:hover {
@@ -117,6 +126,10 @@ export const ModalButton = styled.button`
   position: absolute;
   top: 30px;
   right: 40px;
+
   width: auto;
+  border-radius: 4px;
+  padding: 8px;
   max-width: fit-content;
+
 `;

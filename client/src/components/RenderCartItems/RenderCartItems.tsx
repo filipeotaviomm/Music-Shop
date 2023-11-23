@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import {
   ModalBottonButton,
   SendBtn,
-  WarningInlineButton,
+
 } from "../../styled-components/Button.styles.ts";
 import styled from "styled-components";
 import { H3 } from "../../styled-components/Typography.styles.ts";
@@ -15,11 +15,14 @@ import { useNavigate } from "react-router-dom";
 
 const CartOl = styled.ol`
   margin-block: 16px;
-  max-height: 550px;
   overflow-y: auto;
-  padding-inline-end: 8px;
+  padding-inline-end: clamp(8px, 5%, 32px);
+  height: 100%;
+  margin-block-start: 40px;
   @media (min-width: 550px) {
-    padding-inline-end: unset;
+    max-height: 450px;
+
+    margin-block: 0;
   }
 `;
 
@@ -36,16 +39,23 @@ const FinalPrice = styled(H3)`
 `;
 const Wrapper = styled.div`
   display: grid;
-  gap: 16px;
-  grid-template-rows: auto 50px 120px;
-  height: 100%;
+  gap: clamp(1svh, 3svh, 16px);
+  grid-template-rows: auto auto;
+  height: 85svh;
   @media (min-width: 550px) {
-    grid-template-rows: auto 50px 65px;
+    height: 100%;
   }
 `;
 
+const BottonInfo = styled.div`
+  margin-block-start: 32px;
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+`
+
 function RenderCartItems() {
-  const { cart, cleanCart, setIsCartModalOpen, isCartModalOpen } =
+  const { cart, setIsCartModalOpen, isCartModalOpen } =
     useCartContext() as ICartContext;
   const { setIsLogOpen, isLogOpen } = useUserContext() as IUserContext;
 
@@ -53,7 +63,6 @@ function RenderCartItems() {
     setIsCartModalOpen(!isCartModalOpen);
     setIsLogOpen(!isLogOpen);
   }
-
   const { token } = useUserContext() as IUserContext;
 
   const navigate = useNavigate();
@@ -72,8 +81,6 @@ function RenderCartItems() {
 
   return (
     <Wrapper>
-      <WarningInlineButton onClick={cleanCart}>limpar</WarningInlineButton>
-      {/*<ol style={{overflow: "auto"}}>*/}
       <CartOl>
         {cart &&
           cart.map((item) => (
@@ -84,27 +91,35 @@ function RenderCartItems() {
             />
           ))}
       </CartOl>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <H3 style={{ fontSize: fontSize.link }}>Subtotal:</H3>
-        <FinalPrice>{finalPrice}</FinalPrice>
-      </div>
-      <Buttons>
-        <ModalBottonButton
-          onClick={() => setIsCartModalOpen(!isCartModalOpen)}
-          color={colors.purple}
-          id={colors.offWhite}
-        >
-          Continuar comprando
-        </ModalBottonButton>
-        <SendBtn
-          style={{ marginBlock: "0" }}
-          onClick={() => {
-            token ? navigate("/makeorder") : LogToBuy();
-          }}
-        >
-          Finalizar compra
-        </SendBtn>
-      </Buttons>
+      <BottonInfo >
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <H3 style={{ fontSize: fontSize.link }}>Subtotal:</H3>
+            <FinalPrice>{finalPrice}</FinalPrice>
+          </div>
+          <p style={{ color: colors.grey70, fontSize: fontSize.smallLink }}>
+            O frete é adicionado a seguir :)
+          </p>
+        </div >
+        <Buttons>
+          <ModalBottonButton
+            onClick={() => setIsCartModalOpen(!isCartModalOpen)}
+            color={colors.purple}
+            id={colors.offWhite}
+          >
+            Continuar comprando
+          </ModalBottonButton>
+          <SendBtn
+            style={{ marginBlock: "0" }}
+            onClick={() => {
+              token ? navigate("/makeorder") : LogToBuy();
+            }}
+          >
+            Finalizar compra
+          </SendBtn>
+        </Buttons>
+      </BottonInfo>
+
     </Wrapper>
   );
 }

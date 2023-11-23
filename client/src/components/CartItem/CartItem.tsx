@@ -29,9 +29,11 @@ const Wrapper = styled.div`
   position: relative;
 
   @media (max-width: 550px) {
-    grid-template-columns: auto;
+    display: flex;
+    flex-flow: column;
     justify-items: center;
-    max-height: 100%;
+    max-height: none;
+    height: auto;
   }
 `;
 const Warning = styled.p`
@@ -60,7 +62,9 @@ function CartItem(props: ICart) {
       <Wrapper>
         {amount === product.stock && (
           <Warning>
-            {product.stock} é o estoque total ;){" "}
+
+            {product.stock} é o estoque total ;)
+
           </Warning>
         )}
         <ImgModalContainer>
