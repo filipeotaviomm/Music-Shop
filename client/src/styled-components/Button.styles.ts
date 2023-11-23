@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "./root.ts";
+import {colors, fontSize} from "./root.ts";
 
 export const DefaultButton = styled.button`
   text-align: start;
@@ -40,19 +40,37 @@ export const AddCartButton = styled(IconButton)`
 
   &:hover {
     background-color: ${colors.purpleSurface};
-
   }
 
   &:active {
     border {
-      outline: 4px solid ${colors.purple}
+      outline: 4px solid ${colors.purple};
     }
   }
-`
+`;
 
 export const InlineButton = styled(DefaultButton)`
   width: auto;
   color: ${colors.purple};
+`;
+
+export const WarningInlineButton = styled(InlineButton)`
+  color: ${colors.red50};
+  font-size: ${fontSize.text};
+  position: absolute;
+  top: 3ex;
+  left: 00px;
+
+  @media (min-width: 550px) {
+    top: 0px;
+    left: unset;
+    right: 0px;
+    
+  }
+
+  &:hover {
+    color: ${colors.red80};
+  }
 `;
 
 export const QuitButton = styled(DefaultButton)`
@@ -67,27 +85,50 @@ export const QuitButton = styled(DefaultButton)`
 export const StyledButton = styled.button`
   padding-block: 16px;
   color: ${colors.offWhite};
-  background-color: ${
-    colors.purple
-  };
+  background-color: ${colors.purple};
   border-radius: 8px;
-  margin-block: 32px;
+  margin-block: clamp(12px, 10%, 32px);
   font-weight: 500;
+
   &:hover {
     outline: 2px solid ${colors.purpleBorder};
+    background-color: ${colors.purpleHover};
   }
+
   &:focus {
     background-color: ${colors.purpleActive};
   }
+
   &:active {
     background-color: ${colors.purple};
   }
-`
+`;
+export const SendBtn = styled(StyledButton)`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ModalBottonButton = styled(SendBtn)`
+  background-color: ${colors.offWhite};
+  color: ${colors.purple};
+  margin-block: 0;
+
+  &:hover {
+    background-color: ${colors.purpleHover};
+    color: ${colors.offWhite};
+  }
+`;
 
 export const ModalButton = styled.button`
   position: absolute;
-  top: 80px;
-  right: 35px;
   width: auto;
+  border-radius: 4px;
+  padding: 8px;
   max-width: fit-content;
-`
+
+  top: 0px;
+  right: 0;
+
+`;
