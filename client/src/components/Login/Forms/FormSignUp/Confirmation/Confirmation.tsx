@@ -17,6 +17,7 @@ const Title = styled.span`
 const Wrapper = styled.div`
   display: grid;
   gap: 16px;
+  max-width: 100% ;
 `;
 
 const Line = styled.h3`
@@ -78,7 +79,7 @@ function Confirmation() {
           <SendBtn onClick={submit}>ENVIAR</SendBtn>
           <button
             style={{
-              width: "100%",
+              width: "fit-content",
               textDecoration: "underline",
               textAlign: "center",
             }}

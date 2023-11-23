@@ -6,11 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import emailSchema from "../../../../../schemas/emailSchema";
 import {
   Form,
-  SendBtn,
 } from "../../../../../styled-components/Modal.styles.tsx";
 import Input from "../../Input";
 import {IUserContext} from "../../../../../types/user";
 import {IEmail} from "../../../../../types/signUp";
+import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
 
 function Email() {
   const { setStep, signUpInfo, setSignUpInfo } = useUserContext() as IUserContext;
