@@ -29,8 +29,8 @@ const Wrapper = styled.div`
   position: relative;
 
   @media (max-width: 550px) {
-    display: flex;
-    flex-flow: column;
+    grid-template-columns: auto;
+    justify-items: center;
     max-height: 100%;
   }
 `;
