@@ -32,14 +32,14 @@ import { IFullProductContext } from "../../types/product";
 
 const ProductSection = () => {
   const { singleProduct, getProductById } = useContext(
-    ProductContext
+    ProductContext,
   ) as IFullProductContext;
 
   const { id } = useParams();
 
   useEffect(() => {
     try {
-      getProductById(id);
+      getProductById(Number(id));
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +51,7 @@ const ProductSection = () => {
         <ImgProduct src={singleProduct?.image} alt="Product Image" />
       </DivImg>
       <DivInfoContainer>
-        <SpanCategory>Guitarra</SpanCategory>
+        <SpanCategory>{singleProduct?.brandName}</SpanCategory>
         <DivNameLike>
           <H3NameProduct>{singleProduct?.name}</H3NameProduct>
           <ButtonLike>
