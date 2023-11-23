@@ -21,7 +21,6 @@ function Confirmation() {
   } = useUserContext() as IUserContext;
 
   async function submit() {
-    console.log(signUpInfo);
     await signUpRequest(signUpInfo);
     setStep(0);
     setSignUpInfo({});
