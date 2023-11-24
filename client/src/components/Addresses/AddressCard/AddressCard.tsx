@@ -1,6 +1,9 @@
 import styled from "styled-components";
-import { IAddressCard } from "../../../types/address";
+import { IAddress, IAddressCard, IAddressContext } from "../../../types/address";
 import { colors } from "../../../styled-components/root";
+import { useAddressContext } from "../../../providers/UserContext/AddressProvider";
+import Modal from "../../Modal";
+import EditAddressForm from "../Form/EditAddressForm";
 
     const Card = styled.div`
         width: 100%;
@@ -45,9 +48,22 @@ import { colors } from "../../../styled-components/root";
         }
     `;
 
+    
+
 export function AddressCard(props: IAddressCard) {
 
     const {address} = props;
+    const { isEditAddressModalOpen, setIsEditAddressModalOpen, setEditingAddress, setIsDeleteAddressModalOpen, setDeletingAddress } = useAddressContext() as IAddressContext;
+    
+    function handleEditPost(address: IAddress) {
+        setEditingAddress(address);
+        setIsEditAddressModalOpen(true);
+    };
+
+    function handleDeletePost(address: IAddress) {
+        setDeletingAddress(address);
+        setIsDeleteAddressModalOpen(true);
+    }
 
     return (
         <Card>
@@ -58,10 +74,11 @@ export function AddressCard(props: IAddressCard) {
                     <p>{`CEP: ${address.zip}`} {address.complement ? `| (${address.complement})` : null}</p>
                 </div>
                 <CartButtons>
-                    <Button style={{color: "black"}}>Editar</Button>
-                    <Button>Excluir</Button>
+                    <Button style={{color: "black"}} onClick={() => handleEditPost(address)}>Editar</Button>
+                    <Button onClick={() => handleDeletePost(address)}>Excluir</Button>
                 </CartButtons>
             </CartContent>
+            <Modal open={isEditAddressModalOpen} onOpenChange={setIsEditAddressModalOpen} element={EditAddressForm()}/>
         </Card>
     )
 };
