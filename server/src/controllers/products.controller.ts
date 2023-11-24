@@ -56,9 +56,7 @@ export const getProductByIdController = async (
 ): Promise<Response> => {
   const product: Product = res.locals.product;
 
-  const formattedProduct: ProductReturn = formatProductReturn(product);
-
-  return res.status(200).json(formattedProduct);
+  return res.status(200).json(product);
 };
 
 export const updateProductController = async (
