@@ -15,10 +15,10 @@ import {
   Wrapper,
 } from "../../styled-components/UserProfile.styles.ts";
 import { useUserContext } from "../../providers/UserContext";
-import {IContext} from "../../types/types";
+import {IUserContext} from "../../types/types";
 
 function UserProfile({ children }: { children: ReactNode }) {
-  const { quitAccount } = useUserContext() as IContext;
+  const { quitAccount } = useUserContext() as IUserContext;
 
   const navigate = useNavigate();
 

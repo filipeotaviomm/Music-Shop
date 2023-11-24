@@ -1,8 +1,10 @@
 import React from "react";
-import { IContext, ILogin, ISignUp } from "../../types/types";
 import { api } from "../../services/api.ts";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { IUserContext } from "../../types/user";
+import { ISignUp } from "../../types/signUp";
+import { ILogin } from "../../types/login";
 
 const UserContext = React.createContext({});
 
@@ -13,7 +15,7 @@ function useUserContext() {
 function UserProvider(props: { children: React.ReactNode }) {
   const navigate = useNavigate();
 
-  const [cart, setCart] = React.useState(0);
+  const [signUpInfo, setSignUpInfo] = React.useState({});
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isLogOpen, setIsLogOpen] = React.useState(false);
@@ -21,6 +23,8 @@ function UserProvider(props: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
+
+  const [step, setStep] = React.useState(0);
 
   const storedToken = localStorage.getItem("@TOKEN");
   const token: string | null | undefined = storedToken || null;
@@ -77,17 +81,15 @@ function UserProvider(props: { children: React.ReactNode }) {
         toast.error("Por favor verifique sua conexão com a internet :)");
       } else if (error.response.status === 401) {
         toast.error("Senha ou e-mail incorreto :)");
+        setIsLogOpen(!isLogOpen);
       }
       console.log(error);
     }
   };
 
-  const values: IContext = {
+  const values: IUserContext = {
     isSignUp,
     setIsSignUp,
-
-    cart,
-    setCart,
 
     isLoggedIn,
     setIsLoggedIn,
@@ -106,6 +108,12 @@ function UserProvider(props: { children: React.ReactNode }) {
     setIsPasswordVisible,
 
     token,
+
+    signUpInfo,
+    setSignUpInfo,
+
+    step,
+    setStep,
 
     quitAccount,
   };

@@ -1,10 +1,14 @@
 import React, { ForwardedRef } from "react";
-import { IContext, IInput } from "../../../../types/types";
-import {DefaultLabel, Field} from "../../../../styled-components/Modal.styles.tsx";
+import { IInput } from "../../../../types/types";
+import {
+  DefaultLabel,
+  Field,
+} from "../../../../styled-components/Modal.styles.tsx";
 import styled from "styled-components";
-import { colors } from "../../../../styled-components/root.ts";
+import {colors, fontSize} from "../../../../styled-components/root.ts";
 import { useUserContext } from "../../../../providers/UserContext";
 import { Eye, EyeOff } from "react-feather";
+import { IUserContext } from "../../../../types/user";
 
 const StyledInput = styled.input`
   width: 100%;
@@ -18,19 +22,27 @@ const StyledInput = styled.input`
 }
 `;
 const Span = styled.span`
-  color: ${colors.red};
+  color: ${colors.red70};
+  width: fit-content;
+  @media (max-width: 500px) {
+    font-size: ${fontSize.smallLink};
+  }
 `;
 const LabelWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-flow: column;
+  @media (min-width: 500px) {
+    flex-flow: unset;
+    justify-content: space-between;
+  }
 `;
 
 const Input = React.forwardRef(
   (
     { error, id, type = "text", label, ...delegated }: IInput,
-    ref: ForwardedRef<HTMLInputElement>
+    ref: ForwardedRef<HTMLInputElement>,
   ) => {
-    const { changePasswordVisibility } = useUserContext() as IContext;
+    const { changePasswordVisibility } = useUserContext() as IUserContext;
     return (
       <>
         <Field>
@@ -63,6 +75,6 @@ const Input = React.forwardRef(
         </Field>
       </>
     );
-  }
+  },
 );
 export default Input;
