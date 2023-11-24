@@ -1,15 +1,10 @@
-import Cart from "../../assets/Cart.svg";
-
 import { CardProd, ProductGrid } from "../../styled-components/Cards.styles.ts";
 import { fontSize } from "../../styled-components/root.ts";
-// import { ProductCardProps } from "../../types/types";
-
+import Cart from "../../assets/Cart.svg";
 import { ProfileIcon } from "../../styled-components/Header.styles.tsx";
 import { AddCartButton } from "../../styled-components/Button.styles.ts";
-import { useCartContext } from "../../providers/UserContext";
-import {
-  CardProductProps,
-} from "../../types/product";
+import { useCartContext, useProductContext } from "../../providers/UserContext";
+import { CardProductProps, IFullProductContext } from "../../types/product";
 import {
   Brand,
   ImageContainer,
@@ -21,6 +16,7 @@ import { ICartContext } from "../../types/cart";
 
 function CardProduct(props: CardProductProps) {
   const { addProductInCart } = useCartContext() as ICartContext;
+  const { changeActiveProduct } = useProductContext() as IFullProductContext;
 
   const { item } = props;
   const { image, brandName, name, price } = item;
@@ -30,11 +26,18 @@ function CardProduct(props: CardProductProps) {
     currency: "BRL",
     minimumFractionDigits: 2,
   }).format(price);
-  const FinalPrice = () => <Price>{PriceString}</Price>
+  const FinalPrice = () => <Price>{PriceString}</Price>;
 
   return (
     <CardProd>
-      <ProductButton tabIndex={0}>
+      <ProductButton
+        to={`/products/${item.id}`}
+        onClick={() => {
+          changeActiveProduct(item);
+          window.scrollTo(0, 0);
+        }}
+        tabIndex={0}
+      >
         <ProductGrid>
           <ImageContainer>
             <img src={image} alt={`${name} image`} />

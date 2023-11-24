@@ -16,7 +16,6 @@ export interface IProductContext {
   ownerId: number;
 }
 
-
 export interface CardProductProps {
   item: IProductContext;
 }
@@ -25,9 +24,10 @@ export interface IFullProductContext {
   allProducts: IProductContext[] | null;
   setAllProducts: React.Dispatch<React.SetStateAction<IProductContext[]>>;
 
-  singleProduct: IProductContext | null;
+  singleProduct: IProductContext;
+  changeActiveProduct: (number) => void;
 
-  getProductById: (id: string | undefined) => Promise<void>;
+  getProductById: (id: number | undefined) => Promise<void>;
 
   getAllProducts: () => Promise<void>;
 }

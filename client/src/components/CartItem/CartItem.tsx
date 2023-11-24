@@ -1,3 +1,4 @@
+import Trash from "../../assets/trash.svg";
 import {
   Brand,
   ImgModalContainer,
@@ -6,9 +7,10 @@ import {
 } from "../../styled-components/CardProduct.styles.ts";
 import styled from "styled-components";
 import { colors, fontSize } from "../../styled-components/root.ts";
-import { ICart } from "../../types/cart";
+import { ICart, ICartContext } from "../../types/cart";
 
 import ProductAmount from "../RenderCartItems/ProductAmount";
+import { useCartContext } from "../../providers/UserContext";
 
 const ProductInfo = styled.div`
   display: grid;
@@ -31,23 +33,36 @@ const Wrapper = styled.div`
   @media (max-width: 550px) {
     display: flex;
     flex-flow: column;
-    max-height: 100%;
+    justify-items: center;
+    max-height: none;
+    height: auto;
   }
 `;
 const Warning = styled.p`
   position: absolute;
   font-size: ${fontSize.smallLink};
   left: 0;
-  color: ${colors.red60};
-  bottom: 8px;
+  color: ${colors.purpleBorder};
+  bottom: 2px;
   @media (min-width: 600px) {
-    left: 30%;
+    left: unset;
+    right: 0;
   }
 `;
 
+
+const RemoveBtn = styled.button`
+  display: grid;
+  justify-items: center;
+  &:hover{
+    outline: 2px solid ${colors.red40};
+  }
+`
+
 function CartItem(props: ICart) {
   const { product, amount } = props;
-  const { name, brandName, image, price } = product;
+  const { name, brandName, image, price, id } = product;
+  const { removeProductInCart } = useCartContext() as ICartContext;
 
   const FinalPrice = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -59,10 +74,7 @@ function CartItem(props: ICart) {
     <>
       <Wrapper>
         {amount === product.stock && (
-          <Warning>
-            {" "}
-            {product.stock} é o estoque total ;){" "}
-          </Warning>
+          <Warning>{product.stock} é o estoque total ;)</Warning>
         )}
         <ImgModalContainer>
           <img src={image} alt={`${name} image`} />
@@ -72,7 +84,20 @@ function CartItem(props: ICart) {
             <Brand>{brandName}</Brand>
             <Name>{name}</Name>
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <RemoveBtn
+                onClick={() => removeProductInCart(id)}>
+              <img src={Trash} />
+              <span style={{
+                color: colors.red60,
+                fontSize:fontSize.smallLink}}>remover</span>
+            </RemoveBtn>
             <ProductAmount product={product} amount={amount} />
             <PriceModal>{FinalPrice}</PriceModal>
           </div>

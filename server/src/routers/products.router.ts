@@ -20,17 +20,23 @@ import { verifyProductId } from "../middlewares/products.middleware";
 
 export const productRouter: Router = Router();
 
-productRouter.get("/all", getAllProductsController)
-productRouter.get("/:id", getProductByIdController);
-
+productRouter.get("/all", getAllProductsController);
+productRouter.get("/:id", verifyProductId, getProductByIdController);
 
 productRouter.use(verifyToken);
 
 productRouter.get("/", getAllProductsIdController);
-productRouter.post("/", bodyValidator(createProductSchema), createProductController);
-
+productRouter.post(
+  "/",
+  bodyValidator(createProductSchema),
+  createProductController,
+);
 
 productRouter.use("/:id", verifyProductId, verifyPermissions("product"));
 
-productRouter.patch("/:id", bodyValidator(updateProductSchema), updateProductController);
+productRouter.patch(
+  "/:id",
+  bodyValidator(updateProductSchema),
+  updateProductController,
+);
 productRouter.delete("/:id", deleteProductController);
