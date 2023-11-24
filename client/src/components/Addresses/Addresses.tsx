@@ -62,29 +62,41 @@ function Addresses() {
     <>
       <AddressHeader>
         <H1>ENDEREÇOS</H1>
-        <AddAddressBtn onClick={() => setIsCreateAddressModalOpen(!isCreateAddressModalOpen)}>
+        <AddAddressBtn
+          onClick={() => setIsCreateAddressModalOpen(!isCreateAddressModalOpen)}
+        >
           <MdOutlineAddCircleOutline size="18" />
           Endereço
         </AddAddressBtn>
       </AddressHeader>
 
-      <AddressContent>
+      <div>
         {addresses.length > 0 ? (
-          addresses.map((address) => (
-            <AddressCard key={address.id} address={address}/>
-            ))
-            ) : (
-              <>
-            <img src={NotFound} style={{width: 'fit-content'}}/>
-            <H2>Nada por aqui!</H2>
+          <AddressContent>
+            {addresses.map((address) => (
+              <AddressCard key={address.id} address={address} />
+            ))}
+          </AddressContent>
+        ) : (
+          <>
+            <img src={NotFound} style={{ alignSelf: "center" }} />
+            <H2>Nenhum endereço cadastrado.</H2>
           </>
         )}
-      </AddressContent>
+      </div>
 
-      <Modal open={isCreateAddressModalOpen} onOpenChange={setIsCreateAddressModalOpen} element={CreateAddressForm()}/>
-      <Modal open={isDeleteAddressModalOpen} onOpenChange={setIsDeleteAddressModalOpen} element={DeleteAddressForm()}/>
+      <Modal
+        open={isCreateAddressModalOpen}
+        onOpenChange={setIsCreateAddressModalOpen}
+        element={CreateAddressForm()}
+      />
+      <Modal
+        open={isDeleteAddressModalOpen}
+        onOpenChange={setIsDeleteAddressModalOpen}
+        element={DeleteAddressForm()}
+      />
     </>
-  )
+  );
 }
 
 export default Addresses;

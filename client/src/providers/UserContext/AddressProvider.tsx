@@ -42,7 +42,10 @@ const AddressProvider = (props: { children: ReactNode }) => {
             });
             setAddresses(data);
         } catch (error) {
-            
+            console.log(error)
+            if(error.response.status === 401) {
+                toast.error("Ops, faça login novamente e tente outra vez.")
+            }
         }
 
     
@@ -60,6 +63,9 @@ const AddressProvider = (props: { children: ReactNode }) => {
             getAllAddresses();
         } catch (error) {
             console.log(error);
+            if(error.response.status === 401) {
+                toast.error("Ops, faça login novamente e tente outra vez.")
+            }
         } finally {
             setIsEditAddressModalOpen(false);
             setEditingAddress(null);
@@ -78,6 +84,9 @@ const AddressProvider = (props: { children: ReactNode }) => {
             getAllAddresses();
         } catch (error) {
             console.log(error);
+            if(error.response.status === 401) {
+                toast.error("Ops, faça login novamente e tente outra vez.")
+            }
         } finally {
             setIsDeleteAddressModalOpen(false);
             setDeletingAddress(null);
