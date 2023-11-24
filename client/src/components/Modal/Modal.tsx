@@ -6,8 +6,8 @@ import {IModal} from "../../types/types";
 
 function Modal({ open, onOpenChange, element }:IModal) {
   return (
-    <Dialog.Root modal={true} open={open} onOpenChange={onOpenChange}>
-      <Dialog.Portal>
+    <Dialog.Root  modal={true} open={open} onOpenChange={onOpenChange}>
+      <Dialog.Portal >
         <DOverLay />
         <DContent>
           {element}

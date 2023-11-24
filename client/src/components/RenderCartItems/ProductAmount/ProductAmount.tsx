@@ -6,7 +6,6 @@ import styled from "styled-components";
 
 const Amount = styled.div`
   display: flex;
-  margin-block-end: 16px;
   gap: 16px;
 `;
 

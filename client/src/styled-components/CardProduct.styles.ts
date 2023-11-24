@@ -20,10 +20,13 @@ export const ImageContainer = styled.div`
   }
 `;
 export const ImgModalContainer = styled(ImageContainer)`
-  height: 160px;
-  width: 120px;
   border-radius: 4px;
   display: grid;
+  width: 100%;
+  @media (min-width: 550px) {
+    height: 160px;
+    width: 120px;
+  }
 `
 
 export const Brand = styled.h4`
