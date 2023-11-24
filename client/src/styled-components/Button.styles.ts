@@ -134,6 +134,8 @@ export const ModalButton = styled.button`
   position: absolute;
   top: 30px;
   right: 40px;
+  
+  max-height: 40px;
 
   width: auto;
   border-radius: 4px;
