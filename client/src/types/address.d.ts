@@ -3,7 +3,7 @@ export interface IAddress {
     name: string,
     street: string,
     neihborhood: string,
-    number: number,
+    number: number | string,
     zip: string,
     state: string,
     city: string,
@@ -30,6 +30,20 @@ export interface IAddress {
 
     createAddressRequest: (formData: IAddressForm) => Promise<void>
     getAllAddresses: () => Promise<void>
+    editAddress(formData: IAddressForm, addressId: number): Promise<void>
+    deleteAddress: (address: IAddress) => Promise<void>
+
+    isEditAddressModalOpen: boolean
+    setIsEditAddressModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+    editingAddress: IAddress | null
+    setEditingAddress: React.Dispatch<React.SetStateAction<IAddress | null>>
+
+    isDeleteAddressModalOpen: boolean
+    setIsDeleteAddressModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+    deletingAddress: IAddress | null
+    setDeletingAddress: React.Dispatch<React.SetStateAction<IAddress | null>>
+
+
   }
 
   export interface IAddressCard {

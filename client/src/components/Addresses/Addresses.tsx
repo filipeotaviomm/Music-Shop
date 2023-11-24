@@ -8,6 +8,7 @@ import CreateAddressForm from "./Form/CreateAddressForm";
 import { useEffect } from "react";
 import { AddressCard } from "./AddressCard/AddressCard";
 import Modal from "../Modal";
+import DeleteAddressForm from "./Form/DeleteAddressForm";
 
 const AddressContent = styled.div`
   width: 100%;
@@ -44,7 +45,7 @@ transition: .05s;
 
 function Addresses() {
 
-    const { addresses, isCreateAddressModalOpen, setIsCreateAddressModalOpen, getAllAddresses } = useAddressContext() as IAddressContext;
+    const { addresses, isCreateAddressModalOpen, setIsCreateAddressModalOpen, getAllAddresses, isDeleteAddressModalOpen, setIsDeleteAddressModalOpen } = useAddressContext() as IAddressContext;
 
     useEffect(() => {
       getAllAddresses();
@@ -58,11 +59,10 @@ function Addresses() {
         <AddAddressBtn onClick={() => setIsCreateAddressModalOpen(!isCreateAddressModalOpen)}>
           <MdOutlineAddCircleOutline size="18" />
           Endereço
-          </AddAddressBtn>
+        </AddAddressBtn>
       </AddressHeader>
 
       <AddressContent>
-
         {addresses.length > 0 ? (
           addresses.map((address) => (
             <AddressCard key={address.id} address={address}/>
@@ -73,10 +73,10 @@ function Addresses() {
             <H2>Nada por aqui!</H2>
           </>
         )}
-
       </AddressContent>
+
       <Modal open={isCreateAddressModalOpen} onOpenChange={setIsCreateAddressModalOpen} element={CreateAddressForm()}/>
-        
+      <Modal open={isDeleteAddressModalOpen} onOpenChange={setIsDeleteAddressModalOpen} element={DeleteAddressForm()}/>
     </>
   )
 }
