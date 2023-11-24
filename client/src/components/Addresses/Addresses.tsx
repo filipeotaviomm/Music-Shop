@@ -14,6 +14,7 @@ const AddressContent = styled.div`
   width: 100%;
   max-width: 40rem;
   margin-top: 20px;
+  overflow-y: auto;
 
   display: flex;
   align-items: center;
@@ -42,6 +43,11 @@ transition: .05s;
     background-color: #fff;
   }
 `;
+
+export const AddressFormContainer = styled.div`
+  overflow-y: auto;
+  padding-inline-end: 16px;
+`
 
 function Addresses() {
 

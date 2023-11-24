@@ -35,7 +35,6 @@ export const DOverLay = styled(Dialog.Overlay)`
   bottom: 0;
   display: grid;
   place-items: center;
-  overflow-y: auto;
 `;
 
 export const DDescription = styled(Dialog.Description)`
@@ -46,13 +45,11 @@ export const DContent = styled(Dialog.Content)`
   display: grid;
   place-items: center;
   gap: clamp(1svh, 2svh, 32px);
-
-
+  
   background-color: white;
   border-radius: 8px;
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px hsl(206 22% 7% / 20%) 0 10px
     20px -15px;
-    overflow-y: auto;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -83,7 +80,13 @@ export const DClose = styled(Dialog.Close)`
   width: auto;
 `
 
-export const Form = styled.form``;
+export const Form = styled.form`
+`;
+export const FormUser = styled.form`
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr minmax(200px, 500px) auto;
+`
 
 
 
