@@ -9,6 +9,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
+import { H2 } from "../../../styled-components/Typography.styles.ts";
 
 function CreateAddressForm() {
 
@@ -45,6 +46,7 @@ function CreateAddressForm() {
 
   return (
     <Form onSubmit={handleSubmit(submit)}>
+      <H2>Cadastrar Endereço</H2>
       <Input
         label="Nome"
         error={errors.name}

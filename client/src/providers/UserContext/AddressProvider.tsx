@@ -17,7 +17,7 @@ const AddressProvider = (props: { children: ReactNode }) => {
         const token = JSON.parse(localStorage.getItem("@TOKEN")!);
 
         try {
-            const response = await api.post("/addresses", formData, {
+            await api.post("/addresses", formData, {
                 headers: {Authorization: `Bearer ${token}`}
             });
             toast.success(`Endereço "${formData.name}" cadastrado com sucesso!`)

@@ -7,6 +7,7 @@ import { MdOutlineAddCircleOutline } from "react-icons/md"
 import CreateAddressForm from "./Form/CreateAddressForm";
 import { useEffect } from "react";
 import { AddressCard } from "./AddressCard/AddressCard";
+import Modal from "../Modal";
 
 const AddressContent = styled.div`
   width: 100%;
@@ -72,10 +73,10 @@ function Addresses() {
             <H2>Nada por aqui!</H2>
           </>
         )}
-        
-        {isCreateAddressModalOpen ? <CreateAddressForm/> : null}
 
       </AddressContent>
+      <Modal open={isCreateAddressModalOpen} onOpenChange={setIsCreateAddressModalOpen} element={CreateAddressForm()}/>
+        
     </>
   )
 }

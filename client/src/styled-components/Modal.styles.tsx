@@ -56,6 +56,7 @@ export const DContent = styled(Dialog.Content)`
   border-radius: 8px;
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px hsl(206 22% 7% / 20%) 0 10px
     20px -15px;
+    overflow-y: auto;
   
   position: fixed;
   top: 50%;
@@ -65,6 +66,7 @@ export const DContent = styled(Dialog.Content)`
   width: 90vw;
   max-width: 600px;
   height: auto;
+  max-height: 90vh;
 
   padding-block: 64px;
   padding-inline: 40px;
