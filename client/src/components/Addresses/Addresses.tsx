@@ -62,18 +62,15 @@ function Addresses() {
         </AddAddressBtn>
       </AddressHeader>
 
-      <AddressContent>
+      <div>
         {addresses.length > 0 ? (
-          addresses.map((address) => (
-            <AddressCard key={address.id} address={address}/>
-            ))
-            ) : (
-              <>
-            <img src={NotFound} style={{width: 'fit-content'}}/>
-            <H2>Nada por aqui!</H2>
+          addresses.map((address) => (<AddressContent><AddressCard key={address.id} address={address}/></AddressContent>))) : (
+          <>
+            <img src={NotFound} style={{alignSelf: "center"}}/>
+            <H2>Nenhum endereço cadastrado.</H2>
           </>
         )}
-      </AddressContent>
+      </div>
 
       <Modal open={isCreateAddressModalOpen} onOpenChange={setIsCreateAddressModalOpen} element={CreateAddressForm()}/>
       <Modal open={isDeleteAddressModalOpen} onOpenChange={setIsDeleteAddressModalOpen} element={DeleteAddressForm()}/>
