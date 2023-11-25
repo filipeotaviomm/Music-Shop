@@ -24,6 +24,12 @@ export const MenuButton = styled(DefaultButton)`
   text-decoration: underline;
   background-color: inherit;
   font-weight: 400;
+  
+  &:hover {
+     color: ${colors.purpleHover};
+     outline: 2px solid ${colors.grey5}
+   }
+  
 `;
 export const IconButton = styled.button<{ $bgColor?: boolean }>`
   background-color: ${(props) => props.$bgColor && colors.grey5};
@@ -44,22 +50,27 @@ export const AddCartButton = styled(IconButton)`
   padding-block-start: 8px;
   z-index: 2;
 
-  outline: 1px solid ${colors.purple};
+  outline: 2px solid ${colors.purple};
 
   &:hover {
     background-color: ${colors.purpleSurface};
   }
 
   &:active {
-    border {
-      outline: 4px solid ${colors.purple};
-    }
+    outline: 3px solid ${colors.purple};
   }
+
+  &:focus {
+    outline: 3px solid ${colors.purple};
+
+  }
+}
 `;
 
 export const InlineButton = styled(DefaultButton)`
   width: auto;
   color: ${colors.purple};
+   
 `;
 
 export const WarningInlineButton = styled(InlineButton)`
@@ -88,6 +99,15 @@ export const QuitButton = styled(DefaultButton)`
 
   &:hover {
     color: ${colors.red80};
+    outline: 2px solid ${colors.red80}
+  }
+  &:active {
+    color: ${colors.red80};
+    outline: 2px solid ${colors.red80}
+  }
+  &:focus {
+    color: ${colors.red80};
+    outline: 2px solid ${colors.red80}
   }
 `;
 
