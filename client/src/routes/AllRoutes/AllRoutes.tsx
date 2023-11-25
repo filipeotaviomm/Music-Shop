@@ -8,11 +8,14 @@ import Payments from "../../components/Payments";
 import Addresses from "../../components/Addresses";
 import Resume from "../../components/Resume";
 import NotFound from "../../pages/NotFound";
+import ProductPage from "../../pages/ProductPage";
 
 function AllRoutes() {
   return (
     <Routes>
       <Route path={"/"} element={<Home />}></Route>
+
+      <Route path="/products/:id" element={<ProductPage />} />
 
       <Route element={<PrivateRoutes />}>
         {/*REFATORAR SEMANA QUE VEM*/}
@@ -58,7 +61,7 @@ function AllRoutes() {
         />
       </Route>
 
-        <Route path="*" element={<NotFound/>}></Route>
+      <Route path="*" element={<NotFound />}></Route>
     </Routes>
   );
 }

@@ -65,7 +65,7 @@ export const IconsWrapper = styled.div`
 export const Wrapper = styled.header`
   display: flex;
   justify-content: center;
-  width: 100dvw;
+  width: 100%;
   padding-block-start: 24px;
   box-shadow:
     hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
