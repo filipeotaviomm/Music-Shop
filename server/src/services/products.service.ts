@@ -115,9 +115,6 @@ export const updateProductService = async (
   return newProduct;
 };
 
-export const deleteProductService = async (id: number): Promise<void> => {
-  await prisma.product.delete({ where: { id } });
-};
 
 export const formatProductReturn = (product: any) => {
   const formatedProduct: ProductReturn = {
