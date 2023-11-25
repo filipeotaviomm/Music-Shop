@@ -12,7 +12,6 @@ import {
   SpanCondition,
   SpanStock,
   DivAddToCart,
-  ButtonAddToCart,
   SpanSeller,
   DivImgsDelivery,
   DivImgTextDelivery,
@@ -23,14 +22,17 @@ import {
   SpanShipping,
 } from "./styles";
 import { useContext, useEffect } from "react";
-import { ProductContext } from "../../providers/UserContext";
+import {ProductContext, useCartContext} from "../../providers/UserContext";
 import { useParams } from "react-router-dom";
 import { IFullProductContext } from "../../types/product";
+import {SendBtn} from "../../styled-components/Button.styles.ts";
+import {ICartContext} from "../../types/cart";
 
 const ProductSection = () => {
   const { singleProduct, getProductById } = useContext(
     ProductContext
   ) as IFullProductContext;
+  const {addProductInCart} = useCartContext() as ICartContext
 
   const { id } = useParams();
 
@@ -57,7 +59,7 @@ const ProductSection = () => {
         </SpanCondition>
         <SpanStock>{singleProduct?.stock} unidades disponíveis</SpanStock>
         <DivAddToCart>
-          <ButtonAddToCart>Adicionar ao Carrinho</ButtonAddToCart>
+          <SendBtn onClick={()=> addProductInCart(singleProduct)}>Adicionar ao Carrinho</SendBtn>
         </DivAddToCart>
         <SpanSeller>Vendedor: {singleProduct?.owner.name}</SpanSeller>
         <DivImgsDelivery>
