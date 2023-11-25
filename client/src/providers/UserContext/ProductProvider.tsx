@@ -14,11 +14,18 @@ const ProductProvider = (props: { children: ReactNode }) => {
 
   const [allProducts, setAllProducts] = useState<IProductContext[]>([]);
   const [singleProduct, setSingleProduct] = useState(allProducts[0]);
-  // const [ productsPage, setProductsPage ] = useState({});
+  const [productsPage, setProductsPage] = useState({
+    prevPage: "",
+    nextPage: "",
+  });
 
-  const getAllProducts = async () => {
-    const { data } = await api.get("products/all", {params: {perPage: 8}});
+  const getAllProducts = async (page: number, perPage: number) => {
+    const { data } = await api.get("products/all", {
+      params: { page: page, perPage: perPage },
+    });
     const { products, prevPage, nextPage } = data;
+
+    setProductsPage({ prevPage, nextPage });
     setAllProducts(products);
   };
 
@@ -48,6 +55,8 @@ const ProductProvider = (props: { children: ReactNode }) => {
     changeActiveProduct,
 
     getProductById,
+
+    productsPage,
   };
 
   return (
