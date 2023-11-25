@@ -43,20 +43,6 @@ function Template(props: { children: React.ReactNode }) {
 
   return (
     <>
-      {isLogOpen && (
-        <Modal
-          open={isLogOpen}
-          onOpenChange={setIsLogOpen}
-          element={LoginOrSignUp(isSignUp)}
-        />
-      )}
-      {isCartModalOpen && (
-        <Modal
-          open={isCartModalOpen}
-          onOpenChange={setIsCartModalOpen}
-          element={CartModal()}
-        />
-      )}
       <AppWrapper>
         <Header />
         <MainWrapper>
@@ -64,6 +50,17 @@ function Template(props: { children: React.ReactNode }) {
         </MainWrapper>
         <Footer />
       </AppWrapper>
+      
+      <Modal
+          open={isLogOpen}
+          onOpenChange={setIsLogOpen}
+          element={LoginOrSignUp(isSignUp)}
+        />
+        <Modal
+          open={isCartModalOpen}
+          onOpenChange={setIsCartModalOpen}
+          element={CartModal()}
+        />
     </>
   );
 }
