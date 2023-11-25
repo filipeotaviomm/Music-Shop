@@ -72,7 +72,7 @@ function EditAddressForm() {
           error={errors.zip}
           {...register("zip")}
           id={"zip"}
-          onBlur={(e) => searchZip(e.target.value)}
+          onBlur={(e) => e.target.value.length >= 7 && searchZip(e.target.value)}
         />
         <Input
           label="Rua"
