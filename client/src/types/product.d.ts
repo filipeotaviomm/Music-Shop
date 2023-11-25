@@ -17,7 +17,7 @@ export interface IProductContext {
   owner: Owner;
 }
 
-export interface IProductsPage {
+export interface productsPage {
   prevPage: string
   nextPage: string
 }
@@ -33,7 +33,9 @@ export interface IFullProductContext {
   singleProduct: IProductContext;
   changeActiveProduct: (number) => void;
 
+  productsPage: productsPage;
+
   getProductById: (id: number | undefined) => Promise<void>;
 
-  getAllProducts: () => Promise<void>;
+  getAllProducts: (page: number, perPage: number) => Promise<void>;
 }
