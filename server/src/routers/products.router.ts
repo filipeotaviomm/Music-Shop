@@ -24,13 +24,16 @@ import { paginationMiddleware } from "../middlewares/pagination.middleware";
 export const productRouter: Router = Router();
 
 productRouter.get("/all", paginationMiddleware, getAllProductsController)
+productRouter.get("/:id", verifyProductId, getProductByIdController);
 
 productRouter.use(verifyToken);
 
 productRouter.get("/", getAllProductsIdController);
-productRouter.get("/:id", getProductByIdController);
-
-productRouter.post("/", bodyValidator(createProductSchema), createProductController);
+productRouter.post(
+  "/",
+  bodyValidator(createProductSchema),
+  createProductController,
+);
 
 productRouter.use("/:id", verifyProductId, verifyPermissions("product"));
 

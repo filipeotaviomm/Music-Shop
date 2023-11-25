@@ -7,16 +7,19 @@ import {
   ProductProvider,
   CartProvider,
 } from "./providers/UserContext";
+import { AddressProvider } from "./providers/UserContext/AddressProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <ProductProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </ProductProvider>
+        <AddressProvider>
+          <ProductProvider>
+            <CartProvider>
+              <App />
+            </CartProvider>
+          </ProductProvider>
+        </AddressProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,

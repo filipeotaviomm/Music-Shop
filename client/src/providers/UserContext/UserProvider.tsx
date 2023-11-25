@@ -1,11 +1,10 @@
 import React from "react";
-// import { IUserContext, ILogin, ISignUp } from "../../types/types";
 import { api } from "../../services/api.ts";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import {IUserContext} from "../../types/user";
-import {ISignUp} from "../../types/signUp";
-import {ILogin} from "../../types/login";
+import { IUserContext } from "../../types/user";
+import { ISignUp } from "../../types/signUp";
+import { ILogin } from "../../types/login";
 
 const UserContext = React.createContext({});
 
@@ -82,6 +81,7 @@ function UserProvider(props: { children: React.ReactNode }) {
         toast.error("Por favor verifique sua conexão com a internet :)");
       } else if (error.response.status === 401) {
         toast.error("Senha ou e-mail incorreto :)");
+        setIsLogOpen(!isLogOpen);
       }
       console.log(error);
     }
@@ -123,4 +123,4 @@ function UserProvider(props: { children: React.ReactNode }) {
   );
 }
 
-export {UserProvider, useUserContext};
+export { UserProvider, useUserContext };

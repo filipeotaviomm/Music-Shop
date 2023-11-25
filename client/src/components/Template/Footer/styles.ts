@@ -9,6 +9,7 @@ export const Foot = styled.footer`
   box-shadow: 0 -9px 16px 1.5px #dddddd;
   display: flex;
   justify-content: center;
+  overflow-x:hidden ;
 `;
 
 export const DivContainer = styled.div`

@@ -1,6 +1,14 @@
-import { Product } from "@prisma/client";
-import { ProductCreate, ProductUpdate } from "../interfaces/products.interface";
+import {
+  ProductCreate,
+  ProductUpdate,
+  ProductBrute,
+  ProductReturn,
+  ReadProduct,
+} from "../interfaces/products.interface";
 import { prisma } from "../app";
+import { Product } from "@prisma/client";
+
+
 import { BrandList } from "../interfaces/brands.interface";
 import { CategoryList } from "../interfaces/categories.interface";
 import { Pagination } from "../interfaces/pagination.interface";
@@ -10,7 +18,6 @@ export const createProductService = async (
   userId: number,
 ): Promise<Product> => {
   const { categories } = data;
-
   const product: Product = await prisma.product.create({
     data: {
       name: data.name,
@@ -38,36 +45,34 @@ export const createProductService = async (
         })),
       },
     },
-    include: { categories: { select: { category: true } } },
+    include: {
+      categories: { select: { category: true } },
+      owner: { select: { name: true } },
+    },
   });
-
   return product;
 };
 
-export const getAllProductsService = async ({ page, perPage, nextPage, order, sort, prevPage }: Pagination) => {
+export const getAllProductsService = async ({ page, perPage, nextPage, order, sort, prevPage }: Pagination): Promise<ReadProduct> => {
   const paginationProducts = await prisma.product.findMany({
     orderBy: { [sort]: order },
     skip: page,
     take: perPage,
-    include: { categories: { select: { category: true } } },
+    include: { 
+      categories: { select: { category: true } },
+      owner: { select: { name: true } }
+    },
   });
 
   const productsCount = await prisma.product.findMany();
 
-  const productsWithCategories = paginationProducts.map((product) => ({
-    ...product,
-    categories: product.categories.map((category) => category.category.name),
-  }));
-
-  console.log({
-    products: productsWithCategories, 
-    prevPage: page > 1 ? prevPage : null, 
-    nextPage: productsCount.length - page <= perPage ? null : nextPage
-  });
-  
+  // const productsWithCategories = paginationProducts.map((product) => ({
+  //   ...product,
+  //   categories: product.categories.map((category) => category.category.name),
+  // }));
 
   return {
-    products: productsWithCategories, 
+    products: paginationProducts, 
     prevPage: page > 1 ? prevPage : null, 
     nextPage: productsCount.length - page <= perPage ? null : nextPage
   };
@@ -76,24 +81,16 @@ export const getAllProductsService = async ({ page, perPage, nextPage, order, so
 export const getAllProductsIdService = async (
   userId: number,
 ): Promise<Product[]> => {
-  const allProducts = await prisma.product.findMany({
+  const allProducts: Product[] = await prisma.product.findMany({
     where: { ownerId: userId },
-    include: { categories: { select: { category: true } } },
+    include: {
+      categories: { select: { category: true } },
+      owner: { select: { name: true } },
+    },
   });
 
-  const productsWithCategories = allProducts.map((product) => ({
-    ...product,
-    categories: product.categories.map((category) => category.category.name),
-  }));
-
-  return productsWithCategories;
+  return allProducts;
 };
-//
-// export const getAllProductsService = async (): Promise<Product[]> => {
-//   const allProducts = await prisma.product.findMany();
-//
-//   return allProducts;
-// };
 
 export const updateProductService = async (
   id: number,
@@ -110,7 +107,7 @@ export const updateProductService = async (
     });
   }
 
-  const newProduct = await prisma.product.update({
+  const newProduct: Product = await prisma.product.update({
     where: { id },
     data: {
       ...data,
@@ -127,12 +124,20 @@ export const updateProductService = async (
     },
     include: {
       categories: { select: { category: { select: { name: true } } } },
+      owner: { select: { name: true } },
     },
   });
 
-  const formatedProduct = {
-    ...newProduct,
-    categories: newProduct.categories.map((category) => category.category.name),
+  return newProduct;
+};
+
+
+export const formatProductReturn = (product: any) => {
+  const formatedProduct: ProductReturn = {
+    ...product,
+    categories: product.categories.map(
+      (category: any) => category.category.name,
+    ),
   };
 
   return formatedProduct;
@@ -149,3 +154,16 @@ export const getAllBrandsService = async (): Promise<BrandList> => {
 export const getAllCategoriesService = async (): Promise<CategoryList> => {
   return prisma.category.findMany();
 }
+
+export const formatProductsReturn = (products: any) => {
+  const formatedProducts: ProductReturn[] = products.map(
+    (product: ProductBrute) => ({
+      ...product,
+      categories: product.categories.map(
+        (category: any) => category.category.name,
+      ),
+    }),
+  );
+
+  return formatedProducts;
+};
