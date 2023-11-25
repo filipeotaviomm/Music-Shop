@@ -17,6 +17,11 @@ export interface IProductContext {
   owner: Owner;
 }
 
+export interface IProductsPage {
+  prevPage: string
+  nextPage: string
+}
+
 export interface CardProductProps {
   item: IProductContext;
 }

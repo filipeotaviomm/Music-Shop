@@ -8,17 +8,20 @@ import {
   CartProvider,
 } from "./providers/UserContext";
 import { AddressProvider } from "./providers/UserContext/AddressProvider.tsx";
+import { PaymentProvider } from "./providers/UserContext/PaymentProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
         <AddressProvider>
-          <ProductProvider>
-            <CartProvider>
-              <App />
-            </CartProvider>
-          </ProductProvider>
+          <PaymentProvider>
+            <ProductProvider>
+              <CartProvider>
+                <App />
+              </CartProvider>
+            </ProductProvider>
+          </PaymentProvider>
         </AddressProvider>
       </UserProvider>
     </BrowserRouter>
