@@ -3,13 +3,14 @@ import { usePaymentContext } from "../../../../providers/UserContext/PaymentProv
 import { H2 } from "../../../../styled-components/Typography.styles";
 import { IPaymentContext } from "../../../../types/payment";
 import { colors } from "../../../../styled-components/root";
+import Trash from "../../../../assets/Remove-Confirmation.svg"
 
 const Card = styled.div`
         width: 100%;
 
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 10px;
     `;
 
@@ -53,6 +54,8 @@ function DeletePaymentForm() {
         <div>
             <Card>
                 <H2>Você realmente deseja excluir este cartão?</H2>
+
+                <img src={Trash}/>
                 <CartButtons>
                     <Button onClick={() => setIsDeletePaymentModalOpen(false)}>Cancelar</Button>
                     <RemoveButton onClick={() => deletePayment(payment!)}>Excluir</RemoveButton>
