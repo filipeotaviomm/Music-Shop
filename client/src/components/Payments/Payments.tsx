@@ -3,7 +3,7 @@ import { H1, H2 } from "../../styled-components/Typography.styles";
 import { usePaymentContext } from "../../providers/UserContext/PaymentProvider";
 import { IPaymentContext } from "../../types/payment";
 import CardImage from "../../assets/Payment-Information.svg";
-import { MdOutlineAddCircleOutline } from "react-icons/md"
+import { MdOutlineAddCircleOutline } from "react-icons/md";
 import CreatePaymentForm from "./Form/CreatePaymentForm";
 import { useEffect } from "react";
 import Modal from "../Modal";
@@ -21,7 +21,9 @@ const PaymentContent = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 10px;
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  box-shadow:
+    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
 
 const PaymentHeader = styled.div`
@@ -43,16 +45,25 @@ transition: .5s;
   &:hover{
     transform: scale(1.05);
     background-color: ${colors.purpleHover};
+
   }
 `;
 
 export const PaymentFormContainer = styled.div`
   overflow-y: auto;
   padding-inline-end: 16px;
-`
+`;
 
 function Payments() {
-
+  const {
+    payments,
+    isCreatePaymentModalOpen,
+    setIsCreatePaymentModalOpen,
+    getAllPayments,
+    isDeletePaymentModalOpen,
+    setIsDeletePaymentModalOpen,
+  } = usePaymentContext() as IPaymentContext;
+  
     const { payments, isCreatePaymentModalOpen, setIsCreatePaymentModalOpen, getAllPayments, isDeletePaymentModalOpen, setIsDeletePaymentModalOpen } = usePaymentContext() as IPaymentContext;
 
     useEffect(() => {
@@ -63,9 +74,8 @@ function Payments() {
     <>
       <PaymentHeader>
         <H1>CARTÕES</H1>
-        <AddPaymentsBtn
-          onClick={() => setIsCreatePaymentModalOpen(true)}
-        >
+
+        <AddPaymentBtn onClick={() => setIsCreatePaymentModalOpen(true)}>
           <MdOutlineAddCircleOutline size="18" />
           Cartão
         </AddPaymentsBtn>

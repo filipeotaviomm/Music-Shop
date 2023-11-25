@@ -1,11 +1,10 @@
-import ProdsList from "../ProdsList";
-import { SectionOtherProducts, H3TitleSection } from "./styles";
+import { SectionOtherProducts } from "./styles";
+import AllProducts from "../AllProducts";
 
 const OtherProductsSection = () => {
   return (
     <SectionOtherProducts>
-      <H3TitleSection>Veja também</H3TitleSection>
-      <ProdsList />
+      <AllProducts heading={"Veja também"} />
     </SectionOtherProducts>
   );
 };

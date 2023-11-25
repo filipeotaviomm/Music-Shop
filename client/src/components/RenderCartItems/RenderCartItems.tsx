@@ -5,13 +5,13 @@ import { nanoid } from "nanoid";
 import {
   ModalBottonButton,
   SendBtn,
-
 } from "../../styled-components/Button.styles.ts";
 import styled from "styled-components";
 import { H3 } from "../../styled-components/Typography.styles.ts";
 import { colors, fontSize } from "../../styled-components/root.ts";
 import { IUserContext } from "../../types/user";
 import { useNavigate } from "react-router-dom";
+import React, { useRef } from "react";
 
 const CartOl = styled.ol`
   margin-block: 16px;
@@ -52,17 +52,27 @@ const BottonInfo = styled.div`
   display: flex;
   flex-flow: column;
   gap: 16px;
-`
+`;
 
 function RenderCartItems() {
   const { cart, setIsCartModalOpen, isCartModalOpen } =
     useCartContext() as ICartContext;
   const { setIsLogOpen, isLogOpen } = useUserContext() as IUserContext;
 
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.focus();
+    }
+    return () => {};
+  }, []);
+
   function LogToBuy() {
     setIsCartModalOpen(!isCartModalOpen);
     setIsLogOpen(!isLogOpen);
   }
+
   const { token } = useUserContext() as IUserContext;
 
   const navigate = useNavigate();
@@ -91,7 +101,7 @@ function RenderCartItems() {
             />
           ))}
       </CartOl>
-      <BottonInfo >
+      <BottonInfo>
         <div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <H3 style={{ fontSize: fontSize.link }}>Subtotal:</H3>
@@ -100,12 +110,11 @@ function RenderCartItems() {
           <p style={{ color: colors.grey70, fontSize: fontSize.smallLink }}>
             O frete é adicionado a seguir :)
           </p>
-        </div >
+        </div>
         <Buttons>
           <ModalBottonButton
             onClick={() => setIsCartModalOpen(!isCartModalOpen)}
-            color={colors.purple}
-            id={colors.offWhite}
+            ref={buttonRef}
           >
             Continuar comprando
           </ModalBottonButton>
@@ -119,7 +128,6 @@ function RenderCartItems() {
           </SendBtn>
         </Buttons>
       </BottonInfo>
-
     </Wrapper>
   );
 }

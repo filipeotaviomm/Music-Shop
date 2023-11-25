@@ -34,7 +34,6 @@ const CartProvider = (props: { children: ReactNode }) => {
         cart.some((item) => item.product.id === newProduct.id)
             ? tellUser()
             : addItem();
-        console.log(cart);
     };
 
     const updateProductAmount = (
