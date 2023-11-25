@@ -14,6 +14,7 @@ export interface IProductContext {
   condition: string;
   deletedAt?: string;
   ownerId: number;
+  owner: Owner;
 }
 
 export interface IProductsPage {
