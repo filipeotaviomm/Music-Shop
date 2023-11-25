@@ -22,14 +22,15 @@ function CreateAddressForm() {
     handleSubmit,
     formState: { errors },
     setValue,
+    reset
   } = useForm<IAddressForm>({
     resolver: zodResolver(addressSchema),
   });
 
   async function submit(formData: IAddressForm) {
     const requestData = { ...formData, number: Number(formData.number) };
-
     await createAddressRequest(requestData);
+    reset();
   }
 
   async function searchZip(zipCode: string) {
