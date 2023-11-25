@@ -9,6 +9,7 @@ import {
     updateProductService,
 } from "../services/products.service";
 import { Product } from "@prisma/client";
+import { ReadProduct } from "../interfaces/products.interface";
 
 export const createProductController = async (
   req: Request,
@@ -27,7 +28,8 @@ export const getAllProductsController = async (
   req: Request,
   res: Response,
 ): Promise<Response> => {
-  const allProducts: Product[] = await getAllProductsService();
+  const { pagination } = res.locals;
+  const allProducts: ReadProduct  = await getAllProductsService(pagination);
 
   return res.status(200).json(allProducts);
 };

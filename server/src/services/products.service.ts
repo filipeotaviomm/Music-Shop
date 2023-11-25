@@ -3,6 +3,7 @@ import { ProductCreate, ProductUpdate } from "../interfaces/products.interface";
 import { prisma } from "../app";
 import { BrandList } from "../interfaces/brands.interface";
 import { CategoryList } from "../interfaces/categories.interface";
+import { Pagination } from "../interfaces/pagination.interface";
 
 export const createProductService = async (
   data: ProductCreate,
@@ -43,17 +44,33 @@ export const createProductService = async (
   return product;
 };
 
-export const getAllProductsService = async () => {
-  const allProducts = await prisma.product.findMany({
+export const getAllProductsService = async ({ page, perPage, nextPage, order, sort, prevPage }: Pagination) => {
+  const paginationProducts = await prisma.product.findMany({
+    orderBy: { [sort]: order },
+    skip: page,
+    take: perPage,
     include: { categories: { select: { category: true } } },
   });
 
-  const productsWithCategories = allProducts.map((product) => ({
+  const productsCount = await prisma.product.findMany();
+
+  const productsWithCategories = paginationProducts.map((product) => ({
     ...product,
     categories: product.categories.map((category) => category.category.name),
   }));
 
-  return productsWithCategories;
+  console.log({
+    products: productsWithCategories, 
+    prevPage: page > 1 ? prevPage : null, 
+    nextPage: productsCount.length - page <= perPage ? null : nextPage
+  });
+  
+
+  return {
+    products: productsWithCategories, 
+    prevPage: page > 1 ? prevPage : null, 
+    nextPage: productsCount.length - page <= perPage ? null : nextPage
+  };
 };
 
 export const getAllProductsIdService = async (

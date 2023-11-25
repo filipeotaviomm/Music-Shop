@@ -19,10 +19,11 @@ import {
   updateProductSchema,
 } from "../schemas/products.schema";
 import { verifyProductId } from "../middlewares/products.middleware";
+import { paginationMiddleware } from "../middlewares/pagination.middleware";
 
 export const productRouter: Router = Router();
 
-productRouter.get("/all", getAllProductsController)
+productRouter.get("/all", paginationMiddleware, getAllProductsController)
 
 productRouter.use(verifyToken);
 
