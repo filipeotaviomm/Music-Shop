@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import {
     createProductService,
     deleteProductService,
+    getAllBrandsService,
+    getAllCategoriesService,
     formatProductReturn,
     formatProductsReturn,
     getAllProductsIdService,
@@ -84,3 +86,15 @@ export const deleteProductController = async (
 
   return res.status(204).json();
 };
+
+export const getAllBrandsController = async (req: Request, res: Response): Promise<Response> => {
+  const productsList = await getAllBrandsService();
+
+  return res.status(200).json(productsList);
+}
+
+export const getAllCategoriesController = async (req: Request, res: Response): Promise<Response> => {
+  const categoriesList = await getAllCategoriesService();
+
+  return res.status(200).json(categoriesList);
+}
