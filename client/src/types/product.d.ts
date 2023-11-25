@@ -14,6 +14,12 @@ export interface IProductContext {
   condition: string;
   deletedAt?: string;
   ownerId: number;
+  owner: Owner;
+}
+
+export interface IProductsPage {
+  prevPage: string
+  nextPage: string
 }
 
 export interface CardProductProps {
