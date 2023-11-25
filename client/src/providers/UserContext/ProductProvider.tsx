@@ -27,9 +27,7 @@ const ProductProvider = (props: { children: ReactNode }) => {
   const getProductById = async (id: number | undefined) => {
     try {
       setIsLoading(!isLoading);
-      console.log(id, typeof id);
       const { data } = await api.get(`/products/${id}`);
-      console.log(data);
       setSingleProduct(data);
     } catch (error) {
       console.log(error);
