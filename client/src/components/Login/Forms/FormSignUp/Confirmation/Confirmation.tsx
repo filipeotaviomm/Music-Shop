@@ -3,9 +3,10 @@ import { useUserContext } from "../../../../../providers/UserContext";
 import { Eye, EyeOff } from "react-feather";
 import styled from "styled-components";
 import { IUserContext } from "../../../../../types/user";
-import { SendBtn } from "../../../../../styled-components/Button.styles.ts";
+import {InlineButton, SendBtn} from "../../../../../styled-components/Button.styles.ts";
 import React from "react";
 import { H3 } from "../../../../../styled-components/Typography.styles.ts";
+import {colors} from "../../../../../styled-components/root.ts";
 
 const Title = styled.span`
   font-weight: 500;
@@ -17,7 +18,7 @@ const Title = styled.span`
 const Wrapper = styled.div`
   display: grid;
   gap: 16px;
-  max-width: 100% ;
+  max-width: 100%;
 `;
 
 const Line = styled.h3`
@@ -49,7 +50,7 @@ function Confirmation() {
     <>
       <Wrapper>
         <H3>Confirme seus dados:</H3>
-        <div style={{display:"grid", gap:"12px"}}>
+        <div style={{ display: "grid", gap: "12px" }}>
           <Line>
             <Title>nome:</Title>
             <span style={{ textAlign: "left" }}>
@@ -60,11 +61,13 @@ function Confirmation() {
             <Title>email:</Title>
             <span>{signUpInfo.email}</span>
           </Line>
-          <div style={{ display: "grid", gridTemplateColumns: "10ch 1fr auto" }}>
+          <div
+            style={{ display: "grid", gridTemplateColumns: "10ch 1fr auto" }}
+          >
             <Title>senha:</Title>
             <div>
               <input
-                  style={{width:"fit-content"}}
+                style={{ width: "fit-content" }}
                 disabled={true}
                 type={isPasswordVisible ? "text" : "password"}
                 value={signUpInfo.password}
@@ -75,12 +78,12 @@ function Confirmation() {
             </div>
           </div>
         </div>
-        <div>
+        <div style={{ display: "flex",flexFlow:"column",alignItems:"center" }}>
           <SendBtn onClick={submit}>ENVIAR</SendBtn>
-          <button
+          <InlineButton
             style={{
               width: "fit-content",
-              textDecoration: "underline",
+              color: colors.grey60,
               textAlign: "center",
             }}
             onClick={() => {
@@ -88,8 +91,8 @@ function Confirmation() {
               setSignUpInfo({});
             }}
           >
-            VOLTAR AO INÍCIO
-          </button>
+            Voltar ao início
+          </InlineButton>
         </div>
       </Wrapper>
     </>
