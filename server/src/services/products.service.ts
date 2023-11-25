@@ -73,7 +73,7 @@ export const getAllProductsService = async ({ page, perPage, nextPage, order, so
 
   return {
     products: paginationProducts, 
-    prevPage: page > 1 ? prevPage : null, 
+    prevPage: page >= 1 ? prevPage : null, 
     nextPage: productsCount.length - page <= perPage ? null : nextPage
   };
 };
