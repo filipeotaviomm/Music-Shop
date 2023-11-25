@@ -128,6 +128,11 @@ export const ModalBottonButton = styled(SendBtn)`
     background-color: ${colors.purpleHover};
     color: ${colors.offWhite};
   }
+  &:focus {
+    color: ${colors.purpleHover};
+    background-color: ${colors.purpleSurface};
+    outline: 3px solid ${colors.purple}
+  }
 `;
 
 export const ModalButton = styled.button`
