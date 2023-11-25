@@ -7,6 +7,10 @@ import {
 import { prisma } from "../app";
 import { Product } from "@prisma/client";
 
+
+import { BrandList } from "../interfaces/brands.interface";
+import { CategoryList } from "../interfaces/categories.interface";
+
 export const createProductService = async (
   data: ProductCreate,
   userId: number,
@@ -111,9 +115,6 @@ export const updateProductService = async (
   return newProduct;
 };
 
-export const deleteProductService = async (id: number): Promise<void> => {
-  await prisma.product.delete({ where: { id } });
-};
 
 export const formatProductReturn = (product: any) => {
   const formatedProduct: ProductReturn = {
@@ -125,6 +126,18 @@ export const formatProductReturn = (product: any) => {
 
   return formatedProduct;
 };
+
+export const deleteProductService = async (id: number): Promise<void> => {
+  await prisma.product.delete({ where: { id } });
+};
+
+export const getAllBrandsService = async (): Promise<BrandList> => {
+  return prisma.brand.findMany();
+}
+
+export const getAllCategoriesService = async (): Promise<CategoryList> => {
+  return prisma.category.findMany();
+}
 
 export const formatProductsReturn = (products: any) => {
   const formatedProducts: ProductReturn[] = products.map(

@@ -24,7 +24,7 @@ const CartProvider = (props: { children: ReactNode }) => {
 
     const addProductInCart = (newProduct: IProductContext) => {
         const tellUser = () =>
-            toast.warning(`O ${newProduct.name} já está no carrinho :)`);
+            setIsCartModalOpen(!isCartModalOpen);
 
         const addItem = () => {
             setCart([...cart, {product: newProduct, amount: 1}]);
