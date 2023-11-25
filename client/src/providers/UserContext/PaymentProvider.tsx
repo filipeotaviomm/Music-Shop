@@ -47,8 +47,6 @@ const PaymentProvider = (props: { children: ReactNode }) => {
                 toast.error("Ops, faça login novamente e tente outra vez.")
             }
         }
-
-    
     };
 
     async function editPayment(formData: IPaymentForm, paymentId: number) {

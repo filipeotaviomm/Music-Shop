@@ -28,4 +28,10 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
 }
 
+export interface ISelect extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  error?: FieldError | undefined;
+  type?: string;
+  label: string;
+  id: string;
+}
 

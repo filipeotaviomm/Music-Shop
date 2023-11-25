@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { AddressCard } from "./AddressCard/AddressCard";
 import Modal from "../Modal";
 import DeleteAddressForm from "./Form/DeleteAddressForm";
-import {colors} from "../../styled-components/root.ts";
+import { colors } from "../../styled-components/root.ts";
 
 const AddressContent = styled.div`
   width: 100%;
@@ -32,7 +32,7 @@ const AddressHeader = styled.div`
 const AddAddressBtn = styled.button`
 padding: 16px;
 border-radius: 20px;
-transition: .05s;
+transition: .5s;
   
   display: flex;
   align-items: center;
@@ -41,7 +41,7 @@ transition: .05s;
   background-color: ${colors.purple};
   color: ${colors.white000};
   &:hover{
-    outline: 2px solid hsla(242, 62%, 56%, 1);
+    transform: scale(1.05);
     background-color: ${colors.purpleHover};
   }
 `;
