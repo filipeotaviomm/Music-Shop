@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
       <LogoCategories />
-      <AllProducts />
+      <AllProducts heading="🔥 Produtos em alta 🔥" />
       <HomeCards />
     </>
   );
