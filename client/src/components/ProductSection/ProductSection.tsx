@@ -1,4 +1,3 @@
-import { AiOutlineHeart } from "react-icons/ai";
 import Delivery from "../../assets/delivery.png";
 import Shipping from "../../assets/shipping.png";
 import {
@@ -7,9 +6,7 @@ import {
   DivImg,
   DivInfoContainer,
   SpanCategory,
-  DivNameLike,
   H3NameProduct,
-  ButtonLike,
   SpanPrice,
   SpanCor,
   SpanCondition,
@@ -32,7 +29,7 @@ import { IFullProductContext } from "../../types/product";
 
 const ProductSection = () => {
   const { singleProduct, getProductById } = useContext(
-    ProductContext,
+    ProductContext
   ) as IFullProductContext;
 
   const { id } = useParams();
@@ -52,13 +49,8 @@ const ProductSection = () => {
       </DivImg>
       <DivInfoContainer>
         <SpanCategory>{singleProduct?.brandName}</SpanCategory>
-        <DivNameLike>
-          <H3NameProduct>{singleProduct?.name}</H3NameProduct>
-          <ButtonLike>
-            <AiOutlineHeart size={25} />
-          </ButtonLike>
-        </DivNameLike>
-        <SpanPrice>{singleProduct?.price}</SpanPrice>
+        <H3NameProduct>{singleProduct?.name}</H3NameProduct>
+        <SpanPrice>R${singleProduct?.price}</SpanPrice>
         <SpanCor>Cor: {singleProduct?.color}</SpanCor>
         <SpanCondition>
           Condição: {singleProduct?.condition == "new" ? "Novo" : "Usado"}
@@ -67,7 +59,7 @@ const ProductSection = () => {
         <DivAddToCart>
           <ButtonAddToCart>Adicionar ao Carrinho</ButtonAddToCart>
         </DivAddToCart>
-        <SpanSeller>Vendedor: Music Store</SpanSeller>
+        <SpanSeller>Vendedor: {singleProduct?.owner.name}</SpanSeller>
         <DivImgsDelivery>
           <DivImgTextDelivery>
             <ImgDelivery src={Delivery} alt="Delivery icon" />
