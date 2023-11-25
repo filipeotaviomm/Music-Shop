@@ -63,8 +63,6 @@ function Payments() {
     isDeletePaymentModalOpen,
     setIsDeletePaymentModalOpen,
   } = usePaymentContext() as IPaymentContext;
-  
-    const { payments, isCreatePaymentModalOpen, setIsCreatePaymentModalOpen, getAllPayments, isDeletePaymentModalOpen, setIsDeletePaymentModalOpen } = usePaymentContext() as IPaymentContext;
 
     useEffect(() => {
       getAllPayments();
@@ -75,7 +73,7 @@ function Payments() {
       <PaymentHeader>
         <H1>CARTÕES</H1>
 
-        <AddPaymentBtn onClick={() => setIsCreatePaymentModalOpen(true)}>
+        <AddPaymentsBtn onClick={() => setIsCreatePaymentModalOpen(true)}>
           <MdOutlineAddCircleOutline size="18" />
           Cartão
         </AddPaymentsBtn>
