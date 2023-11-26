@@ -60,7 +60,6 @@ function AllProducts(props: IAllProducts) {
 
   React.useEffect((): void => {
     getAllProducts(page, 4);
-    console.log(productsPage);
   }, [page]);
 
   return (
