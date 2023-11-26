@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colors, fontSize} from "./root.ts";
+import { colors, fontSize } from "./root.ts";
 
 export const DefaultButton = styled.button`
   text-align: start;
@@ -10,13 +10,13 @@ export const DefaultButton = styled.button`
 
   &:hover {
     color: ${colors.purpleHover};
-    outline:2px solid ${colors.purpleHover}
+    outline: 2px solid ${colors.purpleHover};
   }
   &:active {
-    outline:2px solid ${colors.purpleActive}
+    outline: 2px solid ${colors.purpleActive};
   }
   &:focus {
-    outline:2px solid ${colors.purpleActive}
+    outline: 2px solid ${colors.purpleActive};
   }
 `;
 
@@ -24,12 +24,11 @@ export const MenuButton = styled(DefaultButton)`
   text-decoration: underline;
   background-color: inherit;
   font-weight: 400;
-  
+
   &:hover {
-     color: ${colors.purpleHover};
-     outline: 2px solid ${colors.grey5}
-   }
-  
+    color: ${colors.purpleHover};
+    outline: 2px solid ${colors.grey5};
+  }
 `;
 export const IconButton = styled.button<{ $bgColor?: boolean }>`
   background-color: ${(props) => props.$bgColor && colors.grey5};
@@ -70,7 +69,6 @@ export const AddCartButton = styled(IconButton)`
 export const InlineButton = styled(DefaultButton)`
   width: auto;
   color: ${colors.purple};
-   
 `;
 
 export const WarningInlineButton = styled(InlineButton)`
@@ -84,9 +82,7 @@ export const WarningInlineButton = styled(InlineButton)`
     top: 0px;
     left: unset;
     right: 0px;
-    
   }
-
 
   &:hover {
     color: ${colors.red80};
@@ -99,15 +95,15 @@ export const QuitButton = styled(DefaultButton)`
 
   &:hover {
     color: ${colors.red80};
-    outline: 2px solid ${colors.red80}
+    outline: 2px solid ${colors.red80};
   }
   &:active {
     color: ${colors.red80};
-    outline: 2px solid ${colors.red80}
+    outline: 2px solid ${colors.red80};
   }
   &:focus {
     color: ${colors.red80};
-    outline: 2px solid ${colors.red80}
+    outline: 2px solid ${colors.red80};
   }
 `;
 
@@ -137,6 +133,8 @@ export const SendBtn = styled(StyledButton)`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-block: 0;
+  margin-top: 30px;
 `;
 
 export const ModalBottonButton = styled(SendBtn)`
@@ -151,7 +149,7 @@ export const ModalBottonButton = styled(SendBtn)`
   &:focus {
     color: ${colors.purpleHover};
     background-color: ${colors.purpleSurface};
-    outline: 3px solid ${colors.purple}
+    outline: 3px solid ${colors.purple};
   }
 `;
 
@@ -159,12 +157,11 @@ export const ModalButton = styled.button`
   position: absolute;
   top: 30px;
   right: 40px;
-  
+
   max-height: 40px;
 
   width: auto;
   border-radius: 4px;
   padding: 8px;
   max-width: fit-content;
-
 `;
