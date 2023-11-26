@@ -4,6 +4,9 @@ import { useAnuncioContext } from "../../../providers/UserContext/AnuncioProvide
 import Modal from "../../Modal";
 import EditAnuncioForm from "../Form/EditAnuncioForm";
 import { IAnuncio, IAnuncioCard, IAnuncioContext } from "../../../types/anuncios";
+import { Link } from "react-router-dom";
+import { IFullProductContext } from "../../../types/product";
+import { useProductContext } from "../../../providers/UserContext";
 
     const Card = styled.div`
         width: 100%;
@@ -47,12 +50,24 @@ import { IAnuncio, IAnuncioCard, IAnuncioContext } from "../../../types/anuncios
         }
     `;
 
+    const ViewButton = styled(Link)`
+          color: ${colors.red60};
+        font-weight: 600;
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    `;
+
     
 
 export function AnuncioCard(props: IAnuncioCard) {
 
     const {anuncio} = props;
     const { isEditAnuncioModalOpen, setIsEditAnuncioModalOpen, setEditingAnuncio, setIsDeleteAnuncioModalOpen, setDeletingAnuncio } = useAnuncioContext() as IAnuncioContext;
+     const { changeActiveProduct } = useProductContext() as IFullProductContext;
+
     
     function handleEditPost(anuncio: IAnuncio) {
         setEditingAnuncio(anuncio);
@@ -72,6 +87,16 @@ export function AnuncioCard(props: IAnuncioCard) {
                     <p>{`R$: ${anuncio.price}, Estoque: ${anuncio.stock}, Condição: ${anuncio.condition}`}</p>
                 </div>
                 <CartButtons>
+                    <ViewButton
+                    to={`/products/${String(anuncio.id)}`}
+                    onClick={() => {
+                        changeActiveProduct(anuncio);
+                        window.scrollTo(0, 0);
+                      }}
+                      tabIndex={0}
+                      style={{color: "black"}}
+                    >Ver
+                    </ViewButton>
                     <Button style={{color: "black"}} onClick={() => handleEditPost(anuncio)}>Editar</Button>
                     <Button onClick={() => handleDeletePost(anuncio)}>Excluir</Button>
                 </CartButtons>
