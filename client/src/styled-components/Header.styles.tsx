@@ -107,7 +107,10 @@ export const HeaderWrapper = styled.div`
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  gap: clamp(5svh, 6svh, 20px);
+  gap: clamp(5svh, 8svh, 32px);
+  @media (min-width: 750px){
+    gap: 12px;
+  }
 `;
 export const SearchWrapper = styled.div`
   position: relative;
