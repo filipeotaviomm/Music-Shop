@@ -1,18 +1,20 @@
-import Logo from "../../../assets/logo.svg";
 import Instagram from "../../../assets/instagram.png";
 import Facebook from "../../../assets/facebook.png";
 import Tweeter from "../../../assets/twitter.png";
 import Pinterest from "../../../assets/pinterest.png";
 import AppleStore from "../../../assets/appleStore.png";
 import GooglePlay from "../../../assets/googlePlay.png";
-import { corporationOptions, helpOptions } from "../../../services/database.ts";
+import {
+  corporationOptions,
+  helpOptions,
+  logoName,
+} from "../../../services/database.ts";
 import {
   Foot,
   DivContainer,
   DivUp,
   DivLeft,
   DivLogos,
-  StoreLogo,
   UlSocialMedia,
   LiSocialMedia,
   AnchorMedias,
@@ -31,6 +33,7 @@ import {
 } from "./styles.ts";
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
+import { LogoTop } from "../../../styled-components/Header.styles.tsx";
 
 function Footer() {
   return (
@@ -40,7 +43,7 @@ function Footer() {
           <DivLeft>
             <DivLogos>
               <Link to={"/"}>
-                <StoreLogo src={Logo} alt="Be.art logo" />
+                <LogoTop>{logoName}</LogoTop>
               </Link>
               <UlSocialMedia>
                 <LiSocialMedia>
