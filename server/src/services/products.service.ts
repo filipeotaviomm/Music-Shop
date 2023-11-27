@@ -208,3 +208,18 @@ export const getProductsByBrandService = async (brandName: string, { page, perPa
     nextPage: productsCount.length - page <= perPage ? null : nextPage
   };
 }
+
+export const searchProductInfoService = async (productInfo: string) => {
+  const productsList = await prisma.product.findMany({
+    where: {
+      OR: [
+        { name: { contains: productInfo } },
+        { color: { contains: productInfo } },
+        { brandName: { contains: productInfo } },
+        { description: { contains: productInfo } },
+      ]
+    }
+  });
+
+  return productsList;
+}

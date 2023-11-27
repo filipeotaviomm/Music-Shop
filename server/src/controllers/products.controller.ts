@@ -11,6 +11,7 @@ import {
     updateProductService,
     getProductsByCategoryService,
     getProductsByBrandService,
+    searchProductInfoService,
 } from "../services/products.service";
 import { ProductReturn } from "../interfaces/products.interface";
 import { Product } from "@prisma/client";
@@ -111,6 +112,12 @@ export const getProductsByCategoryController = async (req: Request, res: Respons
 export const getProductsByBrandController = async (req: Request, res: Response): Promise<Response> => {
   const { pagination } = res.locals;
   const productsList = await getProductsByBrandService(req.params.brandName, pagination);
+
+  return res.status(200).json(productsList);
+}
+
+export const searchProductInfoController = async (req: Request, res: Response): Promise<Response> => {
+  const productsList = await searchProductInfoService(req.params.productInfo);
 
   return res.status(200).json(productsList);
 }
