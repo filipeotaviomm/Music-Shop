@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { AddressCard } from "./AddressCard/AddressCard";
 import Modal from "../Modal";
 import { colors } from "../../styled-components/root.ts";
+import { SendBtn } from "../../styled-components/Button.styles.ts";
 
 const AddressContent = styled.div`
   width: 100%;
@@ -24,10 +25,15 @@ const AddressContent = styled.div`
     hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
-
-const AddressHeader = styled.div`
+export const ResumeHeader = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-flow: column;
+  gap: 20px;
+
+  @media (min-width: 800px) {
+    flex-flow: unset;
+    justify-content: space-between;
+  }
 `;
 
 const AddAddressBtn = styled.button`
@@ -69,7 +75,7 @@ function Addresses() {
 
   return (
     <>
-      <AddressHeader>
+      <ResumeHeader>
         <H1>ENDEREÇOS</H1>
         <AddAddressBtn
           onClick={() => setIsCreateAddressModalOpen(!isCreateAddressModalOpen)}
@@ -77,7 +83,7 @@ function Addresses() {
           <MdOutlineAddCircleOutline size="18" />
           Endereço
         </AddAddressBtn>
-      </AddressHeader>
+      </ResumeHeader>
 
       <div>
         {addresses.length > 0 ? (

@@ -9,6 +9,7 @@ import { colors } from "../../styled-components/root.ts";
 import { IAnuncioContext } from "../../types/anuncios";
 import CreateAnuncioForm from "./Form/CreateAnuncioForm/CreateAnuncioForm.tsx";
 import AnuncioCard from "./AnuncioCard/AnuncioCard.tsx";
+import {ResumeHeader} from "../Addresses";
 
 const AnuncioContent = styled.div`
   width: 100%;
@@ -25,10 +26,6 @@ const AnuncioContent = styled.div`
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
 
-const AnuncioHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
 
 const AddAnuncioBtn = styled.button`
   padding: 16px;
@@ -69,13 +66,13 @@ function Anuncios() {
 
   return (
     <>
-      <AnuncioHeader>
+      <ResumeHeader>
         <H1>ANUNCIOS</H1>
         <AddAnuncioBtn onClick={() => setIsCreateAnuncioModalOpen(true)}>
           <MdOutlineAddCircleOutline size="18" />
           Anúncio
         </AddAnuncioBtn>
-      </AnuncioHeader>
+      </ResumeHeader>
 
       <div>
         {anuncios.length > 0 ? (

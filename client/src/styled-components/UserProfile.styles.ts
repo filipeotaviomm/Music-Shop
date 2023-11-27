@@ -2,9 +2,14 @@ import styled from "styled-components";
 import {fontSize} from "./root.ts";
 
 export const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 4fr;
+  display: flex;
+  flex-flow: column-reverse;
   margin: 64px;
+  
+  @media (min-width: 700px) {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
 `;
 
 export const InternalWrapper = styled.div`

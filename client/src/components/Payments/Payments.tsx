@@ -10,6 +10,7 @@ import Modal from "../Modal";
 import DeletePaymentForm from "./Form/DeletePaymentForm";
 import PaymentCard from "./PaymentCard";
 import { colors } from "../../styled-components/root";
+import {ResumeHeader} from "../Addresses";
 
 const PaymentContent = styled.div`
   width: 100%;
@@ -24,11 +25,6 @@ const PaymentContent = styled.div`
   box-shadow:
     hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-`;
-
-const PaymentHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 const AddPaymentsBtn = styled.button`
@@ -70,14 +66,14 @@ function Payments() {
 
   return (
     <>
-      <PaymentHeader>
+      <ResumeHeader>
         <H1>CARTÕES</H1>
 
         <AddPaymentsBtn onClick={() => setIsCreatePaymentModalOpen(true)}>
           <MdOutlineAddCircleOutline size="18" />
           Cartão
         </AddPaymentsBtn>
-      </PaymentHeader>
+      </ResumeHeader>
 
       <div>
         {payments.length > 0 ? (
