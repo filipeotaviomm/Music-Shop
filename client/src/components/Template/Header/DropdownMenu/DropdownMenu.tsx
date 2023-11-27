@@ -54,9 +54,9 @@ function DropdownMenuHeader() {
               <DSubContent>
                 {brands.map((brand) => (
                   <DItem key={nanoid()}>
-                    <DefaultButton onClick={() => navigate(`/brand/${brand}`)}>
+                    <MenuButton onClick={() => navigate(`/${brand}`)}>
                       {brand.toUpperCase()}
-                    </DefaultButton>
+                    </MenuButton>
                   </DItem>
                 ))}
               </DSubContent>

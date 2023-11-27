@@ -1,16 +1,17 @@
 import styled from "styled-components";
-import { usePaymentContext } from "../../../../providers/UserContext/PaymentProvider";
+import { useAnuncioContext } from "../../../../providers/UserContext/AnuncioProvider";
 import { H2 } from "../../../../styled-components/Typography.styles";
-import { IPaymentContext } from "../../../../types/payment";
 import { colors } from "../../../../styled-components/root";
 import Trash from "../../../../assets/Remove-Confirmation.svg"
+import { IAnuncioContext } from "../../../../types/anuncios";
 
 const Card = styled.div`
         width: 100%;
 
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+  
         gap: 10px;
     `;
 
@@ -38,31 +39,31 @@ const Card = styled.div`
 
     const RemoveButton = styled(Button)`
         color: ${colors.white000};
-        background-color: red;
+        background-color: ${colors.red60};
 
         &:hover{
-            color: ${colors.black};
-            background-color: ${colors.white000};
+            background-color: ${colors.red80};
         }
     `;
 
-function DeletePaymentForm() {
+function DeleteAnuncioForm() {
 
-    const { deletingPayment: payment, deletePayment, setIsDeletePaymentModalOpen } = usePaymentContext() as IPaymentContext;
+    const { deletingAnuncio, deleteAnuncio, setIsDeleteAnuncioModalOpen } = useAnuncioContext() as IAnuncioContext;
 
     return (
         <div>
-            <Card>
-                <H2>Você realmente deseja excluir este cartão?</H2>
+            <Card style={{alignItems: "center"}}>
+                <H2>Você realmente deseja excluir o anuncio de {deletingAnuncio?.name}?</H2>
 
-                <img src={Trash}/>
+                    <img src={Trash}/>
+
                 <CartButtons>
-                    <Button onClick={() => setIsDeletePaymentModalOpen(false)}>Cancelar</Button>
-                    <RemoveButton onClick={() => deletePayment(payment!)}>Excluir</RemoveButton>
+                    <Button onClick={() => setIsDeleteAnuncioModalOpen(false)}>Cancelar</Button>
+                    <RemoveButton onClick={() => deleteAnuncio(deletingAnuncio!)}>Excluir</RemoveButton>
                 </CartButtons>
             </Card>
         </div>
     );
 };
 
-export default DeletePaymentForm;
+export default DeleteAnuncioForm;

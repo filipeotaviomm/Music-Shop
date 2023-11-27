@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { H2 } from "../../../../styled-components/Typography.styles.ts";
 import { SendBtn } from "../../../../styled-components/Button.styles.ts";
 import {PaymentFormContainer} from "../../Payments.tsx";
+import Select from "../../../Select/Select.tsx";
 
 function CreatePaymentForm() {
   const { createPaymentRequest } = usePaymentContext() as IPaymentContext;
@@ -31,23 +32,21 @@ function CreatePaymentForm() {
 
   return (
     <FormUser onSubmit={handleSubmit(submit)}>
-      <H2>Cadastrar Endereço</H2>
+      <H2>Cadastrar Cartão</H2>
       <PaymentFormContainer>
         <Input
-          label="Nome"
+          label="Numero do Cartão"
           error={errors.number}
           {...register("number")}
-          id={"name"}
+          id="name"
         />
-        {/* <Input      -SELECT------------------<-----
-          label="CEP (Apenas números)"
-          error={errors.zip}
-          {...register("zip")}
-          id={"zip"}
-          onBlur={(e) => searchZip(e.target.value)}
-        /> */}
+        <Select label="Tipo de Cartão" error={errors.type} {...register("type")} id="type" defaultValue="">
+         <option value="" disabled>Selecionar</option>
+          <option value="debit">Débito</option>
+          <option value="credit">Crédito</option>
+        </Select>
       </PaymentFormContainer>
-      <SendBtn type="submit">CADASTRAR ENDEREÇO</SendBtn>
+      <SendBtn type="submit">CADASTRAR CARTÃO</SendBtn>
     </FormUser>
   );
 }

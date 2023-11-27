@@ -7,7 +7,7 @@ import EditAddressForm from "../Form/EditAddressForm";
 
     const Card = styled.div`
         width: 100%;
-        border-top: 2px solid black;
+        border-top: 2px solid ${colors.purple};
         padding: 20px;
 
         display: flex;

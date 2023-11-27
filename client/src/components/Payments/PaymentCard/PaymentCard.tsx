@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { IAddress, IAddressCard, IAddressContext } from "../../../types/address";
+import { IPayment, IPaymentCard, IPaymentContext } from "../../../types/payment";
 import { colors } from "../../../styled-components/root";
-import { useAddressContext } from "../../../providers/UserContext/AddressProvider";
+import { usePaymentContext } from "../../../providers/UserContext/PaymentProvider";
 import Modal from "../../Modal";
-import EditAddressForm from "../Form/EditPaymentForm";
+import EditPaymentForm from "../Form/EditPaymentForm";
 
     const Card = styled.div`
         width: 100%;
-        border-top: 2px solid black;
+        border-top: 2px solid ${colors.purple};
         padding: 20px;
 
         display: flex;
@@ -17,7 +17,6 @@ import EditAddressForm from "../Form/EditPaymentForm";
     `;
 
     const CardTitle = styled.h3`
-    color: ${colors.grey40};
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -48,39 +47,33 @@ import EditAddressForm from "../Form/EditPaymentForm";
         }
     `;
 
-    
+export function PaymentCard(props: IPaymentCard) {
 
-export function AddressCard(props: IAddressCard) {
-
-    const {address} = props;
-    const { isEditAddressModalOpen, setIsEditAddressModalOpen, setEditingAddress, setIsDeleteAddressModalOpen, setDeletingAddress } = useAddressContext() as IAddressContext;
+    const {payment} = props;
+    const { isEditPaymentModalOpen, setIsEditPaymentModalOpen, setEditingPayment, setIsDeletePaymentModalOpen, setDeletingPayment } = usePaymentContext() as IPaymentContext;
     
-    function handleEditPost(address: IAddress) {
-        setEditingAddress(address);
-        setIsEditAddressModalOpen(true);
+    function handleEditPost(payment: IPayment) {
+        setEditingPayment(payment);
+        setIsEditPaymentModalOpen(true);
     };
 
-    function handleDeletePost(address: IAddress) {
-        setDeletingAddress(address);
-        setIsDeleteAddressModalOpen(true);
+    function handleDeletePost(payment: IPayment) {
+        setDeletingPayment(payment);
+        setIsDeletePaymentModalOpen(true);
     }
 
     return (
         <Card>
-            <CardTitle>{address.name.toUpperCase()}</CardTitle>
+            <CardTitle>{`Cartão ${payment.number.replace(/(.{4})(.{4})(.{4})(.{4})/, "$1-$2-$3-$4")} (${payment.type == "credit" ? "Crédito" : "Débito"})`}</CardTitle>
             <CartContent>
-                <div>
-                    <p>{`${address.street}, nº ${address.number}, ${address.neihborhood} - ${address.city}/${address.state}`}</p>
-                    <p>{`CEP: ${address.zip}`} {address.complement ? `| (${address.complement})` : null}</p>
-                </div>
                 <CartButtons>
-                    <Button style={{color: "black"}} onClick={() => handleEditPost(address)}>Editar</Button>
-                    <Button onClick={() => handleDeletePost(address)}>Excluir</Button>
+                    <Button style={{color: "black"}} onClick={() => handleEditPost(payment)}>Editar</Button>
+                    <Button onClick={() => handleDeletePost(payment)}>Excluir</Button>
                 </CartButtons>
             </CartContent>
-            <Modal open={isEditAddressModalOpen} onOpenChange={setIsEditAddressModalOpen} element={EditAddressForm()}/>
+            <Modal open={isEditPaymentModalOpen} onOpenChange={setIsEditPaymentModalOpen} element={EditPaymentForm()}/>
         </Card>
     )
 };
 
-export default AddressCard;
+export default PaymentCard;

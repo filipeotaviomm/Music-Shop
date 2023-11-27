@@ -5,14 +5,15 @@ import {
   SectionBuy,
   DivImg,
   DivInfoContainer,
+  DivCategories,
   SpanCategory,
   H3NameProduct,
   SpanPrice,
   SpanCor,
   SpanCondition,
   SpanStock,
-  DivAddToCart,
   SpanSeller,
+  SpanSellerName,
   DivImgsDelivery,
   DivImgTextDelivery,
   ImgDelivery,
@@ -22,17 +23,18 @@ import {
   SpanShipping,
 } from "./styles";
 import { useContext, useEffect } from "react";
-import {ProductContext, useCartContext} from "../../providers/UserContext";
+import { ProductContext, useCartContext } from "../../providers/UserContext";
 import { useParams } from "react-router-dom";
 import { IFullProductContext } from "../../types/product";
-import {SendBtn} from "../../styled-components/Button.styles.ts";
-import {ICartContext} from "../../types/cart";
+import { SendBtn } from "../../styled-components/Button.styles.ts";
+import { ICartContext } from "../../types/cart";
+import { nanoid } from "nanoid";
 
 const ProductSection = () => {
   const { singleProduct, getProductById } = useContext(
     ProductContext
   ) as IFullProductContext;
-  const {addProductInCart} = useCartContext() as ICartContext
+  const { addProductInCart } = useCartContext() as ICartContext;
 
   const { id } = useParams();
 
@@ -50,18 +52,31 @@ const ProductSection = () => {
         <ImgProduct src={singleProduct?.image} alt="Product Image" />
       </DivImg>
       <DivInfoContainer>
-        <SpanCategory>{singleProduct?.brandName}</SpanCategory>
+        <DivCategories>
+          {singleProduct?.categories.map((category) => (
+            <SpanCategory key={nanoid()}>{category}</SpanCategory>
+          ))}
+        </DivCategories>
         <H3NameProduct>{singleProduct?.name}</H3NameProduct>
         <SpanPrice>R${singleProduct?.price}</SpanPrice>
         <SpanCor>Cor: {singleProduct?.color}</SpanCor>
         <SpanCondition>
           Condição: {singleProduct?.condition == "new" ? "Novo" : "Usado"}
         </SpanCondition>
-        <SpanStock>{singleProduct?.stock} unidades disponíveis</SpanStock>
-        <DivAddToCart>
-          <SendBtn onClick={()=> addProductInCart(singleProduct)}>Adicionar ao Carrinho</SendBtn>
-        </DivAddToCart>
-        <SpanSeller>Vendedor: {singleProduct?.owner.name}</SpanSeller>
+        <SpanStock>
+          {`${singleProduct?.stock} ${
+            singleProduct?.stock > 1
+              ? "unidades disponíveis"
+              : "unidade disponível"
+          }`}
+        </SpanStock>
+        <SendBtn onClick={() => addProductInCart(singleProduct)}>
+          Adicionar ao Carrinho
+        </SendBtn>
+
+        <SpanSeller>
+          Vendedor: <SpanSellerName>{singleProduct?.owner.name}</SpanSellerName>
+        </SpanSeller>
         <DivImgsDelivery>
           <DivImgTextDelivery>
             <ImgDelivery src={Delivery} alt="Delivery icon" />

@@ -28,7 +28,7 @@ const ProductProvider = (props: { children: ReactNode }) => {
     setProductsPage({ prevPage, nextPage });
     setAllProducts(products);
   };
-  
+
   const getProductsByCategory = async (categoryName: string, url: string | null) => {
     const { data } = await api.get(`products/category/${categoryName}${url ? url : '/'}`);
     const { products, prevPage, nextPage } = data;

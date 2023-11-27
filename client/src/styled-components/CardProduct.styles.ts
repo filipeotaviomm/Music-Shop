@@ -44,11 +44,11 @@ export const PriceModal = styled(Price)`
 
 export const ProductButton = styled(Link)`
   border-radius: 8px;
-
+  
   &:hover {
     box-shadow: 0 -9px 16px 3px #dddddd;
     outline-offset: 4px;
-    outline: 2px solid ${colors.purpleHover};
+    outline: 3px solid ${colors.purpleHover};
   }
   &:hover img {
     scale: 1.05;
@@ -57,7 +57,7 @@ export const ProductButton = styled(Link)`
   &:focus {
     scale: 1.05;
     outline-offset: 4px;
-    outline: 2px solid ${colors.purple};
+    outline: 3px solid ${colors.purple};
     z-index: 1;
   }
 `;
