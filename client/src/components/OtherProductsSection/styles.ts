@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors, fontSize } from "../../styled-components/root.ts";
 
 export const SectionOtherProducts = styled.section`
-  margin: 65px 100px 10px 65px;
+  margin: auto;
   display: flex;
   flex-direction: column;
 `;

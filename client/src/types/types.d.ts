@@ -12,6 +12,9 @@ export interface IModal {
   onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
 
   element: JSX.element;
+
+  maxWidth?: string;
+  overflow?: string
 }
 
 interface ProductCardProps {

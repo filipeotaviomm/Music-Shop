@@ -3,12 +3,18 @@ import { DContent, DOverLay } from "../../styled-components/Modal.styles.tsx";
 import CloseModalButton from "../Button/CloseModalButton";
 import { IModal } from "../../types/types";
 
-function Modal({ open, onOpenChange, element }: IModal) {
+function Modal({
+  open,
+  onOpenChange,
+  element,
+  maxWidth = "600px",
+  overflow = "unset",
+}: IModal) {
   return (
     <Dialog.Root modal={true} open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <DOverLay />
-        <DContent>
+        <DContent style={{ maxWidth: maxWidth, overflow:  overflow }}>
           {element}
           <Dialog.Close asChild>
             <CloseModalButton />
