@@ -10,4 +10,9 @@ export interface ReadProduct {
   prevPage: string | null;
   nextPage: string | null;
 }
+export interface ReadProductByCategory {
+  products: (Array<{product: Product}>),
+  prevPage: string | null;
+  nextPage: string | null;
+}
 export type ProductReturn = z.infer<typeof formattedProductSchema>

@@ -19,6 +19,20 @@ const ProductProvider = (props: { children: ReactNode }) => {
     const { data } = await api.get("products/all");
     setAllProducts(data);
   };
+  
+  const getProductsByCategory = async (categoryName: string, url: string | null) => {
+    const { data } = await api.get(`products/category/${categoryName}${url ? url : '/'}`);
+    const { products, prevPage, nextPage } = data;
+
+    const productsList = products.map(product => product.product);
+    
+    setAllProducts(productsList);
+    return { prevPage, nextPage };
+  }
+
+  const getProductsByBrand = async (brandName: string) => {
+
+  }
 
   const changeActiveProduct = (product: IProductContext) => {
     setSingleProduct(product);
@@ -43,6 +57,8 @@ const ProductProvider = (props: { children: ReactNode }) => {
     setAllProducts,
 
     getAllProducts,
+    getProductsByCategory,
+    getProductsByBrand,
 
     singleProduct,
     changeActiveProduct,

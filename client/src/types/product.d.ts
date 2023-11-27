@@ -15,6 +15,10 @@ export interface IProductContext {
   deletedAt?: string;
   ownerId: number;
 }
+export interface IProductsPage {
+  prevPage: string | null;
+  nextPage: string | null;
+}
 
 export interface CardProductProps {
   item: IProductContext;
@@ -28,6 +32,8 @@ export interface IFullProductContext {
   changeActiveProduct: (number) => void;
 
   getProductById: (id: number | undefined) => Promise<void>;
+  getProductsByCategory: (categoryId: string, url?: string | null) => Promise<IProductsPage>;
+  getProductsByBrand: (brandName: string) => Promise<IProductsPage>;
 
   getAllProducts: () => Promise<void>;
 }

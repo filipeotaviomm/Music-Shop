@@ -4,6 +4,7 @@ import {
   ProductBrute,
   ProductReturn,
   ReadProduct,
+  ReadProductByCategory,
 } from "../interfaces/products.interface";
 import { prisma } from "../app";
 import { Product } from "@prisma/client";
@@ -167,3 +168,24 @@ export const formatProductsReturn = (products: any) => {
 
   return formatedProducts;
 };
+
+export const getProductsByCategoryService = async (categoryName: string, { page, perPage, nextPage, order, sort, prevPage }: Pagination): Promise<ReadProductByCategory> => {
+  const productsList = await prisma.productCategory.findMany({
+    where: { category: { name: categoryName } },
+    include: { product: true },
+    skip: page,
+    take: perPage
+  });
+
+  const productsCount = await prisma.productCategory.findMany({
+    where: {
+      category: { name: categoryName }
+    }
+  });
+
+  return {
+    products: productsList,
+    prevPage: page >= 1 ? prevPage : null, 
+    nextPage: productsCount.length - page <= perPage ? null : nextPage
+  };
+}
