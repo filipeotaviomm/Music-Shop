@@ -6,6 +6,7 @@ export const SectionBuy = styled.section`
   flex-direction: column;
   margin: 0 10px 0 10px;
   gap: 30px;
+  justify-content: space-between;
 
   @media (min-width: 800px) {
     flex-direction: row;
@@ -13,12 +14,16 @@ export const SectionBuy = styled.section`
   }
 `;
 
-export const DivImg = styled.div`
+export const DivImg = styled.button`
   height: 250px;
   max-height: 750px;
+  overflow: hidden;
+  transition: scale 300ms;
+  &:hover {
+    scale: 1.10;
+  }
 
   @media (min-width: 800px) {
-    width: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,7 +32,6 @@ export const DivImg = styled.div`
 `;
 
 export const ImgProduct = styled.img`
-  max-width: 700px;
   width: 100%;
 `;
 
@@ -64,7 +68,7 @@ export const H3NameProduct = styled.h3`
   color: ${colors.black};
   font-size: ${fontSize.h3};
   font-weight: 700;
-  line-height: 30px;
+  line-height: 130%;
 
   @media (min-width: 800px) {
     font-size: ${fontSize.h2h3};
@@ -86,20 +90,14 @@ export const SpanCor = styled.span`
   font-size: ${fontSize.text};
 `;
 
-export const SpanCondition = styled.span`
+export const SpanCharacteristic = styled.span`
   color: ${colors.black};
   font-size: ${fontSize.text};
+  & > span {
+    font-weight: 600;
+  }
 `;
 
-export const SpanStock = styled.span`
-  color: ${colors.black};
-  font-size: ${fontSize.text};
-`;
-
-export const SpanSeller = styled.span`
-  color: ${colors.black};
-  font-size: ${fontSize.text};
-`;
 
 export const SpanSellerName = styled.span`
   color: ${colors.purple};
