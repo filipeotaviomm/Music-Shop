@@ -40,8 +40,6 @@ export interface IAddress {
 
     isDeleteAddressModalOpen: boolean
     setIsDeleteAddressModalOpen: React.Dispatch<React.SetStateAction<boolean>>
-    deletingAddress: IAddress | null
-    setDeletingAddress: React.Dispatch<React.SetStateAction<IAddress | null>>
 
 
   }
