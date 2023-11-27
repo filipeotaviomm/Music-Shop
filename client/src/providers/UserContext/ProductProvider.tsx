@@ -1,9 +1,6 @@
 import React, { createContext, ReactNode, useState } from "react";
 import { api } from "../../services/api";
 import { IFullProductContext, IProductContext } from "../../types/product";
-// import {useNavigate} from "react-router-dom";
-
-// import { toast } from "react-toastify";
 
 export const ProductContext = createContext({});
 
