@@ -10,9 +10,12 @@ import {
 import ResumeItems from "../../components/Resume/ResumeItems";
 import Modal from "../../components/Modal";
 import ModalQuit from "../../components/ModalQuit";
+import { useUserContext } from "../../providers/UserContext";
+import { IUserContext } from "../../types/user";
 
 function UserProfile({ children }: { children: ReactNode }) {
   const [openQuit, setOpenQuit] = React.useState(false);
+  const { quitAccount } = useUserContext() as IUserContext;
 
   return (
     <>
@@ -26,14 +29,25 @@ function UserProfile({ children }: { children: ReactNode }) {
           <div>
             <H2>Financeiro</H2>
             <ResumeItems array={buyingItems} />
+            <QuitButton onClick={() => setOpenQuit(!openQuit)}>
+              SAIR DA CONTA
+            </QuitButton>
           </div>
         </InternalWrapper>
         <MainInfo>{children}</MainInfo>
-        <QuitButton onClick={() => setOpenQuit(!openQuit)}>
-          SAIR DA CONTA
-        </QuitButton>
-        <Modal open={openQuit} onOpenChange={setOpenQuit} element={ModalQuit} />
       </Wrapper>
+      <Modal
+        open={openQuit}
+        onOpenChange={setOpenQuit}
+        element={
+          <ModalQuit
+            question="Desejas de fato deslogar?"
+            handleCloseModalClick={() => setOpenQuit(!openQuit)}
+            handleQuitButtonClick={() => quitAccount()}
+            quit="sim, deslogar"
+          />
+        }
+      />
     </>
   );
 }

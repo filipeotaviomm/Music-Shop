@@ -42,7 +42,6 @@ function UserProvider(props: { children: React.ReactNode }) {
     const updatedLastName =
       lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
 
-    // Concatenating the variables
     const fullName = `${updatedFirstName} ${updatedLastName}`;
     const updatedFormData = { ...newFormData, name: fullName };
     try {
@@ -66,6 +65,7 @@ function UserProvider(props: { children: React.ReactNode }) {
 
   function quitAccount(): void {
     localStorage.removeItem("@TOKEN");
+    setIsLoggedIn(!isLoggedIn);
     navigate("/");
   }
 
@@ -73,9 +73,9 @@ function UserProvider(props: { children: React.ReactNode }) {
     try {
       const { data } = await api.post("/login", formData);
       localStorage.setItem("@TOKEN", JSON.stringify(data.token));
-      console.log(data)
+      console.log(data);
       toast.success("Tu estás logado :)");
-      setIsLogOpen(!isLogOpen);
+      setIsLoggedIn(!isLoggedIn);
     } catch (error: any) {
       if (error.response.status === 404) {
         toast.error("Por favor verifique sua conexão com a internet :)");
