@@ -5,5 +5,5 @@ export const Div = styled.div`
   flex-direction: column;
   gap: 10px;
   width: 100%;
-  max-width: 100svw;
+  max-width: 100%;
 `;

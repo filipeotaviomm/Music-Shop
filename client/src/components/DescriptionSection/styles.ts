@@ -20,6 +20,7 @@ export const H3TitleDescription = styled.h3`
 `;
 
 export const ParagDescription = styled.p`
+  max-inline-size: 50ch;
   color: ${colors.black};
   font-size: ${fontSize.text};
   line-height: 25px;
