@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { useAddressContext } from "../../../../providers/UserContext/AddressProvider";
+import { usePaymentContext } from "../../../../providers/UserContext/PaymentProvider";
 import { H2 } from "../../../../styled-components/Typography.styles";
-import { IAddressContext } from "../../../../types/address";
+import { IPaymentContext } from "../../../../types/payment";
 import { colors } from "../../../../styled-components/root";
-import Trash from "../../../../assets/Remove-Confirmation.svg"
 
 const Card = styled.div`
         width: 100%;
@@ -11,7 +10,6 @@ const Card = styled.div`
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-  
         gap: 10px;
     `;
 
@@ -39,31 +37,29 @@ const Card = styled.div`
 
     const RemoveButton = styled(Button)`
         color: ${colors.white000};
-        background-color: ${colors.red60};
+        background-color: red;
 
         &:hover{
-            background-color: ${colors.red80};
+            color: ${colors.black};
+            background-color: ${colors.white000};
         }
     `;
 
-function DeleteAddressForm() {
+function DeletePaymentForm() {
 
-    const { deletingAddress: address, deleteAddress, setIsDeleteAddressModalOpen } = useAddressContext() as IAddressContext;
+    const { deletingPayment: payment, deletePayment, setIsDeletePaymentModalOpen } = usePaymentContext() as IPaymentContext;
 
     return (
         <div>
-            <Card style={{alignItems: "center"}}>
-                <H2>Você realmente deseja excluir o endereço {address?.name}?</H2>
-
-                    <img src={Trash}/>
-
+            <Card>
+                <H2>Você realmente deseja excluir este cartão?</H2>
                 <CartButtons>
-                    <Button onClick={() => setIsDeleteAddressModalOpen(false)}>Cancelar</Button>
-                    <RemoveButton onClick={() => deleteAddress(address!)}>Excluir</RemoveButton>
+                    <Button onClick={() => setIsDeletePaymentModalOpen(false)}>Cancelar</Button>
+                    <RemoveButton onClick={() => deletePayment(payment!)}>Excluir</RemoveButton>
                 </CartButtons>
             </Card>
         </div>
     );
 };
 
-export default DeleteAddressForm;
+export default DeletePaymentForm;

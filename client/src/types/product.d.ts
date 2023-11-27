@@ -14,6 +14,12 @@ export interface IProductContext {
   condition: string;
   deletedAt?: string;
   ownerId: number;
+  owner: Owner;
+}
+
+export interface productsPage {
+  prevPage: string
+  nextPage: string
 }
 export interface IProductsPage {
   prevPage: string | null;
@@ -31,9 +37,11 @@ export interface IFullProductContext {
   singleProduct: IProductContext;
   changeActiveProduct: (number) => void;
 
+  productsPage: productsPage;
+
   getProductById: (id: number | undefined) => Promise<void>;
   getProductsByCategory: (categoryId: string, url?: string | null) => Promise<IProductsPage>;
   getProductsByBrand: (brandName: string) => Promise<IProductsPage>;
 
-  getAllProducts: () => Promise<void>;
+  getAllProducts: (page: number, perPage: number) => Promise<void>;
 }

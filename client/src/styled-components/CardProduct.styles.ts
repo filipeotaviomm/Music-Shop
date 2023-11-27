@@ -5,9 +5,8 @@ import {Link} from "react-router-dom";
 export const ImageContainer = styled.div`
   height: 200px;
   
-  //overflow: hidden;
-  //object-fit: contain;
-  ////border: 1px solid red;
+  overflow: hidden;
+  object-fit: contain;
   
   display: grid;
   place-content: center;

@@ -1,2 +1,2 @@
-export * from './Payments';
-export { default } from './Payments';
+export * from './Payments.tsx';
+export { default } from './Payments.tsx';

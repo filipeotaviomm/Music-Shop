@@ -15,7 +15,7 @@ import {
   Wrapper,
 } from "../../styled-components/UserProfile.styles.ts";
 import { useUserContext } from "../../providers/UserContext";
-import {IUserContext} from "../../types/types";
+import {IUserContext} from "../../types/user";
 
 function UserProfile({ children }: { children: ReactNode }) {
   const { quitAccount } = useUserContext() as IUserContext;
