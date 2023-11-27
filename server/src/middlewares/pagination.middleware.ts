@@ -5,7 +5,7 @@ export const paginationMiddleware = (req: Request, res: Response, next: NextFunc
   const queryPerPage = Number(req.query.perPage);
 
   const page = queryPage && queryPage >= 1 ? queryPage : 1;
-  const perPage = queryPerPage && queryPerPage >= 1 && queryPerPage <= 30 ? queryPerPage : 25;
+  const perPage = queryPerPage && queryPerPage >= 1 && queryPerPage <= 30 ? queryPerPage : 2;
 
   const baseUrl = `${process.env.API_HOST}/products/all`;
   const nextPage = `${baseUrl}?page=${page+1}&perPage=${perPage}`;
