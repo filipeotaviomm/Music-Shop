@@ -6,7 +6,6 @@ export const SectionDescription = styled.section`
   margin-top: 45px;
   display: flex;
   flex-direction: column;
-  // width: 100%;
 
   @media (min-width: 800px) {
     margin-left: 55px;
@@ -25,9 +24,4 @@ export const ParagDescription = styled.p`
   font-size: ${fontSize.text};
   line-height: 25px;
   width: 100%;
-  // text-align: justify;
-
-  @media (min-width: 800px) {
-    min-width: 1250px;
-  }
 `;

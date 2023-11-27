@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { IFullProductContext, IProductsPage } from "../../types/product";
-import { FormEvent } from "react";
 import { useProductContext } from "../../providers/UserContext";
 import { useParams } from "react-router-dom";
 

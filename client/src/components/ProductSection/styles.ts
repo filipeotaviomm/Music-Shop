@@ -7,6 +7,7 @@ export const SectionBuy = styled.section`
   margin: 0 10px 0 10px;
   gap: 30px;
   justify-content: space-between;
+  align-items: center;
 
   @media (min-width: 800px) {
     flex-direction: row;
@@ -15,7 +16,6 @@ export const SectionBuy = styled.section`
 `;
 
 export const DivImg = styled.button`
-  height: 250px;
   max-height: 750px;
   overflow: hidden;
   transition: scale 300ms;
