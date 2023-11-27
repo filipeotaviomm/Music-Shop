@@ -12,6 +12,7 @@ function SearchFormHeader() {
   return (
     <SearchWrapper>
       <form
+        style={{ width: "100%" }}
         onSubmit={(event) => {
           event.preventDefault();
         }}
