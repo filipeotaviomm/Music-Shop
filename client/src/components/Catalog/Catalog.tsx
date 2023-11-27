@@ -47,7 +47,7 @@ function Catalog() {
   useEffect(() => {
     async function filterProducts() {
       if(!verifyParams && !verifyBrands) {
-        getAllProducts();
+        getAllProducts(1, 20);
       } else if(verifyParams) {
         const pages = await getProductsByCategory(verifyParams.categoryName!);
         
