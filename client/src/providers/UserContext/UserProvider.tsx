@@ -73,7 +73,7 @@ function UserProvider(props: { children: React.ReactNode }) {
     try {
       const { data } = await api.post("/login", formData);
       localStorage.setItem("@TOKEN", JSON.stringify(data.token));
-
+      console.log(data)
       toast.success("Tu estás logado :)");
       setIsLogOpen(!isLogOpen);
     } catch (error: any) {

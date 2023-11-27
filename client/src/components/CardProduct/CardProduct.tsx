@@ -4,7 +4,7 @@ import Cart from "../../assets/Cart.svg";
 import { ProfileIcon } from "../../styled-components/Header.styles.tsx";
 import { AddCartButton } from "../../styled-components/Button.styles.ts";
 import { useCartContext, useProductContext } from "../../providers/UserContext";
-import { CardProductProps, IFullProductContext } from "../../types/product";
+import {CardProductProps, IFullProductContext, IProductContext} from "../../types/product";
 import {
   Brand,
   ImageContainer,
@@ -16,7 +16,8 @@ import { ICartContext } from "../../types/cart";
 
 function CardProduct(props: CardProductProps) {
   const { addProductInCart } = useCartContext() as ICartContext;
-  const { changeActiveProduct } = useProductContext() as IFullProductContext;
+  const { getProductById, setSingleProduct } =
+    useProductContext() as IFullProductContext;
 
   const { item } = props;
   const { image, brandName, name, price } = item;
@@ -32,11 +33,16 @@ function CardProduct(props: CardProductProps) {
     <CardProd>
       <ProductButton
         to={`/products/${item.id}`}
-        onClick={() => {
-          changeActiveProduct(item);
-          window.scrollTo(0, 0);
+        onClick={async () => {
+          try {
+            const product:IProductContext = await getProductById(item.id);
+
+            setSingleProduct(product);
+            window.scrollTo(0, 0);
+          } catch (error) {
+            console.error("Error fetching product:", error);
+          }
         }}
-        tabIndex={0}
       >
         <ProductGrid>
           <ImageContainer>

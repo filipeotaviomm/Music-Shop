@@ -114,6 +114,7 @@ export const StyledButton = styled.button`
   border-radius: 8px;
   margin-block: clamp(12px, 10%, 32px);
   font-weight: 500;
+  transition: background-color 300ms;
 
   &:hover {
     outline: 2px solid ${colors.purpleBorder};

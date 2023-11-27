@@ -1,5 +1,5 @@
 import { buyingItems, personalItems } from "../../services/database.ts";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { QuitButton } from "../../styled-components/Button.styles.ts";
 import {
   H2,
@@ -7,12 +7,12 @@ import {
   MainInfo,
   Wrapper,
 } from "../../styled-components/UserProfile.styles.ts";
-import { useUserContext } from "../../providers/UserContext";
-import { IUserContext } from "../../types/user";
 import ResumeItems from "../../components/Resume/ResumeItems";
+import Modal from "../../components/Modal";
+import ModalQuit from "../../components/ModalQuit";
 
 function UserProfile({ children }: { children: ReactNode }) {
-  const { quitAccount } = useUserContext() as IUserContext;
+  const [openQuit, setOpenQuit] = React.useState(false);
 
   return (
     <>
@@ -29,7 +29,10 @@ function UserProfile({ children }: { children: ReactNode }) {
           </div>
         </InternalWrapper>
         <MainInfo>{children}</MainInfo>
-        <QuitButton onClick={quitAccount}>SAIR DA CONTA</QuitButton>
+        <QuitButton onClick={() => setOpenQuit(!openQuit)}>
+          SAIR DA CONTA
+        </QuitButton>
+        <Modal open={openQuit} onOpenChange={setOpenQuit} element={ModalQuit} />
       </Wrapper>
     </>
   );

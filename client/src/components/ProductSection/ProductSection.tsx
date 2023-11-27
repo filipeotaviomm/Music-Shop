@@ -8,11 +8,6 @@ import {
   DivCategories,
   SpanCategory,
   H3NameProduct,
-  SpanPrice,
-  SpanCor,
-  SpanCondition,
-  SpanStock,
-  SpanSeller,
   SpanSellerName,
   DivImgsDelivery,
   DivImgTextDelivery,
@@ -21,23 +16,27 @@ import {
   DivImgTextShipping,
   ImgShipping,
   SpanShipping,
+  SpanCharacteristic,
 } from "./styles";
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { ProductContext, useCartContext } from "../../providers/UserContext";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { IFullProductContext } from "../../types/product";
 import { SendBtn } from "../../styled-components/Button.styles.ts";
 import { ICartContext } from "../../types/cart";
 import { nanoid } from "nanoid";
+import Modal from "../Modal";
+import { useParams } from "react-router-dom";
 
 const ProductSection = () => {
+  const [showImage, setShowImage] = React.useState(false);
+
   const { singleProduct, getProductById } = useContext(
-    ProductContext
+    ProductContext,
   ) as IFullProductContext;
   const { addProductInCart } = useCartContext() as ICartContext;
 
   const { id } = useParams();
-
   useEffect(() => {
     try {
       getProductById(Number(id));
@@ -46,9 +45,26 @@ const ProductSection = () => {
     }
   }, []);
 
+  const finalPrice = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+  }).format(singleProduct?.price);
+
   return (
     <SectionBuy>
-      <DivImg>
+      {
+        <Modal
+          maxWidth={"100svw"}
+          overflow={"scroll"}
+          open={showImage}
+          onOpenChange={setShowImage}
+          element={
+            <ImgProduct src={singleProduct?.image} alt="Product Image" />
+          }
+        />
+      }
+      <DivImg onClick={() => setShowImage(!showImage)}>
         <ImgProduct src={singleProduct?.image} alt="Product Image" />
       </DivImg>
       <DivInfoContainer>
@@ -58,25 +74,37 @@ const ProductSection = () => {
           ))}
         </DivCategories>
         <H3NameProduct>{singleProduct?.name}</H3NameProduct>
-        <SpanPrice>R${singleProduct?.price}</SpanPrice>
-        <SpanCor>Cor: {singleProduct?.color}</SpanCor>
-        <SpanCondition>
-          Condição: {singleProduct?.condition == "new" ? "Novo" : "Usado"}
-        </SpanCondition>
-        <SpanStock>
-          {`${singleProduct?.stock} ${
-            singleProduct?.stock > 1
-              ? "unidades disponíveis"
-              : "unidade disponível"
-          }`}
-        </SpanStock>
+
+        <SpanCharacteristic>
+          <span>Preço: </span>
+          {finalPrice}
+        </SpanCharacteristic>
+
+        {singleProduct?.color && (
+          <SpanCharacteristic>
+            <span>Cor:</span> {singleProduct?.color}
+          </SpanCharacteristic>
+        )}
+
+        <SpanCharacteristic>
+          <span>Condição:</span>{" "}
+          {singleProduct?.condition == "new" ? "Novo" : "Usado"}
+        </SpanCharacteristic>
+        <SpanCharacteristic>
+          <span>
+            {singleProduct?.stock > 1
+              ? `Unidades disponíveis: ${singleProduct?.stock}`
+              : "Última unidade"}
+          </span>
+        </SpanCharacteristic>
+        <SpanCharacteristic>
+          <span>Vendedor:</span>{" "}
+          <SpanSellerName>{singleProduct?.owner.name}</SpanSellerName>
+        </SpanCharacteristic>
         <SendBtn onClick={() => addProductInCart(singleProduct)}>
           Adicionar ao Carrinho
         </SendBtn>
 
-        <SpanSeller>
-          Vendedor: <SpanSellerName>{singleProduct?.owner.name}</SpanSellerName>
-        </SpanSeller>
         <DivImgsDelivery>
           <DivImgTextDelivery>
             <ImgDelivery src={Delivery} alt="Delivery icon" />

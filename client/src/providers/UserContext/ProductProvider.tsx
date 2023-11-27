@@ -1,9 +1,6 @@
 import React, { createContext, ReactNode, useState } from "react";
 import { api } from "../../services/api";
 import { IFullProductContext, IProductContext } from "../../types/product";
-// import {useNavigate} from "react-router-dom";
-
-// import { toast } from "react-toastify";
 
 export const ProductContext = createContext({});
 
@@ -29,32 +26,38 @@ const ProductProvider = (props: { children: ReactNode }) => {
     setAllProducts(products);
   };
 
-  const getProductsByCategory = async (categoryName: string, url: string | null) => {
-    const { data } = await api.get(`products/category/${categoryName}${url ? url : '/'}`);
+  const getProductsByCategory = async (
+    categoryName: string,
+    url: string | null,
+  ) => {
+    const { data } = await api.get(
+      `products/category/${categoryName}${url ? url : "/"}`,
+    );
     const { products, prevPage, nextPage } = data;
 
-    const productsList = products.map(product => product.product);
-    
+    const productsList = products.map((product) => product.product);
+
     setAllProducts(productsList);
     return { prevPage, nextPage };
-  }
-
-  const getProductsByBrand = async (brandName: string) => {
-
-  }
-
-  const changeActiveProduct = (product: IProductContext) => {
-    setSingleProduct(product);
   };
+  //
+  // const getProductsByBrand = async (brandName: string) => {
+  //
+  // }
 
   const getProductById = async (id: number | undefined) => {
     try {
-      setIsLoading(!isLoading);
+            setIsLoading(!isLoading);
+
       const { data } = await api.get(`/products/${id}`);
+      console.log(data);
+      console.log("single", data);
       setSingleProduct(data);
+      return data;
     } catch (error) {
       console.log(error);
-    } finally {
+    }
+    finally {
       setIsLoading(!isLoading);
     }
   };
@@ -65,10 +68,9 @@ const ProductProvider = (props: { children: ReactNode }) => {
 
     getAllProducts,
     getProductsByCategory,
-    getProductsByBrand,
-
+    // getProductsByBrand,
     singleProduct,
-    changeActiveProduct,
+    setSingleProduct,
 
     getProductById,
 
@@ -82,4 +84,4 @@ const ProductProvider = (props: { children: ReactNode }) => {
   );
 };
 
-export { ProductProvider, useProductContext };
+export {ProductProvider, useProductContext};
