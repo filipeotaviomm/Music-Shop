@@ -12,11 +12,12 @@ const AddressProvider = (props: { children: ReactNode }) => {
     const [ addresses, setAddresses ] = useState<IAddress[]>([]);
 
     const [ isCreateAddressModalOpen, setIsCreateAddressModalOpen ] = useState<boolean>(false);
+
     const [ isEditAddressModalOpen, setIsEditAddressModalOpen ] = useState<boolean>(false);
     const [ editingAddress, setEditingAddress ] = useState<IAddress | null>(null);
+
     const [ isDeleteAddressModalOpen, setIsDeleteAddressModalOpen ] = useState<boolean>(false);
-    const [ deletingAddress, setDeletingAddress ] = useState<IAddress | null>(null);
-    
+
     async function createAddressRequest(formData: IAddressForm) {
         const token = JSON.parse(localStorage.getItem("@TOKEN")!);
 
@@ -79,7 +80,7 @@ const AddressProvider = (props: { children: ReactNode }) => {
             await api.delete(`/addresses/${address.id}`, {
                 headers: {Authorization: `Bearer ${token}`}
             });
-            toast.success(`Endereço "${deletingAddress!.name}" removido com sucesso!`)
+            toast.success(`Endereço "${address.name}" removido com sucesso!`)
 
             getAllAddresses();
         } catch (error: any) {
@@ -89,7 +90,6 @@ const AddressProvider = (props: { children: ReactNode }) => {
             }
         } finally {
             setIsDeleteAddressModalOpen(false);
-            setDeletingAddress(null);
         }
     };
 
