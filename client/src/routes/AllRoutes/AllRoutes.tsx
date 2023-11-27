@@ -4,7 +4,7 @@ import PrivateRoutes from "../PrivateRoutes";
 import NotFound from "../../pages/NotFound";
 import ProductPage from "../../pages/ProductPage";
 import ResumeRoutes from "../PrivateRoutes/ResumeRoutes";
-import CatalogPage from "../../pages/CatalogPage/CatalogPage";
+import CatalogPage from "../../pages/CatalogPage/CatalogPage.tsx";
 
 function AllRoutes() {
   return (
