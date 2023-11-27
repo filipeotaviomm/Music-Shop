@@ -89,24 +89,6 @@ export const WarningInlineButton = styled(InlineButton)`
   }
 `;
 
-export const QuitButton = styled(DefaultButton)`
-  color: ${colors.red60};
-  font-weight: 500;
-
-  &:hover {
-    color: ${colors.red80};
-    outline: 2px solid ${colors.red80};
-  }
-  &:active {
-    color: ${colors.red80};
-    outline: 2px solid ${colors.red80};
-  }
-  &:focus {
-    color: ${colors.red80};
-    outline: 2px solid ${colors.red80};
-  }
-`;
-
 export const StyledButton = styled.button`
   padding-block: 16px;
   color: ${colors.offWhite};
@@ -132,10 +114,12 @@ export const StyledButton = styled.button`
 export const SendBtn = styled(StyledButton)`
   width: 100%;
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   margin-block: 0;
   margin-top: 30px;
+  font-weight: 500;
 `;
 
 export const ModalBottonButton = styled(SendBtn)`
@@ -165,4 +149,23 @@ export const ModalButton = styled.button`
   border-radius: 4px;
   padding: 8px;
   max-width: fit-content;
+`;
+
+
+export const QuitButton = styled(DefaultButton)`
+  color: ${colors.red60};
+  font-weight: 500;
+
+  &:hover {
+    color: ${colors.red80};
+    outline: 2px solid ${colors.red80};
+  }
+  &:active {
+    color: ${colors.red80};
+    outline: 2px solid ${colors.red80};
+  }
+  &:focus {
+    color: ${colors.red80};
+    outline: 2px solid ${colors.red80};
+  }
 `;

@@ -24,7 +24,6 @@ const Card = styled.div`
         padding: 16px;
         border-radius: 20px;
         transition: .05s;
-        outline: 2px solid ${colors.grey90};
         
         display: flex;
         align-items: center;

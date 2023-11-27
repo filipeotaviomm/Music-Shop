@@ -22,7 +22,8 @@ const Button = styled.button`
   padding: 16px;
   border-radius: 20px;
   transition: 0.05s;
-  outline: 2px solid ${colors.grey90};
+  outline: 2px solid ${colors.grey20};
+  
 
   background-color: ${colors.white000};
 
@@ -36,14 +37,21 @@ const Button = styled.button`
   &:hover {
     background-color: ${colors.offWhite};
   }
+  &:focus {
+  outline: 4px solid ${colors.grey90};
+  }
 `;
 
 const RemoveButton = styled(Button)`
   color: ${colors.white000};
   background-color: ${colors.red60};
+  font-weight: 600;
 
   &:hover {
     background-color: ${colors.red80};
+  }
+  &:active {
+    background-color: ${colors.red60};
   }
 `;
 
@@ -55,7 +63,7 @@ function ModalQuit({
 }: {
   question: string;
   handleCloseModalClick: () => void;
-  handleQuitButtonClick: () => Promise<void>;
+  handleQuitButtonClick: () => Promise<void> | void;
   quit?: string;
 }) {
   return (
