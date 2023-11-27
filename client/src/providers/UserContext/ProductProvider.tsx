@@ -14,11 +14,34 @@ const ProductProvider = (props: { children: ReactNode }) => {
 
   const [allProducts, setAllProducts] = useState<IProductContext[]>([]);
   const [singleProduct, setSingleProduct] = useState(allProducts[0]);
+  const [productsPage, setProductsPage] = useState({
+    prevPage: "",
+    nextPage: "",
+  });
 
-  const getAllProducts = async () => {
-    const { data } = await api.get("products/all");
-    setAllProducts(data);
+  const getAllProducts = async (page: number, perPage: number) => {
+    const { data } = await api.get("products/all", {
+      params: { page: page, perPage: perPage },
+    });
+    const { products, prevPage, nextPage } = data;
+
+    setProductsPage({ prevPage, nextPage });
+    setAllProducts(products);
   };
+
+  const getProductsByCategory = async (categoryName: string, url: string | null) => {
+    const { data } = await api.get(`products/category/${categoryName}${url ? url : '/'}`);
+    const { products, prevPage, nextPage } = data;
+
+    const productsList = products.map(product => product.product);
+    
+    setAllProducts(productsList);
+    return { prevPage, nextPage };
+  }
+
+  const getProductsByBrand = async (brandName: string) => {
+
+  }
 
   const changeActiveProduct = (product: IProductContext) => {
     setSingleProduct(product);
@@ -27,9 +50,7 @@ const ProductProvider = (props: { children: ReactNode }) => {
   const getProductById = async (id: number | undefined) => {
     try {
       setIsLoading(!isLoading);
-      console.log(id, typeof id);
       const { data } = await api.get(`/products/${id}`);
-      console.log(data);
       setSingleProduct(data);
     } catch (error) {
       console.log(error);
@@ -43,11 +64,15 @@ const ProductProvider = (props: { children: ReactNode }) => {
     setAllProducts,
 
     getAllProducts,
+    getProductsByCategory,
+    getProductsByBrand,
 
     singleProduct,
     changeActiveProduct,
 
     getProductById,
+
+    productsPage,
   };
 
   return (

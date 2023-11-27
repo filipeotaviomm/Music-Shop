@@ -1,4 +1,4 @@
-import { Address, User } from "@prisma/client";
+import { Address } from "@prisma/client";
 import { AddressCreate, AddressUpdate } from "../interfaces/addresses.interface";
 import { prisma } from "../app";
 

@@ -4,7 +4,7 @@ import { IAddressContext, IAddressForm } from "../../../../types/address";
 import { addressSchema } from "../../../../schemas/addressSchema/addressSchema.ts";
 
 import Input from "../../../Login/Forms/Input/Input.tsx";
-import {FormUser} from "../../../../styled-components/Modal.styles.tsx";
+import { FormUser } from "../../../../styled-components/Modal.styles.tsx";
 
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import { H2 } from "../../../../styled-components/Typography.styles.ts";
 import { SendBtn } from "../../../../styled-components/Button.styles.ts";
-import {AddressFormContainer} from "../../Addresses.tsx";
+import { AddressFormContainer } from "../../Addresses.tsx";
 
 function CreateAddressForm() {
   const { createAddressRequest } = useAddressContext() as IAddressContext;
@@ -22,25 +22,30 @@ function CreateAddressForm() {
     handleSubmit,
     formState: { errors },
     setValue,
+    reset,
   } = useForm<IAddressForm>({
     resolver: zodResolver(addressSchema),
   });
 
   async function submit(formData: IAddressForm) {
     const requestData = { ...formData, number: Number(formData.number) };
-
     await createAddressRequest(requestData);
+    reset();
   }
 
   async function searchZip(zipCode: string) {
-    const url = `https://brasilapi.com.br/api/cep/v1/${Number(zipCode)}`;
+    const newZipCode = zipCode.replace("-", "");
+
+    const url = `https://brasilapi.com.br/api/cep/v1/${Number(newZipCode)}`;
     try {
       const { data } = await axios.get(url);
+      const { street, neighborhood, city, state } = data;
 
-      setValue("street", data.street);
-      setValue("neihborhood", data.neighborhood);
-      setValue("city", data.city);
-      setValue("state", data.state);
+      setValue("street", street);
+      setValue("neihborhood", neighborhood);
+      setValue("city", city);
+      setValue("state", state);
+      toast.success("Achamos o endereço :)");
     } catch (error) {
       toast.error("Endereço não encontrado :(");
     }
@@ -57,11 +62,11 @@ function CreateAddressForm() {
           id={"name"}
         />
         <Input
-          label="CEP (Apenas números)"
+          label="CEP"
           error={errors.zip}
           {...register("zip")}
           id={"zip"}
-          onBlur={(e) => searchZip(e.target.value)}
+          onBlur={(e) => e.target.value.length >= 7 && searchZip(e.target.value)}
         />
         <Input
           label="Rua"

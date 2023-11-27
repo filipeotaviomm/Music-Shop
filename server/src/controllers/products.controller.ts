@@ -2,14 +2,18 @@ import { Request, Response } from "express";
 import {
     createProductService,
     deleteProductService,
+    getAllBrandsService,
+    getAllCategoriesService,
     formatProductReturn,
     formatProductsReturn,
     getAllProductsIdService,
     getAllProductsService,
     updateProductService,
+    getProductsByCategoryService,
 } from "../services/products.service";
 import { ProductReturn } from "../interfaces/products.interface";
 import { Product } from "@prisma/client";
+import { ReadProduct } from "../interfaces/products.interface";
 
 export const createProductController = async (
   req: Request,
@@ -30,11 +34,10 @@ export const getAllProductsController = async (
   req: Request,
   res: Response,
 ): Promise<Response> => {
-  const allProducts: Product[] = await getAllProductsService();
+  const { pagination } = res.locals;
+  const allProducts: ReadProduct = await getAllProductsService(pagination);
 
-  const formattedProducts: ProductReturn[] = formatProductsReturn(allProducts);
-
-  return res.status(200).json(formattedProducts);
+  return res.status(200).json(allProducts);
 };
 
 export const getAllProductsIdController = async (
@@ -56,9 +59,7 @@ export const getProductByIdController = async (
 ): Promise<Response> => {
   const product: Product = res.locals.product;
 
-  const formattedProduct: ProductReturn = formatProductReturn(product);
-
-  return res.status(200).json(formattedProduct);
+  return res.status(200).json(product);
 };
 
 export const updateProductController = async (
@@ -86,3 +87,22 @@ export const deleteProductController = async (
 
   return res.status(204).json();
 };
+
+export const getAllBrandsController = async (req: Request, res: Response): Promise<Response> => {
+  const productsList = await getAllBrandsService();
+
+  return res.status(200).json(productsList);
+}
+
+export const getAllCategoriesController = async (req: Request, res: Response): Promise<Response> => {
+  const categoriesList = await getAllCategoriesService();
+
+  return res.status(200).json(categoriesList);
+}
+
+export const getProductsByCategoryController = async (req: Request, res: Response): Promise<Response> => {
+  const { pagination } = res.locals;
+  const productsList = await getProductsByCategoryService(req.params.categoryName, pagination);
+
+  return res.status(200).json(productsList);
+}

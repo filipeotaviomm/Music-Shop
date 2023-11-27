@@ -17,7 +17,7 @@ function SearchFormHeader() {
         }}
       >
         <Label htmlFor={`${id}-search`}>BUSCAR:</Label>
-        <Search style={{ position: "absolute", left: "8px", top: "30%" }} />
+        <Search style={{ position: "absolute", left: "8px", top: "21%" }} />
         <SearchBar
           id={`${id}-search`}
           value={searchValue}

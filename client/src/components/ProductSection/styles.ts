@@ -2,72 +2,83 @@ import styled from "styled-components";
 import { colors, fontSize } from "../../styled-components/root.ts";
 
 export const SectionBuy = styled.section`
-  margin: 65px 100px 10px 65px;
   display: flex;
   flex-direction: column;
+  margin: 0 10px 0 10px;
+  gap: 30px;
 
   @media (min-width: 800px) {
     flex-direction: row;
+    margin: 0 30px 0 30px;
   }
 `;
 
 export const DivImg = styled.div`
-  width: 40%;
-  max-height: 600px;
+  height: 250px;
+  max-height: 750px;
 
   @media (min-width: 800px) {
     width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 550px;
   }
 `;
 
 export const ImgProduct = styled.img`
+  max-width: 700px;
   width: 100%;
-  max-width: 650px;
-  // flex-grow: 1;
 `;
 
 export const DivInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 15px;
-  margin-top: 10px;
-  width: 40%;
 
   @media (min-width: 800px) {
     gap: 30px;
-    margin-top: 0;
+    width: 40%;
   }
+`;
+
+export const DivCategories = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
 `;
 
 export const SpanCategory = styled.span`
   color: ${colors.grey70};
   font-size: ${fontSize.smallLink};
-  margin-bottom: -5px;
+  margin-bottom: -10px;
 
   @media (min-width: 800px) {
     margin-bottom: -20px;
   }
 `;
 
-export const DivNameLike = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 export const H3NameProduct = styled.h3`
-  color: ${colors.black};
-  font-size: ${fontSize.h2h3};
-  font-weight: 700;
-`;
-
-export const ButtonLike = styled.button``;
-
-export const SpanPrice = styled.span`
   color: ${colors.black};
   font-size: ${fontSize.h3};
   font-weight: 700;
+  line-height: 30px;
+
+  @media (min-width: 800px) {
+    font-size: ${fontSize.h2h3};
+  }
+`;
+
+export const SpanPrice = styled.span`
+  color: ${colors.black};
+  font-size: ${fontSize.sub};
+  font-weight: 700;
+
+  @media (min-width: 800px) {
+    font-size: ${fontSize.h2h3};
+  }
 `;
 
 export const SpanCor = styled.span`
@@ -85,32 +96,13 @@ export const SpanStock = styled.span`
   font-size: ${fontSize.text};
 `;
 
-export const DivAddToCart = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-`;
-
-export const ButtonAddToCart = styled.button`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 17px 20px;
-  background-color: red;
-  color: white;
-  border-radius: 5px;
-  color: ${colors.white000};
-  font-size: ${fontSize.h3};
-  font-weight: 700;
-
-  &:hover {
-    filter: brightness(0.8);
-  }
-`;
-
 export const SpanSeller = styled.span`
   color: ${colors.black};
+  font-size: ${fontSize.text};
+`;
+
+export const SpanSellerName = styled.span`
+  color: ${colors.purple};
   font-size: ${fontSize.text};
 `;
 
@@ -120,10 +112,7 @@ export const DivImgsDelivery = styled.div`
   align-items: center;
   justify-content: center;
   gap: 25px;
-
-  @media (min-width: 800px) {
-    margin-top: -10px;
-  }
+  margin-top: 10px;
 `;
 
 export const DivImgTextDelivery = styled.div`

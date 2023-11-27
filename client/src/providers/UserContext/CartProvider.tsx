@@ -24,7 +24,7 @@ const CartProvider = (props: { children: ReactNode }) => {
 
     const addProductInCart = (newProduct: IProductContext) => {
         const tellUser = () =>
-            toast.warning(`O ${newProduct.name} já está no carrinho :)`);
+            setIsCartModalOpen(!isCartModalOpen);
 
         const addItem = () => {
             setCart([...cart, {product: newProduct, amount: 1}]);
@@ -34,31 +34,36 @@ const CartProvider = (props: { children: ReactNode }) => {
         cart.some((item) => item.product.id === newProduct.id)
             ? tellUser()
             : addItem();
-        console.log(cart);
     };
 
     const updateProductAmount = (
-  product: IProductContext,
-  amount: number,
-  id: number,
-  operation: 'add' | 'remove' = "add"
-) => {
-  const oldCart = cart.filter((product) => product.product.id !== id);
-  const newAmount = operation === 'add' ? amount + 1 : amount - 1;
-  const newCart = [...oldCart, { product: product, amount: newAmount }];
+        product: IProductContext,
+        amount: number,
+        id: number,
+        operation: 'add' | 'remove' = "add"
+    ) => {
+        const oldCart = cart.filter((product) => product.product.id !== id);
+        const newAmount = operation === 'add' ? amount + 1 : amount - 1;
+        const newCart = [...oldCart, {product: product, amount: newAmount}];
 
-  setCart(newCart);
-};
+        setCart(newCart);
+    };
 
     const removeProductInCart = (id: number) => {
-        const removedProduct = cart.filter((product) => product.product.id === id);
+        const removedProduct = cart.filter(
+            (product) => product.product.id === id,
+        );
 
         const newCart = cart.filter((product) => product.product.id !== id);
-        setCart(newCart);
+        setCart(()=> newCart);
 
-        toast.success(`${removedProduct[0].product.id} excluído com sucesso.`);
+        toast.success(`${removedProduct[0].product.name} excluído com sucesso.`);
     };
-    const cleanCart = () => setCart([])
+    const cleanCart = () => {
+        toast.success(`Carrinho esvaziado.`);
+        setCart([])
+        setIsCartModalOpen(!isCartModalOpen)
+    }
 
     const values: ICartContext = {
         cart,

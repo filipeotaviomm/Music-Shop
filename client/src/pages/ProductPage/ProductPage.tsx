@@ -7,8 +7,8 @@ const ProductPage = () => {
   return (
     <Div>
       <ProductSection />
-      <OtherProductsSection />
       <DescriptionSection />
+      <OtherProductsSection />
     </Div>
   );
 };

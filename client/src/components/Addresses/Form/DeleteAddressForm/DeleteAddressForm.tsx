@@ -3,6 +3,7 @@ import { useAddressContext } from "../../../../providers/UserContext/AddressProv
 import { H2 } from "../../../../styled-components/Typography.styles";
 import { IAddressContext } from "../../../../types/address";
 import { colors } from "../../../../styled-components/root";
+import Trash from "../../../../assets/Remove-Confirmation.svg"
 
 const Card = styled.div`
         width: 100%;
@@ -10,6 +11,7 @@ const Card = styled.div`
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+  
         gap: 10px;
     `;
 
@@ -37,11 +39,10 @@ const Card = styled.div`
 
     const RemoveButton = styled(Button)`
         color: ${colors.white000};
-        background-color: red;
+        background-color: ${colors.red60};
 
         &:hover{
-            color: ${colors.black};
-            background-color: ${colors.white000};
+            background-color: ${colors.red80};
         }
     `;
 
@@ -51,8 +52,11 @@ function DeleteAddressForm() {
 
     return (
         <div>
-            <Card>
+            <Card style={{alignItems: "center"}}>
                 <H2>Você realmente deseja excluir o endereço {address?.name}?</H2>
+
+                    <img src={Trash}/>
+
                 <CartButtons>
                     <Button onClick={() => setIsDeleteAddressModalOpen(false)}>Cancelar</Button>
                     <RemoveButton onClick={() => deleteAddress(address!)}>Excluir</RemoveButton>

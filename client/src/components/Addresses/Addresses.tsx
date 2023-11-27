@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { AddressCard } from "./AddressCard/AddressCard";
 import Modal from "../Modal";
 import DeleteAddressForm from "./Form/DeleteAddressForm";
+import { colors } from "../../styled-components/root.ts";
 
 const AddressContent = styled.div`
   width: 100%;
@@ -31,16 +32,17 @@ const AddressHeader = styled.div`
 const AddAddressBtn = styled.button`
 padding: 16px;
 border-radius: 20px;
-transition: .05s;
+transition: .5s;
   
   display: flex;
   align-items: center;
   gap: 5px;
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-
+  background-color: ${colors.purple};
+  color: ${colors.white000};
   &:hover{
-    outline: 2px solid hsla(242, 62%, 56%, 1);
-    background-color: #fff;
+    transform: scale(1.05);
+    background-color: ${colors.purpleHover};
   }
 `;
 
@@ -62,29 +64,41 @@ function Addresses() {
     <>
       <AddressHeader>
         <H1>ENDEREÇOS</H1>
-        <AddAddressBtn onClick={() => setIsCreateAddressModalOpen(!isCreateAddressModalOpen)}>
+        <AddAddressBtn
+          onClick={() => setIsCreateAddressModalOpen(!isCreateAddressModalOpen)}
+        >
           <MdOutlineAddCircleOutline size="18" />
           Endereço
         </AddAddressBtn>
       </AddressHeader>
 
-      <AddressContent>
+      <div>
         {addresses.length > 0 ? (
-          addresses.map((address) => (
-            <AddressCard key={address.id} address={address}/>
-            ))
-            ) : (
-              <>
-            <img src={NotFound} style={{width: 'fit-content'}}/>
-            <H2>Nada por aqui!</H2>
+          <AddressContent>
+            {addresses.map((address) => (
+              <AddressCard key={address.id} address={address} />
+            ))}
+          </AddressContent>
+        ) : (
+          <>
+            <img src={NotFound} style={{ alignSelf: "center" }} />
+            <H2>Nenhum endereço cadastrado.</H2>
           </>
         )}
-      </AddressContent>
+      </div>
 
-      <Modal open={isCreateAddressModalOpen} onOpenChange={setIsCreateAddressModalOpen} element={CreateAddressForm()}/>
-      <Modal open={isDeleteAddressModalOpen} onOpenChange={setIsDeleteAddressModalOpen} element={DeleteAddressForm()}/>
+      <Modal
+        open={isCreateAddressModalOpen}
+        onOpenChange={setIsCreateAddressModalOpen}
+        element={CreateAddressForm()}
+      />
+      <Modal
+        open={isDeleteAddressModalOpen}
+        onOpenChange={setIsDeleteAddressModalOpen}
+        element={DeleteAddressForm()}
+      />
     </>
-  )
+  );
 }
 
 export default Addresses;
