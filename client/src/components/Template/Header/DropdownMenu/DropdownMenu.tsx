@@ -30,7 +30,7 @@ function DropdownMenuHeader() {
         <DContent sideOffset={8}>
           {categories.map(({ url, text }) => (
             <DItem key={nanoid()}>
-              <MenuButton onClick={() => navigate(`/${url}`)}>
+              <MenuButton onClick={() => navigate(`/category/${url}`)}>
                 {text}
               </MenuButton>
             </DItem>

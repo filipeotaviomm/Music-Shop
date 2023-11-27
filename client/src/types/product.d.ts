@@ -21,6 +21,10 @@ export interface productsPage {
   prevPage: string
   nextPage: string
 }
+export interface IProductsPage {
+  prevPage: string | null;
+  nextPage: string | null;
+}
 
 export interface CardProductProps {
   item: IProductContext;
@@ -36,6 +40,8 @@ export interface IFullProductContext {
   productsPage: productsPage;
 
   getProductById: (id: number | undefined) => Promise<void>;
+  getProductsByCategory: (categoryId: string, url?: string | null) => Promise<IProductsPage>;
+  getProductsByBrand: (brandName: string) => Promise<IProductsPage>;
 
   getAllProducts: (page: number, perPage: number) => Promise<void>;
   getProductsByCategory: (categoryId: string, url?: string | null) => Promise<IProductsPage>;
