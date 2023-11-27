@@ -41,7 +41,7 @@ const AddressProvider = (props: { children: ReactNode }) => {
                 headers: {Authorization: `Bearer ${token}`}
             });
             setAddresses(data);
-        } catch (error) {
+        } catch (error: any) {
             console.log(error)
             if(error.response.status === 401) {
                 toast.error("Ops, faça login novamente e tente outra vez.")
@@ -61,7 +61,7 @@ const AddressProvider = (props: { children: ReactNode }) => {
             toast.success(`Endereço "${formData.name}" atualizado com sucesso!`)
 
             getAllAddresses();
-        } catch (error) {
+        } catch (error: any) {
             console.log(error);
             if(error.response.status === 401) {
                 toast.error("Ops, faça login novamente e tente outra vez.")
@@ -82,7 +82,7 @@ const AddressProvider = (props: { children: ReactNode }) => {
             toast.success(`Endereço "${deletingAddress!.name}" removido com sucesso!`)
 
             getAllAddresses();
-        } catch (error) {
+        } catch (error: any) {
             console.log(error);
             if(error.response.status === 401) {
                 toast.error("Ops, faça login novamente e tente outra vez.")
@@ -106,8 +106,6 @@ const AddressProvider = (props: { children: ReactNode }) => {
         setEditingAddress,
         isDeleteAddressModalOpen,
         setIsDeleteAddressModalOpen,
-        deletingAddress,
-        setDeletingAddress,
         deleteAddress
     };
 

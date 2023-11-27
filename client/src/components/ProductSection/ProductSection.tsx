@@ -20,12 +20,13 @@ import {
 } from "./styles";
 import React, { useContext, useEffect } from "react";
 import { ProductContext, useCartContext } from "../../providers/UserContext";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { IFullProductContext } from "../../types/product";
 import { SendBtn } from "../../styled-components/Button.styles.ts";
 import { ICartContext } from "../../types/cart";
 import { nanoid } from "nanoid";
 import Modal from "../Modal";
+import { useParams } from "react-router-dom";
 
 const ProductSection = () => {
   const [showImage, setShowImage] = React.useState(false);
@@ -36,7 +37,6 @@ const ProductSection = () => {
   const { addProductInCart } = useCartContext() as ICartContext;
 
   const { id } = useParams();
-
   useEffect(() => {
     try {
       getProductById(Number(id));
@@ -44,6 +44,7 @@ const ProductSection = () => {
       console.log(error);
     }
   }, []);
+
   const finalPrice = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -92,10 +93,9 @@ const ProductSection = () => {
         <SpanCharacteristic>
           <span>
             {singleProduct?.stock > 1
-              ? "Unidades disponíveis: "
-              : "Última unidade :O"}
+              ? `Unidades disponíveis: ${singleProduct?.stock}`
+              : "Última unidade"}
           </span>
-          {singleProduct?.stock}
         </SpanCharacteristic>
         <SpanCharacteristic>
           <span>Vendedor:</span>{" "}
