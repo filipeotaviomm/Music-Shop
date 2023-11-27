@@ -55,6 +55,7 @@ export interface IFullProductContext {
   getProductById: (id: number | undefined) => Promise<void>;
   getProductsByCategory: (categoryId: string, url?: string | null) => Promise<IProductsPage>;
   getProductsByBrand: (brandName: string, url?: string | null) => Promise<IProductsPage>;
+  searchProduct: (productInfo: string) => Promise<void>;
 
   getAllProducts: (page: number, perPage: number) => Promise<IProductsPage>;
   getProductsByCategory: (categoryId: string, url?: string | null) => Promise<IProductsPage>;

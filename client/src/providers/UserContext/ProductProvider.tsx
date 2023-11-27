@@ -65,6 +65,12 @@ const ProductProvider = (props: { children: ReactNode }) => {
     }
   };
 
+  const searchProduct = async (productInfo: string) => {
+    const { data } = await api.get(`products/search/${productInfo}`);
+    
+    setAllProducts(data);
+  }
+
   const values: IFullProductContext = {
     allProducts,
     setAllProducts,
@@ -72,6 +78,7 @@ const ProductProvider = (props: { children: ReactNode }) => {
     getAllProducts,
     getProductsByCategory,
     getProductsByBrand,
+    searchProduct,
 
     singleProduct,
     changeActiveProduct,
