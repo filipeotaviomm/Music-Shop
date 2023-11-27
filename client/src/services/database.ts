@@ -11,6 +11,8 @@ import Delivery from "../assets/Fast-Delivery.svg";
 import Return from "../assets/Free-Return.svg";
 import EasyPay from "../assets/Easy-Payment.svg";
 
+
+export const logoName: string = "DURVAL music shop"
 export const categories = [
   {
     url: "audio",

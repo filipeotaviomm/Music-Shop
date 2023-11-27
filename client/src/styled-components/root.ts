@@ -38,7 +38,7 @@ export const fontSize = {
 
 export const fontType = {
   primary: "Inter, sans-serif",
-  featured: "Architects Daughter', cursive",
+  featured: "Architects Daughter, cursive",
 };
 
 export const genericValues = {

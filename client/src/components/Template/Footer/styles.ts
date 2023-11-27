@@ -56,11 +56,6 @@ export const DivLogos = styled.div`
   gap: 30px;
 `;
 
-export const StoreLogo = styled.img`
-  min-width: 170px;
-  width: 200px;
-`;
-
 export const UlSocialMedia = styled.ul`
   display: flex;
   flex-direction: row;

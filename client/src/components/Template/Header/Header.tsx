@@ -1,5 +1,3 @@
-import Logo from "../../../assets/logo.svg";
-
 import { Link } from "react-router-dom";
 import {
   CategoriesWrapper,
@@ -11,14 +9,14 @@ import {
 import DropdownMenuHeader from "./DropdownMenu";
 import SearchFormHeader from "./SearchFormHeader";
 import IconsHeader from "./IconsHeader";
+import { logoName } from "../../../services/database.ts";
 
 function Header() {
-
   return (
     <Wrapper>
       <HeaderWrapper>
         <Link to={"/"}>
-          <LogoTop src={Logo} alt="Be.art logo" />
+          <LogoTop>{logoName}</LogoTop>
         </Link>
         <InfoWrapper>
           <SearchFormHeader />
@@ -35,7 +33,6 @@ function Header() {
             <IconsHeader />
           </div>
         </InfoWrapper>
-
       </HeaderWrapper>
     </Wrapper>
   );

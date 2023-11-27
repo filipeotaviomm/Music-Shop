@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, fontSize, genericValues } from "./root.ts";
+import {colors, fontSize, fontType, genericValues} from "./root.ts";
 import { DefaultLabel } from "./Modal.styles.tsx";
 import { Link } from "react-router-dom";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
@@ -20,9 +20,34 @@ export const SearchBar = styled.input`
   }
 `;
 
-export const LogoTop = styled.img`
+export const LogoTop = styled.span`
+  font-family: ${fontType.featured};
   margin: auto;
-  margin-block-end: 32px;
+  width: 100%;
+  height: auto;
+  
+  line-height: 110%;
+  
+  font-size: ${fontSize.h2};
+  font-weight: 700;
+  
+  text-align: center;
+  
+  align-self: center;
+  justify-self: center;
+  
+  transition: color 300ms;
+  
+  &:hover {
+    color: ${colors.purpleHover}
+  }
+  &:active {
+    color: ${colors.purpleActive}
+  }
+  &:focus {
+    color: ${colors.purpleHover}
+  }
+  
 `;
 export const ProfileIcon = styled.img<{ $bgColor?: boolean }>`
   
@@ -47,6 +72,7 @@ export const InfoWrapper = styled.div`
   display: grid;
   gap: 20px;
   place-items: center;
+  width: 100%;
   
   max-width: ${genericValues.pageWidth};
   @media (min-width: 768px) {
@@ -75,7 +101,13 @@ export const HeaderWrapper = styled.div`
   max-width: ${genericValues.pageWidth};
   width: 100%;
   margin-block-end: 24px;
+  margin-block-start: 8px;
   padding-inline: ${genericValues.pagePadding};
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(5svh, 6svh, 20px);
 `;
 export const SearchWrapper = styled.div`
   position: relative;
