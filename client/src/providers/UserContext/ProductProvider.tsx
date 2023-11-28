@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useState } from "react";
 import { api } from "../../services/api";
-import { IFullProductContext, IProductContext } from "../../types/product";
+import { IFullProductContext, IGetProductsByCategoryResponse, IProductContext } from "../../types/product";
 // import {useNavigate} from "react-router-dom";
 
 // import { toast } from "react-toastify";
@@ -27,43 +27,49 @@ const ProductProvider = (props: { children: ReactNode }) => {
 
     setProductsPage({ prevPage, nextPage });
     setAllProducts(products);
-  };
-
-  const getProductsByCategory = async (
-    categoryName: string,
-    url: string | null,
-  ) => {
-    const { data } = await api.get(
-      `products/category/${categoryName}${url ? url : "/"}`,
-    );
-    const { products, prevPage, nextPage } = data;
-
-    const productsList = products.map((product) => product.product);
-
-    setAllProducts(productsList);
+    
     return { prevPage, nextPage };
   };
-  //
-  // const getProductsByBrand = async (brandName: string) => {
-  //
-  // }
+
+  const getProductsByCategory = async (categoryName: string, url: string | null | undefined) => {
+    const { data } = await api.get(`products/category/${categoryName}${url ? url : '/'}`);
+    const { products, prevPage, nextPage }: IGetProductsByCategoryResponse = data;
+
+    const productsList: IProductContext[] = products.map(product => product.product);
+    
+    setAllProducts(productsList);
+    return { prevPage, nextPage };
+  }
+
+  const getProductsByBrand = async (brandName: string, url: string | null | undefined) => {
+    const { data } = await api.get(`/products/brand/${brandName}${url ? url : '/'}`);
+    const { products, prevPage, nextPage } = data;
+    
+    setAllProducts(products);
+    return { prevPage, nextPage };
+  }
+
+  const changeActiveProduct = (product: IProductContext) => {
+    setSingleProduct(product);
+  };
 
   const getProductById = async (id: number | undefined) => {
     try {
-            setIsLoading(!isLoading);
-
+      setIsLoading(!isLoading);
       const { data } = await api.get(`/products/${id}`);
-      console.log(data);
-      console.log("single", data);
       setSingleProduct(data);
-      return data;
     } catch (error) {
       console.log(error);
-    }
-    finally {
+    } finally {
       setIsLoading(!isLoading);
     }
   };
+
+  const searchProduct = async (productInfo: string) => {
+    const { data } = await api.get(`products/search/${productInfo}`);
+    
+    setAllProducts(data);
+  }
 
   const values: IFullProductContext = {
     allProducts,
@@ -71,9 +77,11 @@ const ProductProvider = (props: { children: ReactNode }) => {
 
     getAllProducts,
     getProductsByCategory,
-    // getProductsByBrand,
+    getProductsByBrand,
+    searchProduct,
+
     singleProduct,
-    setSingleProduct,
+    changeActiveProduct,
 
     getProductById,
 

@@ -31,20 +31,34 @@ export interface CardProductProps {
     item: IProductContext;
 }
 
+export interface IManagePagesProps {
+  nextPage: string | null;
+  prevPage: string | null;
+  setPrevPage: React.Dispatch<React.SetStateAction<string | null>>;
+  setNextPage: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export interface IGetProductsByCategoryResponse {
+  nextPage: string | null;
+  prevPage: string | null;
+  products: {product: IProductContext}[];
+}
+
 export interface IFullProductContext {
-    allProducts: IProductContext[] | null;
-    setAllProducts: React.Dispatch<React.SetStateAction<IProductContext[]>>;
+  allProducts: IProductContext[] | null;
+  setAllProducts: React.Dispatch<React.SetStateAction<IProductContext[]>>;
 
-    singleProduct: IProductContext;
+  singleProduct: IProductContext;
 
-    productsPage: productsPage;
+  productsPage: productsPage;
 
-    setSingleProduct: React.Dispatch<React.SetStateAction<IProductContext>>;
+  getProductById: (id: number | undefined) => Promise<void>;
+  getProductsByCategory: (categoryId: string, url?: string | null) => Promise<IProductsPage>;
+  getProductsByBrand: (brandName: string, url?: string | null) => Promise<IProductsPage>;
+  searchProduct: (productInfo: string) => Promise<void>;
+  changeActiveProduct: (product: IProductContext) => void
 
-    getProductById: (id: number) => Promise<IProductContext>;
-
-    getProductsByCategory: (categoryId: string, url?: string | null) => Promise<IProductsPage>;
-    // getProductsByBrand: (brandName: string) => Promise<IProductsPage>;
-
-    getAllProducts: (page: number, perPage: number) => Promise<void>;
+  getAllProducts: (page: number, perPage: number) => Promise<IProductsPage>;
+  getProductsByCategory: (categoryId: string, url?: string | null) => Promise<IProductsPage>;
+  getProductsByBrand: (brandName: string) => Promise<IProductsPage>;
 }
