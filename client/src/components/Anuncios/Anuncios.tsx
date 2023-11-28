@@ -9,7 +9,10 @@ import { colors } from "../../styled-components/root.ts";
 import { IAnuncioContext } from "../../types/anuncios";
 import CreateAnuncioForm from "./Form/CreateAnuncioForm/CreateAnuncioForm.tsx";
 import AnuncioCard from "./AnuncioCard/AnuncioCard.tsx";
-import {ResumeHeader} from "../Addresses";
+import { ResumeHeader } from "../Addresses";
+import Loader from "../Loader";
+import { useUserContext } from "../../providers/UserContext";
+import { IUserContext } from "../../types/user";
 
 const AnuncioContent = styled.div`
   width: 100%;
@@ -25,7 +28,6 @@ const AnuncioContent = styled.div`
     hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
-
 
 const AddAnuncioBtn = styled.button`
   padding: 16px;
@@ -59,6 +61,7 @@ function Anuncios() {
     setIsCreateAnuncioModalOpen,
     getAllAnuncios,
   } = useAnuncioContext() as IAnuncioContext;
+  const { isLoading } = useUserContext() as IUserContext;
 
   useEffect(() => {
     getAllAnuncios();
@@ -67,7 +70,7 @@ function Anuncios() {
   return (
     <>
       <ResumeHeader>
-        <H1>ANUNCIOS</H1>
+        <H1>ANÚNCIOS</H1>
         <AddAnuncioBtn onClick={() => setIsCreateAnuncioModalOpen(true)}>
           <MdOutlineAddCircleOutline size="18" />
           Anúncio
@@ -75,7 +78,9 @@ function Anuncios() {
       </ResumeHeader>
 
       <div>
-        {anuncios.length > 0 ? (
+        {isLoading ? (
+          <Loader />
+        ) : anuncios.length > 0 ? (
           <AnuncioContent>
             {anuncios.map((anuncio) => (
               <AnuncioCard key={anuncio.id} anuncio={anuncio} />

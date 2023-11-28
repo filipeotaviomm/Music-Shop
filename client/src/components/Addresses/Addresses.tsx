@@ -9,6 +9,9 @@ import { useEffect } from "react";
 import { AddressCard } from "./AddressCard/AddressCard";
 import Modal from "../Modal";
 import { colors } from "../../styled-components/root.ts";
+import { useUserContext } from "../../providers/UserContext";
+import { IUserContext } from "../../types/user";
+import Loader from "../Loader";
 
 const AddressContent = styled.div`
   width: 100%;
@@ -67,6 +70,7 @@ function Addresses() {
     setIsCreateAddressModalOpen,
     getAllAddresses,
   } = useAddressContext() as IAddressContext;
+  const { isLoading} = useUserContext() as IUserContext;
 
   useEffect(() => {
     getAllAddresses();
@@ -85,7 +89,9 @@ function Addresses() {
       </ResumeHeader>
 
       <div>
-        {addresses.length > 0 ? (
+        {isLoading ? (
+          <Loader />
+        ) : addresses.length > 0 ? (
           <AddressContent>
             {addresses.map((address) => (
               <AddressCard key={address.id} address={address} />

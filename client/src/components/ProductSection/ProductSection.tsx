@@ -19,7 +19,11 @@ import {
   SpanCharacteristic,
 } from "./styles";
 import React, { useContext, useEffect } from "react";
-import { ProductContext, useCartContext } from "../../providers/UserContext";
+import {
+  ProductContext,
+  useCartContext,
+  useUserContext,
+} from "../../providers/UserContext";
 // import { useParams } from "react-router-dom";
 import { IFullProductContext } from "../../types/product";
 import { SendBtn } from "../../styled-components/Button.styles.ts";
@@ -27,10 +31,12 @@ import { ICartContext } from "../../types/cart";
 import { nanoid } from "nanoid";
 import Modal from "../Modal";
 import { useParams } from "react-router-dom";
+import { IUserContext } from "../../types/user";
+import Loader from "../Loader";
 
 const ProductSection = () => {
   const [showImage, setShowImage] = React.useState(false);
-
+  const { setIsLoading, isLoading } = useUserContext() as IUserContext;
   const { singleProduct, getProductById } = useContext(
     ProductContext,
   ) as IFullProductContext;
@@ -39,9 +45,12 @@ const ProductSection = () => {
   const { id } = useParams();
   useEffect(() => {
     try {
+      setIsLoading(true);
       getProductById(Number(id));
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
@@ -65,7 +74,11 @@ const ProductSection = () => {
         />
       }
       <DivImg onClick={() => setShowImage(!showImage)}>
-        <ImgProduct src={singleProduct?.image} alt="Product Image" />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <ImgProduct src={singleProduct?.image} alt="Product Image" />
+        )}
       </DivImg>
       <DivInfoContainer>
         <DivCategories>

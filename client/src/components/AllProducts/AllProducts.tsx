@@ -1,6 +1,6 @@
 import ArrowLeft from "../../assets/arrow-left.svg";
 import ArrowRight from "../../assets/arrow-right.svg";
-import { useProductContext } from "../../providers/UserContext";
+import { useProductContext, useUserContext } from "../../providers/UserContext";
 import { IFullProductContext, IProductContext } from "../../types/product";
 import styled from "styled-components";
 import {
@@ -11,6 +11,8 @@ import {
 import { ProductCards } from "../../styled-components/Cards.styles.ts";
 import CardProduct from "../CardProduct";
 import React, { useState } from "react";
+import { IUserContext } from "../../types/user";
+import Loader from "../Loader";
 
 const Heading = styled.h2`
   font-size: ${fontSize.h3};
@@ -58,6 +60,8 @@ function AllProducts(props: IAllProducts) {
   const { getAllProducts, allProducts, productsPage } =
     useProductContext() as IFullProductContext;
 
+  const { isLoading } = useUserContext() as IUserContext;
+
   React.useEffect((): void => {
     getAllProducts(page, 4);
   }, [page]);
@@ -66,10 +70,14 @@ function AllProducts(props: IAllProducts) {
     <Wrapper>
       <Heading>{props.heading}</Heading>
       <ProductCards>
-        {allProducts &&
+        {isLoading ? (
+          <Loader />
+        ) : (
+          allProducts &&
           allProducts.map((item: IProductContext) => (
             <CardProduct key={item.id} item={item} />
-          ))}
+          ))
+        )}
       </ProductCards>
       {page > 1 && (
         <RoundButton

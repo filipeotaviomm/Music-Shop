@@ -45,17 +45,24 @@ function UserProvider(props: { children: React.ReactNode }) {
     const fullName = `${updatedFirstName} ${updatedLastName}`;
     const updatedFormData = { ...newFormData, name: fullName };
     try {
+      setIsLoading(true)
       await api.post("/users", updatedFormData);
       toast.success(
         `${updatedFirstName} seu cadastro foi efetuado com sucesso :)`,
       );
       setIsLogOpen(!isLogOpen);
       setIsSignUp(!isSignUp);
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
-      toast.error(
-        `Por favor verifique a sua conexão com a internet, ${updatedFirstName} ;)`,
-      );
+      if (error.response.status === 409) {
+        toast.error("Email já cadastrado.");
+      } else {
+        toast.error(
+          `Por favor verifique a sua conexão com a internet, ${updatedFirstName} ;)`,
+        );
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -71,9 +78,9 @@ function UserProvider(props: { children: React.ReactNode }) {
 
   const loginRequest = async (formData: ILogin) => {
     try {
+      setIsLoading(true);
       const { data } = await api.post("/login", formData);
       localStorage.setItem("@TOKEN", JSON.stringify(data.token));
-      console.log(data);
       toast.success("Tu estás logado :)");
       setIsLoggedIn(!isLoggedIn);
     } catch (error: any) {
@@ -81,9 +88,11 @@ function UserProvider(props: { children: React.ReactNode }) {
         toast.error("Por favor verifique sua conexão com a internet :)");
       } else if (error.response.status === 401) {
         toast.error("Senha ou e-mail incorreto :)");
-        setIsLogOpen(!isLogOpen);
       }
       console.log(error);
+    } finally {
+      setIsLoading(false);
+      setIsLogOpen(false);
     }
   };
 

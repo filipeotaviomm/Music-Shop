@@ -10,12 +10,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { H2 } from "../../../../styled-components/Typography.styles.ts";
 import { SendBtn } from "../../../../styled-components/Button.styles.ts";
-import {PaymentFormContainer} from "../../Payments.tsx";
+import { PaymentFormContainer } from "../../Payments.tsx";
 import Select from "../../../Select/Select.tsx";
+import Loader from "../../../Loader";
+import { useUserContext } from "../../../../providers/UserContext";
+import { IUserContext } from "../../../../types/user";
 
 function EditPaymentForm() {
   const { editPayment, editingPayment } =
     usePaymentContext() as IPaymentContext;
+  const { isLoading } = useUserContext() as IUserContext;
 
   const {
     register,
@@ -37,20 +41,28 @@ function EditPaymentForm() {
     <FormUser onSubmit={handleSubmit(submit)}>
       <H2>Editar Cartão</H2>
       <PaymentFormContainer>
-      <Input
+        <Input
           label="Número do Cartão"
           error={errors.number}
           {...register("number")}
           id="name"
         />
-        <Select label="Tipo de Cartão" error={errors.type} {...register("type")} id="type">
-         <option value="" disabled>Selecionar</option>
+        <Select
+          label="Tipo de Cartão"
+          error={errors.type}
+          {...register("type")}
+          id="type"
+        >
+          <option value="" disabled>
+            Selecionar
+          </option>
           <option value="debit">Débito</option>
           <option value="credit">Crédito</option>
         </Select>
       </PaymentFormContainer>
-
-      <SendBtn type="submit">EDITAR CARTÃO</SendBtn>
+      <SendBtn type="submit" disabled={isLoading}>
+        {isLoading ? <Loader /> : "EDITAR CARTÃO"}
+      </SendBtn>{" "}
     </FormUser>
   );
 }

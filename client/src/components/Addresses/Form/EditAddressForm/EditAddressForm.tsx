@@ -12,11 +12,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import { H2 } from "../../../../styled-components/Typography.styles.ts";
 import { SendBtn } from "../../../../styled-components/Button.styles.ts";
-import {AddressFormContainer} from "../../Addresses.tsx";
+import { AddressFormContainer } from "../../Addresses.tsx";
+import { useUserContext } from "../../../../providers/UserContext";
+import { IUserContext } from "../../../../types/user";
+import Loader from "../../../Loader";
 
 function EditAddressForm() {
   const { editAddress, editingAddress } =
     useAddressContext() as IAddressContext;
+  const { isLoading } = useUserContext() as IUserContext;
 
   const {
     register,
@@ -72,7 +76,9 @@ function EditAddressForm() {
           error={errors.zip}
           {...register("zip")}
           id={"zip"}
-          onBlur={(e) => e.target.value.length >= 7 && searchZip(e.target.value)}
+          onBlur={(e) =>
+            e.target.value.length >= 7 && searchZip(e.target.value)
+          }
         />
         <Input
           label="Rua"
@@ -113,7 +119,9 @@ function EditAddressForm() {
         />
       </AddressFormContainer>
 
-      <SendBtn type="submit">EDITAR ENDEREÇO</SendBtn>
+      <SendBtn type="submit" disabled={isLoading}>
+        {isLoading ? <Loader /> : "EDITAR ENDEREÇO"}
+      </SendBtn>
     </FormUser>
   );
 }
