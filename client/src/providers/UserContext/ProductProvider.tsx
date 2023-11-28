@@ -1,9 +1,6 @@
 import React, { createContext, ReactNode, useState } from "react";
 import { api } from "../../services/api";
 import { IFullProductContext, IGetProductsByCategoryResponse, IProductContext } from "../../types/product";
-// import {useNavigate} from "react-router-dom";
-
-// import { toast } from "react-toastify";
 
 export const ProductContext = createContext({});
 
@@ -49,18 +46,17 @@ const ProductProvider = (props: { children: ReactNode }) => {
     return { prevPage, nextPage };
   }
 
-  const changeActiveProduct = (product: IProductContext) => {
-    setSingleProduct(product);
-  };
-
   const getProductById = async (id: number | undefined) => {
     try {
-      setIsLoading(!isLoading);
+            setIsLoading(!isLoading);
+
       const { data } = await api.get(`/products/${id}`);
       setSingleProduct(data);
+      return data;
     } catch (error) {
       console.log(error);
-    } finally {
+    }
+    finally {
       setIsLoading(!isLoading);
     }
   };
@@ -81,7 +77,7 @@ const ProductProvider = (props: { children: ReactNode }) => {
     searchProduct,
 
     singleProduct,
-    changeActiveProduct,
+    setSingleProduct,
 
     getProductById,
 
@@ -96,3 +92,4 @@ const ProductProvider = (props: { children: ReactNode }) => {
 };
 
 export {ProductProvider, useProductContext};
+
