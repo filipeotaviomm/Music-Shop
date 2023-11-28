@@ -27,7 +27,7 @@ export const DefaultLabel = styled.label`
 `;
 
 export const DOverLay = styled(Dialog.Overlay)`
-  background-color: rgba(0 0 0 / 0.5);
+  background-color: rgba(0 0 0 / 0.20);
   position: fixed;
   top: 0;
   left: 0;
