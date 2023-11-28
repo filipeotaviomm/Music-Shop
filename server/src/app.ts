@@ -9,8 +9,12 @@ export const app: Application = express();
 
 export const prisma = new PrismaClient();
 
+const origins = [
+  "http://localhost:5173",
+  "https://durvalmusicshop.vercel.app/",
+];
 const corsOptions = {
-  origin: "https://durvalmusicshop.vercel.app/",
+  origin: origins,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
