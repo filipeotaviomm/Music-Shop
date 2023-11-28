@@ -36,25 +36,29 @@ const ProductsList = styled.ul`
 `;
 
 function Catalog() {
-  const { allProducts, getAllProducts, getProductsByCategory } = useProductContext() as IFullProductContext;
+  const { allProducts, getAllProducts, getProductsByCategory, getProductsByBrand } = useProductContext() as IFullProductContext;
   const verifyParams = useParams();
-  const verifyBrands = new URLSearchParams(window.location.search);
-  const foundBrand = verifyBrands.get('brand');
 
   const [nextPage, setNextPage] = useState<string | null>(null);
   const [prevPage, setPrevPage] = useState<string | null>(null);
 
   useEffect(() => {
     async function filterProducts() {
-      if(!verifyParams && !verifyBrands) {
-        getAllProducts();
-      } else if(verifyParams) {
-        const pages = await getProductsByCategory(verifyParams.categoryName!);
+      if(!verifyParams || verifyParams.brandName === 'todas') {
+        const pages = await getAllProducts(1, 7);
+
+        setNextPage(pages.nextPage);
+        setPrevPage(pages.prevPage);
+      } else if(verifyParams.categoryName) {
+        const pages = await getProductsByCategory(verifyParams.categoryName);
         
         setNextPage(pages.nextPage);
         setPrevPage(pages.prevPage);
-      } else if(foundBrand) {
-        
+      } else if(verifyParams.brandName) {
+        const pages = await getProductsByBrand(verifyParams.brandName);
+
+        setNextPage(pages.nextPage);
+        setPrevPage(pages.prevPage);
       }
     }
 
@@ -71,7 +75,7 @@ function Catalog() {
             allProducts!.map(product => <CardProduct item={product} key={product.id} />)
           }
         </ProductsList>
-        <ManagePages nextPage={nextPage} prevPage={prevPage} />
+        <ManagePages nextPage={nextPage} prevPage={prevPage} setNextPage={setNextPage} setPrevPage={setPrevPage} />
       </ListContainer>
       :
       <NotFound />
