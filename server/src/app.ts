@@ -1,19 +1,21 @@
 import "express-async-errors";
-
 import express, { Application, json } from "express";
 import { PrismaClient } from "@prisma/client";
 import { handleErrors } from "./middlewares/handleErrors.middleware";
 import { router } from "./routers/index.router";
-
-const cors = require("cors");
+import cors from "cors";
 
 export const app: Application = express();
 
 export const prisma = new PrismaClient();
 
+
 const corsOptions = {
-  origin: origin.startsWith("https://durvalmusicshop"),
-  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  origin: [
+    "http://localhost:5173",
+    origin.startsWith("https://durvalmusicshop"),
+  ],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
 };
