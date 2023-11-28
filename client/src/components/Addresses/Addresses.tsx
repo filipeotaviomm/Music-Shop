@@ -9,7 +9,6 @@ import { useEffect } from "react";
 import { AddressCard } from "./AddressCard/AddressCard";
 import Modal from "../Modal";
 import { colors } from "../../styled-components/root.ts";
-import { SendBtn } from "../../styled-components/Button.styles.ts";
 
 const AddressContent = styled.div`
   width: 100%;
