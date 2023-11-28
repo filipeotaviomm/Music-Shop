@@ -69,6 +69,9 @@ export const AddCartButton = styled(IconButton)`
 export const InlineButton = styled(DefaultButton)`
   width: auto;
   color: ${colors.purple};
+    &:disabled {
+    background-color: ${colors.grey20};
+    cursor: wait;
 `;
 
 export const WarningInlineButton = styled(InlineButton)`

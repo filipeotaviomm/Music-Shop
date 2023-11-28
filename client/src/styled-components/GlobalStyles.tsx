@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import {colors} from "./root.ts";
 
 const GlobalStyles = createGlobalStyle`
   /* Resets from Josh Cameau */
@@ -233,6 +234,10 @@ const GlobalStyles = createGlobalStyle`
   optgroup {
     text-decoration: inherit;
     font-style: normal;
+  }
+  
+  button:disabled{
+    background-color: ${colors.grey20};
   }
 `;
 
