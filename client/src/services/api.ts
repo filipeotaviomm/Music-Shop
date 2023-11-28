@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://durval-music-shop.onrender.com",
+    baseURL: "https://loja-do-durval.onrender.com",
 
     timeout: 8000,
 });
