@@ -7,9 +7,12 @@ import { MdOutlineAddCircleOutline } from "react-icons/md";
 import CreatePaymentForm from "./Form/CreatePaymentForm";
 import { useEffect } from "react";
 import Modal from "../Modal";
-import DeletePaymentForm from "./Form/DeletePaymentForm";
 import PaymentCard from "./PaymentCard";
 import { colors } from "../../styled-components/root";
+import { ResumeHeader } from "../Addresses";
+import { useUserContext } from "../../providers/UserContext";
+import { IUserContext } from "../../types/user";
+import Loader from "../Loader";
 
 const PaymentContent = styled.div`
   width: 100%;
@@ -26,26 +29,23 @@ const PaymentContent = styled.div`
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
 
-const PaymentHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 const AddPaymentsBtn = styled.button`
-padding: 16px;
-border-radius: 20px;
-transition: .5s;
-  
+  padding: 16px;
+  border-radius: 20px;
+  transition: 0.5s;
+
   display: flex;
   align-items: center;
   gap: 5px;
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  box-shadow:
+    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
   background-color: ${colors.purple};
   color: ${colors.white000};
-  &:hover{
+
+  &:hover {
     transform: scale(1.05);
     background-color: ${colors.purpleHover};
-
   }
 `;
 
@@ -60,35 +60,38 @@ function Payments() {
     isCreatePaymentModalOpen,
     setIsCreatePaymentModalOpen,
     getAllPayments,
-    isDeletePaymentModalOpen,
-    setIsDeletePaymentModalOpen,
   } = usePaymentContext() as IPaymentContext;
+  const { isLoading } = useUserContext() as IUserContext;
 
-    useEffect(() => {
-      getAllPayments();
-    }, []);
+  useEffect(() => {
+    getAllPayments();
+  }, []);
 
   return (
     <>
-      <PaymentHeader>
+      <ResumeHeader>
         <H1>CARTÕES</H1>
 
         <AddPaymentsBtn onClick={() => setIsCreatePaymentModalOpen(true)}>
           <MdOutlineAddCircleOutline size="18" />
           Cartão
         </AddPaymentsBtn>
-      </PaymentHeader>
+      </ResumeHeader>
 
       <div>
         {payments.length > 0 ? (
           <PaymentContent>
-            {payments.map((payment) => (
-              <PaymentCard key={payment.id} payment={payment} />
-            ))}
+            {isLoading ? (
+              <Loader />
+            ) : (
+              payments.map((payment) => (
+                <PaymentCard key={payment.id} payment={payment} />
+              ))
+            )}
           </PaymentContent>
         ) : (
           <>
-            <img src={CardImage} style={{ alignSelf: "center" }} />
+            <img alt="" src={CardImage} style={{ alignSelf: "center" }} />
             <H2>Nenhum Cartão cadastrado.</H2>
           </>
         )}
@@ -99,11 +102,7 @@ function Payments() {
         onOpenChange={setIsCreatePaymentModalOpen}
         element={CreatePaymentForm()}
       />
-      <Modal
-        open={isDeletePaymentModalOpen}
-        onOpenChange={setIsDeletePaymentModalOpen}
-        element={DeletePaymentForm()}
-      />
+
     </>
   );
 }

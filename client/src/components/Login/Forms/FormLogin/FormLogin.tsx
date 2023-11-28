@@ -9,12 +9,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import loginSchema from "../../../../schemas/loginSchema";
 import Input from "../Input";
-import {IUserContext} from "../../../../types/user";
-import {ILogin} from "../../../../types/login";
-import {SendBtn} from "../../../../styled-components/Button.styles.ts";
+import { IUserContext } from "../../../../types/user";
+import { ILogin } from "../../../../types/login";
+import { SendBtn } from "../../../../styled-components/Button.styles.ts";
+import Loader from "../../../Loader";
 
 function FormLogin() {
-  const { loginRequest, isPasswordVisible } = useUserContext() as IUserContext;
+  const { isLoading, loginRequest, isPasswordVisible } =
+    useUserContext() as IUserContext;
+
   const id = React.useId();
   const emailId = `${id}-email`;
   const passwordId = `${id}-password`;
@@ -47,7 +50,7 @@ function FormLogin() {
         id={passwordId}
       />
 
-      <SendBtn>LOGIN</SendBtn>
+      <SendBtn disabled={isLoading}>{isLoading ? <Loader /> : "LOGIN"}</SendBtn>
     </Form>
   );
 }

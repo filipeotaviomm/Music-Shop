@@ -18,6 +18,9 @@ export const SectionBuy = styled.section`
 export const DivImg = styled.button`
   max-height: 750px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: scale 300ms;
   &:hover {
     scale: 1.10;

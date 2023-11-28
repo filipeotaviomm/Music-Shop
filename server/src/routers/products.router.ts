@@ -9,6 +9,8 @@ import {
   getAllCategoriesController,
   getAllBrandsController,
   getProductsByCategoryController,
+  getProductsByBrandController,
+  searchProductInfoController,
 } from "../controllers/products.controller";
 import {
   bodyValidator,
@@ -27,6 +29,8 @@ export const productRouter: Router = Router();
 productRouter.get("/all", paginationMiddleware, getAllProductsController)
 productRouter.get("/:id", verifyProductId, getProductByIdController);
 productRouter.get("/category/:categoryName", paginationMiddleware, getProductsByCategoryController);
+productRouter.get('/brand/:brandName', paginationMiddleware, getProductsByBrandController);
+productRouter.get('/search/:productInfo', searchProductInfoController);
 
 productRouter.use(verifyToken);
 

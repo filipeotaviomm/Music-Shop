@@ -28,8 +28,6 @@ export interface IPayment {
 
     isDeletePaymentModalOpen: boolean
     setIsDeletePaymentModalOpen: React.Dispatch<React.SetStateAction<boolean>>
-    deletingPayment: IPayment | null
-    setDeletingPayment: React.Dispatch<React.SetStateAction<IPayment | null>>
 
 
   }

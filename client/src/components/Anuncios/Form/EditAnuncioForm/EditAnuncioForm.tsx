@@ -9,13 +9,17 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { H2 } from "../../../../styled-components/Typography.styles.ts";
 import { SendBtn } from "../../../../styled-components/Button.styles.ts";
-import {AnuncioFormContainer} from "../../Anuncios.tsx";
+import { AnuncioFormContainer } from "../../Anuncios.tsx";
 import { IAnuncioContext, IProductForm } from "../../../../types/anuncios";
 import Select from "../../../Select/Select.tsx";
+import { useUserContext } from "../../../../providers/UserContext";
+import { IUserContext } from "../../../../types/user";
+import Loader from "../../../Loader";
 
 function EditAnuncioForm() {
-  const { editAnuncio, editingAnuncio } = useAnuncioContext() as IAnuncioContext;
-
+  const { editAnuncio, editingAnuncio } =
+    useAnuncioContext() as IAnuncioContext;
+  const { isLoading } = useUserContext() as IUserContext;
   const {
     register,
     handleSubmit,
@@ -36,11 +40,11 @@ function EditAnuncioForm() {
   });
 
   async function submit(formData: IProductForm) {
-    const requestData = ({
+    const requestData = {
       ...formData,
       stock: Number(formData.stock),
-      price: Number(formData.price)
-   });
+      price: Number(formData.price),
+    };
 
     await editAnuncio(requestData, editingAnuncio!.id);
   }
@@ -86,8 +90,16 @@ function EditAnuncioForm() {
           {...register("color")}
           id={"color"}
         />
-        <Select label="Condição" error={errors.condition} {...register("condition")} id="condition" defaultValue="">
-         <option value="" disabled>Selecionar</option>
+        <Select
+          label="Condição"
+          error={errors.condition}
+          {...register("condition")}
+          id="condition"
+          defaultValue=""
+        >
+          <option value="" disabled>
+            Selecionar
+          </option>
           <option value="new">Novo</option>
           <option value="used">Usado</option>
         </Select>
@@ -98,13 +110,15 @@ function EditAnuncioForm() {
           id={"categories"}
         />
         <Input
-        label="Marca"
-        error={errors.brandName}
-        {...register("brandName")}
-        id={".brandName"}
-      />
+          label="Marca"
+          error={errors.brandName}
+          {...register("brandName")}
+          id={".brandName"}
+        />
       </AnuncioFormContainer>
-      <SendBtn type="submit">SALVAR EDIÇÃO</SendBtn>
+      <SendBtn type="submit" disabled={isLoading}>
+        {isLoading ? <Loader /> : "SALVAR EDIÇÃO"}
+      </SendBtn>
     </FormUser>
   );
 }

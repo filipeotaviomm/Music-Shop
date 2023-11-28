@@ -11,9 +11,13 @@ import { SendBtn } from "../../../../styled-components/Button.styles.ts";
 import { AnuncioFormContainer } from "../../Anuncios.tsx";
 import { IAnuncioContext, IProductForm } from "../../../../types/anuncios";
 import Select from "../../../Select/Select.tsx";
+import Loader from "../../../Loader";
+import { useUserContext } from "../../../../providers/UserContext";
+import { IUserContext } from "../../../../types/user";
 
 function CreateAnuncioForm() {
   const { createAnuncioRequest } = useAnuncioContext() as IAnuncioContext;
+  const { isLoading } = useUserContext() as IUserContext;
 
   const {
     register,
@@ -25,11 +29,11 @@ function CreateAnuncioForm() {
   });
 
   async function submit(formData: IProductForm) {
-    const requestData = ({
+    const requestData = {
       ...formData,
       stock: Number(formData.stock),
-      price: Number(formData.price)
-   });
+      price: Number(formData.price),
+    };
 
     await createAnuncioRequest(requestData);
     reset();
@@ -76,8 +80,16 @@ function CreateAnuncioForm() {
           {...register("color")}
           id={"color"}
         />
-        <Select label="Condição" error={errors.condition} {...register("condition")} id="condition" defaultValue="">
-         <option value="" disabled>Selecionar</option>
+        <Select
+          label="Condição"
+          error={errors.condition}
+          {...register("condition")}
+          id="condition"
+          defaultValue=""
+        >
+          <option value="" disabled>
+            Selecionar
+          </option>
           <option value="new">Novo</option>
           <option value="used">Usado</option>
         </Select>
@@ -88,13 +100,15 @@ function CreateAnuncioForm() {
           id={"categories"}
         />
         <Input
-        label="Marca"
-        error={errors.brandName}
-        {...register("brandName")}
-        id={".brandName"}
-      />
+          label="Marca"
+          error={errors.brandName}
+          {...register("brandName")}
+          id={".brandName"}
+        />
       </AnuncioFormContainer>
-      <SendBtn type="submit">CADASTRAR ANUNCIO</SendBtn>
+      <SendBtn type="submit" disabled={isLoading}>
+        {isLoading ? <Loader /> : "CADASTRAR ANUNCIO"}
+      </SendBtn>
     </FormUser>
   );
 }

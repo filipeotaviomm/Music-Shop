@@ -2,6 +2,8 @@ import React, { createContext, ReactNode, useState } from "react";
 import { IAnuncio, IAnuncioContext, IProductForm } from "../../types/anuncios";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
+import { useUserContext } from "./UserProvider.tsx";
+import { IUserContext } from "../../types/user";
 
 export const AnuncioContext = createContext({});
 
@@ -9,6 +11,7 @@ const useAnuncioContext = () => React.useContext(AnuncioContext);
 
 const AnuncioProvider = (props: { children: ReactNode }) => {
   const [anuncios, setAnuncios] = useState<IAnuncio[]>([]);
+  const { setIsLoading } = useUserContext() as IUserContext;
 
   const [isCreateAnuncioModalOpen, setIsCreateAnuncioModalOpen] =
     useState<boolean>(false);
@@ -30,6 +33,7 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
     };
 
     try {
+      setIsLoading(true);
       await api.post("/products", requestData, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -40,12 +44,14 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
       console.log(error);
     } finally {
       setIsCreateAnuncioModalOpen(false);
+      setIsLoading(false);
     }
   }
 
   async function getAllAnuncios() {
     const token = JSON.parse(localStorage.getItem("@TOKEN")!);
     try {
+      setIsLoading(true);
       const { data } = await api.get("/products", {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -55,6 +61,8 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
       if (error.response.status === 401) {
         toast.error("Ops, faça login novamente e tente outra vez.");
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -69,6 +77,7 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
     };
 
     try {
+      setIsLoading(true);
       await api.patch(`/products/${anuncioId}`, requestData, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -83,6 +92,7 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
     } finally {
       setIsEditAnuncioModalOpen(false);
       setEditingAnuncio(null);
+      setIsLoading(false);
     }
   }
 
@@ -90,6 +100,7 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
     const token = JSON.parse(localStorage.getItem("@TOKEN")!);
 
     try {
+      setIsLoading(true);
       await api.delete(`/products/${anuncio.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -104,6 +115,7 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
     } finally {
       setIsDeleteAnuncioModalOpen(false);
       setDeletingAnuncio(null);
+      setIsLoading(false);
     }
   }
 
@@ -132,4 +144,4 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
   );
 };
 
-export {AnuncioProvider, useAnuncioContext};
+export { AnuncioProvider, useAnuncioContext };

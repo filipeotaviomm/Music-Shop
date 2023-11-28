@@ -3,10 +3,14 @@ import { useUserContext } from "../../../../../providers/UserContext";
 import { Eye, EyeOff } from "react-feather";
 import styled from "styled-components";
 import { IUserContext } from "../../../../../types/user";
-import {InlineButton, SendBtn} from "../../../../../styled-components/Button.styles.ts";
+import {
+  InlineButton,
+  SendBtn,
+} from "../../../../../styled-components/Button.styles.ts";
 import React from "react";
 import { H3 } from "../../../../../styled-components/Typography.styles.ts";
-import {colors} from "../../../../../styled-components/root.ts";
+import { colors } from "../../../../../styled-components/root.ts";
+import Loader from "../../../../Loader";
 
 const Title = styled.span`
   font-weight: 500;
@@ -35,6 +39,7 @@ function Confirmation() {
     signUpInfo,
     setSignUpInfo,
     setStep,
+    isLoading,
   } = useUserContext() as IUserContext;
 
   async function submit() {
@@ -78,8 +83,12 @@ function Confirmation() {
             </div>
           </div>
         </div>
-        <div style={{ display: "flex",flexFlow:"column",alignItems:"center" }}>
-          <SendBtn onClick={submit}>ENVIAR</SendBtn>
+        <div
+          style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
+        >
+          <SendBtn onClick={submit} disabled={isLoading}>
+            {isLoading ? <Loader/> : "ENVIAR"}
+          </SendBtn>
           <InlineButton
             style={{
               width: "fit-content",

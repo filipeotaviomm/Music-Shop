@@ -5,7 +5,7 @@ import { sign } from "jsonwebtoken";
 import { prisma } from "../app";
 import { loginReturn } from "../interfaces/session.interface";
 
-export const loginService = async (data: any): Promise<loginReturn> => {
+export const loginService = async (data: any): Promise<{token: string}> => {
   const { email, password } = data;
 
   const user = await prisma.user.findUnique({ where: { email } });
@@ -22,5 +22,5 @@ export const loginService = async (data: any): Promise<loginReturn> => {
     subject: user.id.toString(),
   });
 
-  return { token, userName };
+  return { token };
 };

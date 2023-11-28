@@ -189,3 +189,37 @@ export const getProductsByCategoryService = async (categoryName: string, { page,
     nextPage: productsCount.length - page <= perPage ? null : nextPage
   };
 }
+
+export const getProductsByBrandService = async (brandName: string, { page, perPage, nextPage, order, sort, prevPage }: Pagination) => {
+  const productsList = await prisma.product.findMany({
+    where: { brandName },
+    skip: page,
+    take: perPage,
+    orderBy: { [sort]: order }
+  });
+
+  const productsCount = await prisma.product.findMany({
+    where: { brandName }
+  });
+
+  return {
+    products: productsList,
+    prevPage: page >= 1 ? prevPage : null,
+    nextPage: productsCount.length - page <= perPage ? null : nextPage
+  };
+}
+
+export const searchProductInfoService = async (productInfo: string) => {
+  const productsList = await prisma.product.findMany({
+    where: {
+      OR: [
+        { name: { contains: productInfo } },
+        { color: { contains: productInfo } },
+        { brandName: { contains: productInfo } },
+        { description: { contains: productInfo } },
+      ]
+    }
+  });
+
+  return productsList;
+}
