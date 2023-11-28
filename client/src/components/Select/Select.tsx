@@ -1,4 +1,3 @@
-import { FaAngleDown } from "react-icons/fa"
 import { ForwardedRef, forwardRef } from "react"
 import { ISelect } from "../../types/types";
 import styled from "styled-components";

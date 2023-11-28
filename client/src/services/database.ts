@@ -23,8 +23,8 @@ export const categories = [
     text: "CORDAS",
   },
   {
-    url: "persussao",
-    text: "PERCUSSÃO",
+    url: "bateria",
+    text: "BATERIA",
   },
   {
     url: "sopro",
@@ -69,29 +69,6 @@ export const brandsLogo = [
     id: nanoid(),
   },
 ];
-
-/*
-const IconsArray = [
-  {
-    wishList: {
-      icon: <Heart />,
-      destination: "/wishlist",
-    },
-  },
-  {
-    profile: {
-      icon: <ProfileIcon src={Profile} alt="User Button" />,
-      destination: "/profile",
-    },
-  },
-  {
-    cart: {
-      icon: <ProfileIcon $bgColor src={Cart} alt="Cart Button" />,
-      destination: "/cart",
-    },
-  },
-];
-*/
 
 export const HomeIllustrations = [
   {

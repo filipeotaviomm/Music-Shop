@@ -35,7 +35,7 @@ function CreatePaymentForm() {
       <H2>Cadastrar Cartão</H2>
       <PaymentFormContainer>
         <Input
-          label="Numero do Cartão"
+          label="Número do Cartão"
           error={errors.number}
           {...register("number")}
           id="name"

@@ -42,7 +42,7 @@ const ProductProvider = (props: { children: ReactNode }) => {
   }
 
   const getProductsByBrand = async (brandName: string, url: string | null | undefined) => {
-    const { data } = await api.get(`products/brand/${brandName}${url ? url : '/'}`);
+    const { data } = await api.get(`/products/brand/${brandName}${url ? url : '/'}`);
     const { products, prevPage, nextPage } = data;
     
     setAllProducts(products);
@@ -95,4 +95,4 @@ const ProductProvider = (props: { children: ReactNode }) => {
   );
 };
 
-export { ProductProvider, useProductContext };
+export {ProductProvider, useProductContext};
