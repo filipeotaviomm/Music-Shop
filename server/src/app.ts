@@ -10,6 +10,8 @@ export const app: Application = express();
 export const prisma = new PrismaClient();
 
 const origins = [
+  "https://loja-do-durval.onrender.com/",
+  "https://durvalmusicshop-7tzmutdcb-brunomoleta.vercel.app/",
   "http://localhost:5173",
   "https://durvalmusicshop.vercel.app/",
 ];
